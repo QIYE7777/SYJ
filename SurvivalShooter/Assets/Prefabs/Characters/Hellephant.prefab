@@ -9892,6 +9892,7 @@ GameObject:
   - component: {fileID: 114761713049082770}
   - component: {fileID: 136467491578855048}
   - component: {fileID: 135409158097274046}
+  - component: {fileID: -4420887136459156363}
   m_Layer: 3
   m_Name: Hellephant
   m_TagString: Untagged
@@ -10140,6 +10141,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.65
   m_Center: {x: 0, y: 1.2, z: 0}
+--- !u!114 &-4420887136459156363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944203798625708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51cf05d87be3caf4ab2a1da75cf8b2db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1956919396473434
 GameObject:
   m_ObjectHideFlags: 0

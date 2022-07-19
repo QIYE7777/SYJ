@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-
     Transform player;
     PlayerHealth playerHealth;
     EnemyHealth enemyHealth;

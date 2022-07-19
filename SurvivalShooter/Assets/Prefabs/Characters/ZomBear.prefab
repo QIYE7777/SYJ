@@ -9862,6 +9862,7 @@ GameObject:
   - component: {fileID: 195912758188770196}
   - component: {fileID: 136167437456988478}
   - component: {fileID: 135901804349156954}
+  - component: {fileID: -2752941489969639991}
   m_Layer: 3
   m_Name: ZomBear
   m_TagString: Untagged
@@ -10121,6 +10122,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.8
   m_Center: {x: 0, y: 0.8, z: 0}
+--- !u!114 &-2752941489969639991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499081237720858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51cf05d87be3caf4ab2a1da75cf8b2db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1725477418474492
 GameObject:
   m_ObjectHideFlags: 0

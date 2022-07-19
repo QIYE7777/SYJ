@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 114099135370214954}
   - component: {fileID: 82084008772381484}
   - component: {fileID: 195211502315345458}
+  - component: {fileID: 8394723144096288105}
   m_Layer: 3
   m_Name: Zombunny
   m_TagString: Untagged
@@ -371,6 +372,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8394723144096288105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283818949268800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51cf05d87be3caf4ab2a1da75cf8b2db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1459112493018898
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody playerRigidbody;
     public int floorMask;
     float camRayLength = 100f;
+    public Vector3 playerToMouse;
 
     private void Awake()
     {
@@ -41,13 +42,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Turning()
     {
-
         Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit floorHit;
         if (Physics.Raycast(camRay, out floorHit, camRayLength, (1 << floorMask)))
         {
             //Debug.Log(floorHit.point);
-            Vector3 playerToMouse = floorHit.point - transform.position;
+            playerToMouse = floorHit.point - transform.position;
             playerToMouse.y = 0f;
             Quaternion newRotatation = Quaternion.LookRotation(playerToMouse);
             playerRigidbody.MoveRotation(newRotatation);
