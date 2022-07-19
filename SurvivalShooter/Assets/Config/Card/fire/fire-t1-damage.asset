@@ -18,3 +18,9 @@ MonoBehaviour:
   category: 0
   title: Fire spirits
   desc: asdasdasdasdasdasdas
+  param:
+    p1: 3
+    p2: 0
+  goldenParam:
+    p1: 7
+    p2: 0
