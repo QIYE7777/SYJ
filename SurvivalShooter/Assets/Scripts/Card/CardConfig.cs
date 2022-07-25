@@ -10,6 +10,7 @@ public class CardConfig : ScriptableObject
     public CardCategory category;
     public string title;
     public string desc;
+    public Sprite sp;
 
     public CardParam param;
     public CardParam goldenParam;
