@@ -7,12 +7,15 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public float speed = 6f;
+    public float turnSpeed = 20f;
     Vector3 movement;
     Animator anim;
     Rigidbody playerRigidbody;
     public int floorMask;
     float camRayLength = 100f;
     public Vector3 playerToMouse;
+
+    Quaternion m_Rotation = Quaternion.identity;
 
     private void Awake()
     {
@@ -22,14 +25,30 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float h = CrossPlatformInputManager.GetAxisRaw("Horizontal");
-        float v = CrossPlatformInputManager.GetAxisRaw("Vertical");
+        
 
-        Move(h, v);
+        bool buttonIsDown = Input.GetMouseButtonDown(0);
 
-        Turning();
+        
 
-        Animating(h, v);
+        if (buttonIsDown)
+        {
+            float h = CrossPlatformInputManager.GetAxisRaw("Horizontal");
+            float v = CrossPlatformInputManager.GetAxisRaw("Vertical");
+            Move(h, v);
+            Animating(h, v);
+            TurningMouse();
+        }
+        else
+        {
+            float h = CrossPlatformInputManager.GetAxisRaw("Horizontal");
+            float v = CrossPlatformInputManager.GetAxisRaw("Vertical");
+            Move(h, v);
+            Animating(h, v);
+            TurningKeyboard();
+        }
+
+        
     }
 
     void Move(float h, float v)
@@ -40,8 +59,23 @@ public class PlayerMovement : MonoBehaviour
         playerRigidbody.MovePosition(transform.position + movement);
     }
 
-    void Turning()
+
+    void TurningKeyboard()
     {
+        float horizontal = Input.GetAxis("Horizontal");  //"Horizontal"是字符串
+        float vertical = Input.GetAxis("Vertical");
+
+        movement.Set(horizontal, 0f, vertical);
+
+        Vector3 desiredForward = Vector3.RotateTowards(transform.forward, movement, turnSpeed * Time.deltaTime, 0f);
+        m_Rotation = Quaternion.LookRotation(desiredForward);
+
+        playerRigidbody.MoveRotation(m_Rotation);
+    }
+
+    void TurningMouse()
+    {
+
         Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit floorHit;
         if (Physics.Raycast(camRay, out floorHit, camRayLength, (1 << floorMask)))
@@ -52,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
             Quaternion newRotatation = Quaternion.LookRotation(playerToMouse);
             playerRigidbody.MoveRotation(newRotatation);
         }
+
     }
 
     void Animating(float h, float v)
