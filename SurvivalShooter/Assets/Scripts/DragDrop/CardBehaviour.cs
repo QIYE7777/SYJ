@@ -2,33 +2,59 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+public enum CardState
+{
+    None = 0,
+    InHand = 1,
+    InSell = 2,
+    Discarded = 3,
+}
+
 [RequireComponent(typeof(Image))]
 public class CardBehaviour : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public Canvas canvas;
     private GameObject m_DraggingIcon;
     private RectTransform m_DraggingPlane;
-    public RectTransform iconParent;
+
+    public CardConfig cfg;
+    CardViewBehaviour _view;
+    public CardState cardState;
+    public bool isGolden { get; private set; }
+
+    private void Awake()
+    {
+        _view = GetComponent<CardViewBehaviour>();
+    }
+
+    public void Init()
+    {
+        _view.Setup(cfg);
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        //Debug.Log("OnBeginDrag");
-        // We have clicked something that can be dragged.
-        // What we want to do is create an icon for this.
-        m_DraggingIcon = new GameObject("icon");
+        if (cardState != CardState.InSell)
+        {
+            return;
+        }
 
-        m_DraggingIcon.transform.SetParent(iconParent, false);
-        m_DraggingIcon.transform.SetAsLastSibling();
+        var prefab = CardSellSystem.instance.IconPrefab;
+        m_DraggingIcon = Instantiate(prefab, prefab.transform.parent);
+        m_DraggingIcon.SetActive(true);
+        //m_DraggingIcon.transform.SetAsLastSibling();
 
-        var image = m_DraggingIcon.AddComponent<Image>();
-        image.raycastTarget = false;
-        image.sprite = GetComponent<Image>().sprite;
-        image.SetNativeSize();
-        image.color = new Color(1, 1, 1, 0.5f);
+        var iconImg = m_DraggingIcon.GetComponent<Image>();
+        iconImg.raycastTarget = false;
+        iconImg.sprite = cfg.sp;
+        iconImg.SetNativeSize();
+
+        _view.SetTransparent();
 
         m_DraggingPlane = transform as RectTransform;
-
         SetDraggedPosition(eventData);
+
+        _view.OnStartDrag();
+        HandCardAreaBehaviour.instance.ToggleCanDrop(true);
     }
 
     public void OnDrag(PointerEventData data)
@@ -57,6 +83,9 @@ public class CardBehaviour : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         if (m_DraggingIcon != null)
             Destroy(m_DraggingIcon);
 
+        _view.SetNonTransparent();
         HandCardAreaBehaviour.instance.ValidDrop(this);
+        HandCardAreaBehaviour.instance.ToggleCanDrop(false);
+        _view.OnStopDrag();
     }
 }

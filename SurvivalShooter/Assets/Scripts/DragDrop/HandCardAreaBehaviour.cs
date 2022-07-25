@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using DG.Tweening;
 
 [RequireComponent(typeof(Image))]
 public class HandCardAreaBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -10,6 +12,12 @@ public class HandCardAreaBehaviour : MonoBehaviour, IPointerEnterHandler, IPoint
     CardBehaviour _tpCard;
 
     public RectTransform cardParent;
+
+    public int maxSlots = 7;
+
+    List<CardBehaviour> _handCards = new List<CardBehaviour>();
+
+    public CanvasGroup glowCg;
 
     private void Awake()
     {
@@ -38,12 +46,61 @@ public class HandCardAreaBehaviour : MonoBehaviour, IPointerEnterHandler, IPoint
     public void ValidDrop(CardBehaviour c)
     {
         if (c == _tpCard)
-            AddCard();
+        {
+            if (InventorySystem.instance.TryBuy(_tpCard))
+            {
+                Debug.Log("buy suc");
+            }
+            else
+            {
+                Debug.Log("buy fail");
+            }
+        }
+
+
+        _tpCard = null;
     }
 
-    void AddCard()
+    public void AddCard(CardBehaviour c)
     {
-        _tpCard.transform.SetParent(cardParent);
-        _tpCard = null;
+        c.transform.SetParent(cardParent);
+        _handCards.Add(c);
+    }
+
+    public int CurrentCardNum { get { return _handCards.Count; } }
+
+    public bool HasTriple(CardBehaviour c)
+    {
+        return HasTriple(c.cfg.id);
+    }
+
+    public bool HasTriple(string id)
+    {
+        int exist = 0;
+        foreach (var c in _handCards)
+        {
+            if (c.cfg.id == id)
+            {
+                exist++;
+                if (exist == 2)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void ToggleCanDrop(bool b)
+    {
+        glowCg.DOKill();
+        if (b)
+        {
+            glowCg.DOFade(1, 0.35f);
+        }
+        else
+        {
+            glowCg.DOFade(0, 0.35f);
+        }
     }
 }
