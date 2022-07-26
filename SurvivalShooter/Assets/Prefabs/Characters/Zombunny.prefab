@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 82084008772381484}
   - component: {fileID: 195211502315345458}
   - component: {fileID: 8394723144096288105}
+  - component: {fileID: 8557832072006252374}
   m_Layer: 3
   m_Name: Zombunny
   m_TagString: Untagged
@@ -230,6 +231,7 @@ MonoBehaviour:
   sinkSpeed: 2.5
   scoreValue: 10
   deathClip: {fileID: 8300000, guid: 8b5aec79f9200d845a5d13020bc074ae, type: 3}
+  spawnBoltOnDeath: {fileID: 8557832072006252374}
 --- !u!114 &114730947050797648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,6 +386,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51cf05d87be3caf4ab2a1da75cf8b2db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8557832072006252374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283818949268800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4c5a2c0889a50449b70273025f87b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boltLauncherPrefab: {fileID: 394867987034987684, guid: b7e647714e6cee048a8c6cbf615cd074, type: 3}
 --- !u!1 &1459112493018898
 GameObject:
   m_ObjectHideFlags: 0

@@ -67,6 +67,11 @@ public class HandCardAreaBehaviour : MonoBehaviour, IPointerEnterHandler, IPoint
         _handCards.Add(c);
     }
 
+    public void RemoveCard(CardBehaviour c)
+    {
+        _handCards.Remove(c);
+    }
+
     public int CurrentCardNum { get { return _handCards.Count; } }
 
     public bool HasTriple(CardBehaviour c)

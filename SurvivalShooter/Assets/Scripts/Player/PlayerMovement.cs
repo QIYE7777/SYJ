@@ -5,10 +5,10 @@ using UnitySampleAssets.CrossPlatformInput;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    public static PlayerMovement instance;
     public float speed = 6f;
     public float turnSpeed = 20f;
-    Vector3 movement;
+    public Vector3 movement { get; private set; }
     Animator anim;
     Rigidbody playerRigidbody;
     public int floorMask;
@@ -17,56 +17,49 @@ public class PlayerMovement : MonoBehaviour
 
     Quaternion m_Rotation = Quaternion.identity;
 
+    bool _mouseButtonDown;
+
     private void Awake()
     {
+        instance = this;
         anim = GetComponent<Animator>();
         playerRigidbody = GetComponent<Rigidbody>();
     }
 
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            _mouseButtonDown = true;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            _mouseButtonDown = false;
+        }
+    }
     private void FixedUpdate()
     {
-        
+        float h = CrossPlatformInputManager.GetAxisRaw("Horizontal");
+        float v = CrossPlatformInputManager.GetAxisRaw("Vertical");
+        Move(h, v);
+        Animating(h, v);
 
-        bool buttonIsDown = Input.GetMouseButtonDown(0);
-
-        
-
-        if (buttonIsDown)
-        {
-            float h = CrossPlatformInputManager.GetAxisRaw("Horizontal");
-            float v = CrossPlatformInputManager.GetAxisRaw("Vertical");
-            Move(h, v);
-            Animating(h, v);
+        if (_mouseButtonDown)
             TurningMouse();
-        }
         else
-        {
-            float h = CrossPlatformInputManager.GetAxisRaw("Horizontal");
-            float v = CrossPlatformInputManager.GetAxisRaw("Vertical");
-            Move(h, v);
-            Animating(h, v);
             TurningKeyboard();
-        }
-
-        
     }
 
     void Move(float h, float v)
     {
-        movement.Set(h, 0f, v);
+        movement = new Vector3(h, 0f, v);
         movement = movement.normalized * speed * Time.deltaTime;
 
         playerRigidbody.MovePosition(transform.position + movement);
     }
 
-
     void TurningKeyboard()
     {
-        float horizontal = Input.GetAxis("Horizontal");  //"Horizontal"是字符串
-        float vertical = Input.GetAxis("Vertical");
-
-        movement.Set(horizontal, 0f, vertical);
-
         Vector3 desiredForward = Vector3.RotateTowards(transform.forward, movement, turnSpeed * Time.deltaTime, 0f);
         m_Rotation = Quaternion.LookRotation(desiredForward);
 
@@ -75,7 +68,6 @@ public class PlayerMovement : MonoBehaviour
 
     void TurningMouse()
     {
-
         Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit floorHit;
         if (Physics.Raycast(camRay, out floorHit, camRayLength, (1 << floorMask)))
@@ -86,7 +78,6 @@ public class PlayerMovement : MonoBehaviour
             Quaternion newRotatation = Quaternion.LookRotation(playerToMouse);
             playerRigidbody.MoveRotation(newRotatation);
         }
-
     }
 
     void Animating(float h, float v)

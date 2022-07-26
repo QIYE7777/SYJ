@@ -17,7 +17,7 @@ public class EnemyHealth : MonoBehaviour
     CapsuleCollider capsuleCollider;
     bool isDead;
     bool isSinking;
-
+    public SpawnBoltOnDeath spawnBoltOnDeath;
 
     private void Awake()
     {
@@ -65,6 +65,9 @@ public class EnemyHealth : MonoBehaviour
     void Death()
     {
         isDead = true;
+
+        if (spawnBoltOnDeath!=null)
+            spawnBoltOnDeath.Spawn();
 
         capsuleCollider.isTrigger = true;
         anim.SetTrigger("Dead");

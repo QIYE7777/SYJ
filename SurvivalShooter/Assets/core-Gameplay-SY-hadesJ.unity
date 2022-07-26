@@ -1277,6 +1277,8 @@ MonoBehaviour:
   passThoughEnemies: 1
   damageToPassThoughEnemy: 500
   checkDistanceToPassThoughEnemy: 1
+  trait: {fileID: 1207347430}
+  trailDuration: 0.25
 --- !u!1 &781970203
 GameObject:
   m_ObjectHideFlags: 0
@@ -2491,7 +2493,7 @@ GameObject:
   - component: {fileID: 1207347431}
   - component: {fileID: 1207347432}
   m_Layer: 0
-  m_Name: Trail
+  m_Name: blink Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2505,7 +2507,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1207347430}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.543, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4009648919915879}
@@ -2555,7 +2557,7 @@ TrailRenderer:
   m_Time: 0.35
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.65
+    widthMultiplier: 1.2
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -2582,7 +2584,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 0.29411766}
+      key0: {r: 1, g: 1, b: 1, a: 0.5686275}
       key1: {r: 0.5235849, g: 0.6686079, b: 1, a: 0}
       key2: {r: 1, g: 0, b: 0.9815202, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -4665,11 +4667,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 60
+  near clip plane: 0.1
+  far clip plane: 65
   field of view: 60
   orthographic: 1
-  orthographic size: 7.57
+  orthographic size: 7
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -4693,7 +4695,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1966726156}
   m_LocalRotation: {x: 0.22501872, y: -0, z: -0, w: 0.97435445}
-  m_LocalPosition: {x: -0.4, y: 8.24, z: -49.02}
+  m_LocalPosition: {x: -0.4, y: 16.44, z: -65.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5280,6 +5282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
+  turnSpeed: 20
   floorMask: 8
   playerToMouse: {x: 0, y: 0, z: 0}
 --- !u!114 &114174213078473743
@@ -5294,7 +5297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32a27f16469844242be06f17b8598f4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 10000
+  startingHealth: 100
   currentHealth: 0
   healthSlider: {fileID: 1798906659}
   damageImage: {fileID: 1758988381}
