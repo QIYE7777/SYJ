@@ -33,10 +33,10 @@ public class CardBehaviour : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (cardState != CardState.InSell)
-        {
+        if (cardState == CardState.None)
             return;
-        }
+        if (cardState == CardState.Discarded)
+            return;
 
         var prefab = CardSellSystem.instance.IconPrefab;
         m_DraggingIcon = Instantiate(prefab, prefab.transform.parent);
@@ -54,7 +54,11 @@ public class CardBehaviour : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         SetDraggedPosition(eventData);
 
         _view.OnStartDrag();
-        HandCardAreaBehaviour.instance.ToggleCanDrop(true);
+        if (cardState == CardState.InSell)
+            HandCardAreaBehaviour.instance.ToggleCanDrop(true);
+
+        if (cardState == CardState.InHand)
+            SellCardAreaBehaviour.instance.ToggleCanDrop(true);
     }
 
     public void OnDrag(PointerEventData data)
@@ -85,6 +89,8 @@ public class CardBehaviour : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
         _view.SetNonTransparent();
         HandCardAreaBehaviour.instance.ValidDrop(this);
+
+        SellCardAreaBehaviour.instance.ToggleCanDrop(false);
         HandCardAreaBehaviour.instance.ToggleCanDrop(false);
         _view.OnStopDrag();
     }
