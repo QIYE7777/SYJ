@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94135995da550b54eabc24ed1c3c1ebf, type: 3}
-  m_Name: fire-t1-damage
+  m_Name: wind-t3-damage 1
   m_EditorClassIdentifier: 
-  id: fire-t1-damage
-  price: 15
-  tier: 0
-  category: 0
-  title: Fire spirits
-  desc: asdasdasdasdasdasdas
-  sp: {fileID: 21300000, guid: 224187c30f1b98449882c56f85d5d11c, type: 3}
+  id: wind-t3-damage 1
+  price: 20
+  tier: 10
+  category: 2
+  title: "\u4F24\u5BB3\u52A0\u6210\uFF1A+\u5F53\u524D\u91D1\u989D/10"
+  desc: "\u4F24\u5BB3\u52A0\u6210\uFF1A+\u5F53\u524D\u91D1\u989D/10"
+  sp: {fileID: 21300000, guid: 0969b8a24001ce64eb967e8f4d79a798, type: 3}
   param:
     p1: 3
     p2: 0

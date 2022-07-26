@@ -27,7 +27,7 @@ public class PlayerBlink : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (Input.GetButton("Fire2") && timer >= timeBetweenBlinks && Time.timeScale != 0)
+        if (Input.GetButton("Jump") && timer >= timeBetweenBlinks && Time.timeScale != 0)
             Blink();
     }
 
@@ -42,7 +42,8 @@ public class PlayerBlink : MonoBehaviour
     Vector3 GetBlinkTargetPlace()
     {
         blinkRay.origin = gunPos.position;
-        blinkRay.direction = _movement.playerToMouse.normalized;
+        //blinkRay.direction = _movement.playerToMouse.normalized;
+        blinkRay.direction = _movement.transform .forward;
 
         //public static RaycastHit[] RaycastAll(Ray ray, float maxDistance, int layerMask);
         RaycastHit[] blinkHits = Physics.RaycastAll(blinkRay, blinkDistance, 1 << blinkableMask);
