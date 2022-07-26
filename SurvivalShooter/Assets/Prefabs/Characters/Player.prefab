@@ -5467,7 +5467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 300
-  currentHealth: 0
+  currentHealth: 300
   healthSlider: {fileID: 0}
   damageImage: {fileID: 0}
   deathClip: {fileID: 8300000, guid: b8d5f3bf249439b4a9051cba9312d806, type: 3}

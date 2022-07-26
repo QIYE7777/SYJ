@@ -54,10 +54,10 @@ public class SellCardAreaBehaviour : MonoBehaviour, IPointerEnterHandler, IPoint
     {
         Debug.Log("CardSold");
         HandCardAreaBehaviour.instance.RemoveCard(c);
-        var ps = Instantiate(soldPsPrefab, c.transform.parent);//should auto destory
+        var ps = Instantiate(soldPsPrefab, c.icon.transform.position, Quaternion.identity, soldPsPrefab.transform.parent);//should auto destory
         ps.gameObject.SetActive(true);
-        ps.transform.position = c.transform.position;
         Destroy(ps.gameObject, 2.5f);
+
         InventorySystem.instance.ModifyMoney((int)(c.cfg.price * 0.5f));
         Destroy(c.gameObject);
     }

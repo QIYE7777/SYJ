@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boltPrefab: {fileID: 3716998237256738466, guid: e5f9cc7e522d24a4e872e80b55784a64, type: 3}
   deltaUpward: 1.8
-  deltaRadian: 7
+  deltaRadian: 6
   deltaOutside: 1.3
   durationBeforeRelease: 0.7
   ac:
