@@ -21,9 +21,9 @@ public class SellCardAreaBehaviour : MonoBehaviour, IPointerEnterHandler, IPoint
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        //Debug.Log("OnPointerEnter");
-        //Debug.Log(eventData.pointerDrag);
-        //Debug.Log(eventData.dragging);
+        Debug.Log("OnPointerEnter");
+        Debug.Log(eventData.pointerDrag);
+        Debug.Log(eventData.dragging);
         if (eventData.dragging && eventData.pointerDrag != null)
         {
             var c = eventData.pointerDrag.GetComponent<CardBehaviour>();
@@ -40,7 +40,7 @@ public class SellCardAreaBehaviour : MonoBehaviour, IPointerEnterHandler, IPoint
 
     public void ValidDrop(CardBehaviour c)
     {
-        Debug.Log("ValidDrop");
+        //Debug.Log("ValidDrop");
         if (c == _tpCard)
         {
             CardSold(c);
@@ -55,8 +55,10 @@ public class SellCardAreaBehaviour : MonoBehaviour, IPointerEnterHandler, IPoint
         Debug.Log("CardSold");
         HandCardAreaBehaviour.instance.RemoveCard(c);
         var ps = Instantiate(soldPsPrefab, c.transform.parent);//should auto destory
+        ps.gameObject.SetActive(true);
+        ps.transform.position = c.transform.position;
         Destroy(ps.gameObject, 2.5f);
-
+        InventorySystem.instance.ModifyMoney((int)(c.cfg.price * 0.5f));
         Destroy(c.gameObject);
     }
 

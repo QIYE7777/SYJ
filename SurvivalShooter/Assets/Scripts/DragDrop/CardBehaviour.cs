@@ -88,7 +88,11 @@ public class CardBehaviour : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             Destroy(m_DraggingIcon);
 
         _view.SetNonTransparent();
-        HandCardAreaBehaviour.instance.ValidDrop(this);
+        if (cardState == CardState.InSell)
+            HandCardAreaBehaviour.instance.ValidDrop(this);
+
+        if (cardState == CardState.InHand)
+            SellCardAreaBehaviour.instance.ValidDrop(this);
 
         SellCardAreaBehaviour.instance.ToggleCanDrop(false);
         HandCardAreaBehaviour.instance.ToggleCanDrop(false);
