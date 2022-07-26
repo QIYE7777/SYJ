@@ -5,6 +5,7 @@ using UnitySampleAssets.CrossPlatformInput;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement instance;
     public float speed = 6f;
     public float turnSpeed = 20f;
     public Vector3 movement { get; private set; }
@@ -20,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
         anim = GetComponent<Animator>();
         playerRigidbody = GetComponent<Rigidbody>();
     }
