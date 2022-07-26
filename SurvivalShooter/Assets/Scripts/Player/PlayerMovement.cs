@@ -5,10 +5,9 @@ using UnitySampleAssets.CrossPlatformInput;
 
 public class PlayerMovement : MonoBehaviour
 {
-
     public float speed = 6f;
     public float turnSpeed = 20f;
-    Vector3 movement;
+    public Vector3 movement { get; private set; }
     Animator anim;
     Rigidbody playerRigidbody;
     public int floorMask;
@@ -51,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Move(float h, float v)
     {
-        movement.Set(h, 0f, v);
+        movement = new Vector3(h, 0f, v);
         movement = movement.normalized * speed * Time.deltaTime;
 
         playerRigidbody.MovePosition(transform.position + movement);

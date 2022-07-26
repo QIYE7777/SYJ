@@ -18,6 +18,10 @@ public class PlayerBlink : MonoBehaviour
     public int damageToPassThoughEnemy = 500;
     public float checkDistanceToPassThoughEnemy = 1f;
 
+    public GameObject trait;
+    public float trailDuration;
+    private float _blinkTrailDisappearTimestamp;
+
     void Start()
     {
         _movement = GetComponent<PlayerMovement>();
@@ -29,21 +33,35 @@ public class PlayerBlink : MonoBehaviour
         timer += Time.deltaTime;
         if (Input.GetButton("Jump") && timer >= timeBetweenBlinks && Time.timeScale != 0)
             Blink();
+
+        if (trait.activeSelf && Time.time > _blinkTrailDisappearTimestamp)
+        {
+            trait.SetActive(false);
+        }
     }
 
     void Blink()
     {
+        trait.SetActive(true);
+        _blinkTrailDisappearTimestamp = Time.time + trailDuration;
+
         timer = 0;
         var pos = GetBlinkTargetPlace();
         pos.y = 0;
         transform.position = pos;
     }
 
+    Vector3 GetBlinkDirection()
+    {
+        //return _movement.transform.forward; 
+        return _movement.movement.normalized;
+    }
+
     Vector3 GetBlinkTargetPlace()
     {
         blinkRay.origin = gunPos.position;
         //blinkRay.direction = _movement.playerToMouse.normalized;
-        blinkRay.direction = _movement.transform .forward;
+        blinkRay.direction = GetBlinkDirection();
 
         //public static RaycastHit[] RaycastAll(Ray ray, float maxDistance, int layerMask);
         RaycastHit[] blinkHits = Physics.RaycastAll(blinkRay, blinkDistance, 1 << blinkableMask);
