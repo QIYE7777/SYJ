@@ -13,7 +13,7 @@ public enum CardState
 [RequireComponent(typeof(Image))]
 public class CardBehaviour : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    private GameObject m_DraggingIcon;
+    public GameObject icon { get; private set; }
     private RectTransform m_DraggingPlane;
 
     public CardConfig cfg;
@@ -39,11 +39,11 @@ public class CardBehaviour : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             return;
 
         var prefab = CardSellSystem.instance.IconPrefab;
-        m_DraggingIcon = Instantiate(prefab, prefab.transform.parent);
-        m_DraggingIcon.SetActive(true);
+        icon = Instantiate(prefab, prefab.transform.parent);
+        icon.SetActive(true);
         //m_DraggingIcon.transform.SetAsLastSibling();
 
-        var iconImg = m_DraggingIcon.GetComponent<Image>();
+        var iconImg = icon.GetComponent<Image>();
         iconImg.raycastTarget = false;
         iconImg.sprite = cfg.sp;
         iconImg.SetNativeSize();
@@ -63,7 +63,7 @@ public class CardBehaviour : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnDrag(PointerEventData data)
     {
-        if (m_DraggingIcon != null)
+        if (icon != null)
             SetDraggedPosition(data);
     }
 
@@ -72,7 +72,7 @@ public class CardBehaviour : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         if (data.pointerEnter != null && data.pointerEnter.transform as RectTransform != null)
             m_DraggingPlane = data.pointerEnter.transform as RectTransform;
 
-        var rt = m_DraggingIcon.GetComponent<RectTransform>();
+        var rt = icon.GetComponent<RectTransform>();
         Vector3 globalMousePos;
         if (RectTransformUtility.ScreenPointToWorldPointInRectangle(m_DraggingPlane, data.position, data.pressEventCamera, out globalMousePos))
         {
@@ -84,8 +84,8 @@ public class CardBehaviour : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnEndDrag(PointerEventData eventData)
     {
         //Debug.Log("OnEndDrag");
-        if (m_DraggingIcon != null)
-            Destroy(m_DraggingIcon);
+        if (icon != null)
+            Destroy(icon);
 
         _view.SetNonTransparent();
         if (cardState == CardState.InSell)
