@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scene/Startgame.unity
+    guid: cf089c64c70691d48b6457ebd29e2dd2
+  - enabled: 1
+    path: Assets/Scene/MyBigRoom.unity
+    guid: 598ec9a1ec1c58d42821fff5f9a626c6
+  - enabled: 1
+    path: Assets/Scene/MyGoodRoom.unity
+    guid: 2a1a652e4a44fb043b17eb0917ce69ea
   m_configObjects: {}

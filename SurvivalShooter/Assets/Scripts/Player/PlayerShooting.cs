@@ -30,7 +30,7 @@ public class PlayerShooting : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         timer += Time.deltaTime;
         if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)

@@ -4,21 +4,29 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-
-    public Transform target;
+    public static CameraFollow instance;
+    Transform _target;
     public float smoothing = 5f;
 
-    Vector3 offset;
+    public Vector3 offset;
 
-    // Use this for initialization
-    void Start()
+    private void Awake()
     {
-        offset = transform.position - target.position;
+        instance = this;
+    }
+
+    public void Init(Transform t)
+    {
+        _target = t;
+        Vector3 targetCamPos = _target.position + offset;
+        transform.position = targetCamPos;
     }
 
     private void FixedUpdate()
     {
-        Vector3 targetCamPos = target.position + offset;
+        if (_target == null)
+            return;
+        Vector3 targetCamPos = _target.position + offset;
         transform.position = Vector3.Lerp(transform.position, targetCamPos, smoothing * Time.deltaTime);
     }
 }

@@ -6,16 +6,18 @@ public class PlayerBehaviour : MonoBehaviour
 {
     public NavMeshAgent meshAgent;
     public Transform target;
+    public static PlayerBehaviour instance;
 
-    private void Start()
+    private void Awake()
     {
+        instance = this;
         _tempPaths = new List<GameObject>();
     }
 
     private void Update()
     {
-        CheckDrawPath();
-        CheckMove();
+      // CheckDrawPath();
+       // CheckMove();
     }
 
     void CheckMove()
@@ -48,7 +50,7 @@ public class PlayerBehaviour : MonoBehaviour
     private float _timerToDraw = 0;
 
     private List<GameObject> _tempPaths;
-        
+
     void CheckDrawPath()
     {
         if (_timerToDraw <= 0)
@@ -73,7 +75,7 @@ public class PlayerBehaviour : MonoBehaviour
         foreach (var point in points)
         {
             //生成一个brush，画出每一个point
-            var myPoint = Instantiate(brush, point+Vector3.up*0.5f, Quaternion.identity, pointParent);
+            var myPoint = Instantiate(brush, point + Vector3.up * 0.5f, Quaternion.identity, pointParent);
             myPoint.SetActive(true);
             _tempPaths.Add(myPoint);
         }

@@ -29,16 +29,10 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
-        {
             _mouseButtonDown = true;
-        }
         if (Input.GetMouseButtonUp(0))
-        {
             _mouseButtonDown = false;
-        }
-    }
-    private void FixedUpdate()
-    {
+
         float h = CrossPlatformInputManager.GetAxisRaw("Horizontal");
         float v = CrossPlatformInputManager.GetAxisRaw("Vertical");
         Move(h, v);
