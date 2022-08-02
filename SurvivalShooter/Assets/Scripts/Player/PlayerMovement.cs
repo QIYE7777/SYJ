@@ -60,9 +60,14 @@ public class PlayerMovement : MonoBehaviour
 
     void TurningKeyboard()
     {
-        Vector3 desiredForward = Vector3.RotateTowards(transform.forward, movement, turnSpeed * Time.deltaTime, 0f);
-        m_Rotation = Quaternion.LookRotation(desiredForward);
+        //Vector3 desiredForward = Vector3.RotateTowards(transform.forward, movement, turnSpeed * Time.deltaTime, 0f);
+        //m_Rotation = Quaternion.LookRotation(desiredForward);
+        var rotateDir = movement;
+        rotateDir.y = 0;
+        if (rotateDir.magnitude == 0)
+            return;
 
+        m_Rotation = Quaternion.LookRotation(movement);
         playerRigidbody.MoveRotation(m_Rotation);
     }
 

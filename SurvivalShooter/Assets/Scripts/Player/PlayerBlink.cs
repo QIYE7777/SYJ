@@ -35,9 +35,7 @@ public class PlayerBlink : MonoBehaviour
             Blink();
 
         if (trait.activeSelf && Time.time > _blinkTrailDisappearTimestamp)
-        {
             trait.SetActive(false);
-        }
     }
 
     void Blink()
@@ -54,7 +52,12 @@ public class PlayerBlink : MonoBehaviour
     Vector3 GetBlinkDirection()
     {
         //return _movement.transform.forward; 
-        return _movement.movement.normalized;
+        var rotateDir = _movement.movement;
+        rotateDir.y = 0;
+        if (rotateDir.magnitude == 0)
+            return transform.forward;
+
+        return rotateDir.normalized;
     }
 
     Vector3 GetBlinkTargetPlace()
