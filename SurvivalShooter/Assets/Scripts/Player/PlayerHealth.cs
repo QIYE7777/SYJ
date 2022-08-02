@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-
     public int startingHealth = 100;
     public int currentHealth;
     public Slider healthSlider;
@@ -44,6 +43,11 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        if (isDead)
+        {
+            return;
+        }
+
         damaged = true;
         currentHealth -= amount;
         healthSlider.value = currentHealth;

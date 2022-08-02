@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
+    public HitSpecialEffectData hitSpecialEffect;
 
     public float timeBetweenAttacks = 0.5f;
     public int attackDamage = 10;
@@ -11,6 +12,7 @@ public class EnemyAttack : MonoBehaviour
     GameObject player;
     PlayerHealth playerHealth;
     EnemyHealth enemyHealth;
+    PlayerSpecialState playerSpecialState;
 
     bool playerInRange;
     float timer;
@@ -19,6 +21,7 @@ public class EnemyAttack : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerHealth = player.GetComponent<PlayerHealth>();
+        playerSpecialState = player.GetComponent<PlayerSpecialState>();
         enemyHealth = GetComponent<EnemyHealth>();
         anim = GetComponent<Animator>();
     }
@@ -52,7 +55,9 @@ public class EnemyAttack : MonoBehaviour
     void Attack()
     {
         timer = 0f;
-        if (playerHealth.currentHealth > 0)
-            playerHealth.TakeDamage(attackDamage);
+
+        playerHealth.TakeDamage(attackDamage);
+        if (hitSpecialEffect != null && hitSpecialEffect.effectType != HitSpecialEffectData.HitSpecialEffectType.None)
+            playerSpecialState.ApplyHitSpecialEffect(hitSpecialEffect);
     }
 }
