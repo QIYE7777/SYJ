@@ -9,4 +9,6 @@ public class RoomPrototype : ScriptableObject
     public List<EnemyPrototype> normalEnemies;
     public List<EnemyPrototype> specialEnemies;
     public List<EnemyPrototype> verySpecialEnemies;
+
+    public List<float> spawnWaves;
 }
