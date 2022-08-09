@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scene/Startgame.unity
     guid: cf089c64c70691d48b6457ebd29e2dd2
   - enabled: 1
-    path: Assets/Scene/MyBigRoom.unity
+    path: Assets/Scene/1.1small.unity
     guid: 598ec9a1ec1c58d42821fff5f9a626c6
   - enabled: 1
     path: Assets/Scene/MyGoodRoom.unity
