@@ -12,6 +12,21 @@ EditorBuildSettings:
     path: Assets/Scene/1.1small.unity
     guid: 598ec9a1ec1c58d42821fff5f9a626c6
   - enabled: 1
-    path: Assets/Scene/MyGoodRoom.unity
-    guid: 2a1a652e4a44fb043b17eb0917ce69ea
+    path: Assets/Scene/1.1big.unity
+    guid: 1c50e8672cd0ee140b9245a07cbceb02
+  - enabled: 1
+    path: Assets/Scene/1.2small.unity
+    guid: 5bec1ee48baa86d4183201e9f8935782
+  - enabled: 1
+    path: Assets/Scene/1.2big.unity
+    guid: 2eed63561d26f384992bb04d04211320
+  - enabled: 1
+    path: Assets/Scene/2.1small.unity
+    guid: f38fa55711d52be4eb94ff0f75e3cb19
+  - enabled: 1
+    path: Assets/Scene/2.2small.unity
+    guid: b94d856bad94bfb48917213ac837044d
+  - enabled: 1
+    path: Assets/Scene/2.3big.unity
+    guid: acde4958de391bd4caf52cb044108900
   m_configObjects: {}
