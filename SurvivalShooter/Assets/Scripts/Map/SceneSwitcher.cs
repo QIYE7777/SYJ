@@ -28,6 +28,7 @@ public class SceneSwitcher : MonoBehaviour
         if (currentIndex >= currentLevel.rooms.Count)
         {
             Debug.LogError("no enough room! currentIndex is " + currentIndex);
+            // Win();
             return;
         }
 

@@ -9864,7 +9864,7 @@ GameObject:
   - component: {fileID: 135901804349156954}
   - component: {fileID: -2752941489969639991}
   m_Layer: 3
-  m_Name: ZomBear
+  m_Name: BombBear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9918,6 +9918,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1112e51971a7793468c51169847adae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitSpecialEffect:
+    effectType: 0
+    duration: 0
   timeBetweenAttacks: 0.5
   attackDamage: 15
 --- !u!114 &114202093503272786
@@ -9932,11 +9935,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10af798f3f541c64f81a0ad0e7fedfe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 110
+  startingHealth: 1
   currentHealth: 0
   sinkSpeed: 2.5
   scoreValue: 18
   deathClip: {fileID: 8300000, guid: d968eac387fec8d40adfb2f3ee23271b, type: 3}
+  spawnBoltOnDeath: {fileID: 0}
 --- !u!114 &114410150159246008
 MonoBehaviour:
   m_ObjectHideFlags: 0

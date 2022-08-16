@@ -21,8 +21,11 @@ public class RoomBehaviour : MonoBehaviour
 
     void HideExitEndEntranceCube()
     {
-        var r = exit.transform.GetComponent<MeshRenderer>();
-        r.enabled = false;
+        if (exit != null)
+        {
+            var r = exit.transform.GetComponent<MeshRenderer>();
+            r.enabled = false;
+        }
 
         var r1 = entrance.GetComponent<MeshRenderer>();
         r1.enabled = false;

@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 8394723144096288105}
   - component: {fileID: 8557832072006252374}
   m_Layer: 3
-  m_Name: Zombunny
+  m_Name: MagicBunny
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -212,6 +212,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1112e51971a7793468c51169847adae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitSpecialEffect:
+    effectType: 0
+    duration: 0
   timeBetweenAttacks: 0.5
   attackDamage: 10
 --- !u!114 &114223847109921928
@@ -226,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10af798f3f541c64f81a0ad0e7fedfe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 70
+  startingHealth: 1
   currentHealth: 0
   sinkSpeed: 2.5
   scoreValue: 10
