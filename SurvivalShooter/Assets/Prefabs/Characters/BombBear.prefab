@@ -9863,6 +9863,7 @@ GameObject:
   - component: {fileID: 136167437456988478}
   - component: {fileID: 135901804349156954}
   - component: {fileID: -2752941489969639991}
+  - component: {fileID: 1450345803330962185}
   m_Layer: 3
   m_Name: BombBear
   m_TagString: Untagged
@@ -9941,6 +9942,7 @@ MonoBehaviour:
   scoreValue: 18
   deathClip: {fileID: 8300000, guid: d968eac387fec8d40adfb2f3ee23271b, type: 3}
   spawnBoltOnDeath: {fileID: 0}
+  spawnPoisonCloudOnDeath: {fileID: 1450345803330962185}
 --- !u!114 &114410150159246008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10138,6 +10140,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51cf05d87be3caf4ab2a1da75cf8b2db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1450345803330962185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499081237720858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25ae58221616c8747bbd0141b400a6f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 8074055216385898881, guid: e57c7e87d10d9914e85de3daac78b9c1, type: 3}
 --- !u!1 &1725477418474492
 GameObject:
   m_ObjectHideFlags: 0
