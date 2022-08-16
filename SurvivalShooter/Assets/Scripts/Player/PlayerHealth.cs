@@ -1,25 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
     public int startingHealth = 100;
     public int currentHealth;
-    public Slider healthSlider;
-    public Image damageImage;
+
     public AudioClip deathClip;
-    public float flashSpeed = 5f;
-    public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
+
 
     Animator anim;
     AudioSource playerAudio;
     PlayerMovement playerMovement;
     PlayerShooting playerShooting;
     bool isDead;
-    bool damaged;
+    int preventDeathCount = 1;
 
     private void Awake()
     {
@@ -30,18 +25,11 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = startingHealth;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Start()
     {
-        if (damageImage != null)
-        {
-            if (damaged)
-                damageImage.color = flashColour;
-            else
-                damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
-        }
-
-        damaged = false;
+        currentHealth = startingHealth;
+        HudBehaviour.instance.SetHpBar(1);
+        preventDeathCount = 1;
     }
 
     public void TakeDamage(int amount)
@@ -51,13 +39,30 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
 
-        damaged = true;
+        HudBehaviour.instance.OnDamaged();
         currentHealth -= amount;
-        //healthSlider.value = currentHealth;
+        if (currentHealth <= 0 && !isDead)
+        {
+            if (preventDeathCount > 0 && currentHealth > -20)
+            {
+                currentHealth = 1;
+                preventDeathCount--;
+            }
+        }
+
+        if (currentHealth < 0)
+        {
+            currentHealth = 0;
+        }
+
+        float currentHpRatio = (float)currentHealth / (float)startingHealth;
+        HudBehaviour.instance.SetHpBar(Mathf.Pow(currentHpRatio, 1.5f));//让最后的血条显得更耐用的一点，增加玩家残血过关的概率
         playerAudio.Play();
 
         if (currentHealth <= 0 && !isDead)
+        {
             Death();
+        }
     }
 
     void Death()
@@ -74,6 +79,6 @@ public class PlayerHealth : MonoBehaviour
 
     public void RestartLevel()
     {
-        SceneManager.LoadScene(0);
+        SceneSwitcher.instance.RestartCurrentLevel();
     }
 }

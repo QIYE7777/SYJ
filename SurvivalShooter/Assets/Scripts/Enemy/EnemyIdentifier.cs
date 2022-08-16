@@ -14,4 +14,10 @@ public class EnemyIdentifier : MonoBehaviour
     {
         enemies.Remove(this);
     }
+
+    public static bool NoEnemyExist()
+    {
+        Debug.Log(enemies.Count);
+        return enemies.Count == 0;
+    }
 }

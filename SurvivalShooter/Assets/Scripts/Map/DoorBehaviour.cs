@@ -6,9 +6,10 @@ public class DoorBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag=="Player")
+        if (other.gameObject.tag == "Player")
         {
-            SceneSwitcher.instance.SwitchToNextRoom();
+            if (EnemyIdentifier.NoEnemyExist() && RoomBehaviour.instance.IsSpawnDone())
+                SceneSwitcher.instance.SwitchToNextRoom();
         }
     }
 }

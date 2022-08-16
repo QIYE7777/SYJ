@@ -6,6 +6,7 @@ public class SceneSwitcher : MonoBehaviour
     public static SceneSwitcher instance;
 
     public LevelPrototype currentLevel;
+    public RoomPrototype roomPrototype;
 
     int currentIndex;
 
@@ -31,12 +32,18 @@ public class SceneSwitcher : MonoBehaviour
         }
 
         var room = currentLevel.rooms[currentIndex];
+        roomPrototype = room;
         SceneManager.LoadScene(room.sceneName, LoadSceneMode.Single);
     }
 
     public void SwitchToNextRoom()
     {
         currentIndex += 1;
+        SwitchToRoomOfLevel();
+    }
+
+    public void RestartCurrentLevel()
+    {
         SwitchToRoomOfLevel();
     }
 }

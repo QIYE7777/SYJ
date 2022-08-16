@@ -9894,7 +9894,7 @@ GameObject:
   - component: {fileID: 135409158097274046}
   - component: {fileID: -4420887136459156363}
   m_Layer: 3
-  m_Name: Hellephant
+  m_Name: RichElephant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10083,6 +10083,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1112e51971a7793468c51169847adae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitSpecialEffect:
+    effectType: 0
+    duration: 0
   timeBetweenAttacks: 0.5
   attackDamage: 30
 --- !u!114 &114877193769470842
@@ -10097,11 +10100,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10af798f3f541c64f81a0ad0e7fedfe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 300
+  startingHealth: 1
   currentHealth: 0
   sinkSpeed: 2.5
   scoreValue: 50
   deathClip: {fileID: 8300000, guid: d03175aa0cda4c24586580b3daea1e07, type: 3}
+  spawnBoltOnDeath: {fileID: 0}
 --- !u!114 &114761713049082770
 MonoBehaviour:
   m_ObjectHideFlags: 0
