@@ -52,24 +52,27 @@ public class RoomBehaviour : MonoBehaviour
         }
     }
 
+    void SpawnOneKindOfEnemy(List<EnemyPrototype> enemies, List<SpawnEnemyBehaviour> spots)
+    {
+        for (int i = 0; i < spots.Count; i++)
+        {
+            if (spots == null)
+                continue;
+            if (i >= enemies.Count)
+                continue;
+            spots[i].Spawn(enemies[i]);
+        }
+    }
+
     void TrySpawn()
     {
         Debug.Log("生成第" + (_nextWaveIndex + 1) + "波");
         List<EnemyPrototype> normalEnemies = SceneSwitcher.instance.roomPrototype.normalEnemies;
         List<EnemyPrototype> specialEnemies = SceneSwitcher.instance.roomPrototype.specialEnemies;
         List<EnemyPrototype> verySpecialEnemies = SceneSwitcher.instance.roomPrototype.verySpecialEnemies;
-        for (int i = 0; i < normalSpawns.Count; i++)
-        {
-            normalSpawns[i].Spawn(normalEnemies[i]);
-        }
-        for (int i = 0; i < specialSpawns.Count; i++)
-        {
-            specialSpawns[i].Spawn(specialEnemies[i]);
-        }
-        for (int i = 0; i < verySpecialSpawns.Count; i++)
-        {
-            verySpecialSpawns[i].Spawn(verySpecialEnemies[i]);
-        }
+        SpawnOneKindOfEnemy(normalEnemies, normalSpawns);
+        SpawnOneKindOfEnemy(specialEnemies, specialSpawns);
+        SpawnOneKindOfEnemy(verySpecialEnemies, verySpecialSpawns);
 
         _nextWaveIndex += 1;
         if (IsSpawnDone())
