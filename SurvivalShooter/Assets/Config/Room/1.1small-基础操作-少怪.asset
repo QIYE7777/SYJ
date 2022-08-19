@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: 1.1small
   normalEnemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 11400000, guid: e0332ca66051d88429b6467639c88f63, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 61e12746ac57b0f4c8c08102dba34320, type: 2}
+  - {fileID: 11400000, guid: 61e12746ac57b0f4c8c08102dba34320, type: 2}
+  - {fileID: 11400000, guid: 61e12746ac57b0f4c8c08102dba34320, type: 2}
+  - {fileID: 11400000, guid: 61e12746ac57b0f4c8c08102dba34320, type: 2}
+  - {fileID: 11400000, guid: 61e12746ac57b0f4c8c08102dba34320, type: 2}
   - {fileID: 11400000, guid: 61e12746ac57b0f4c8c08102dba34320, type: 2}
   - {fileID: 0}
   - {fileID: 0}
@@ -27,11 +27,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   specialEnemies:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 1c68f91bb40748e47a626d8300887e7e, type: 2}
+  - {fileID: 11400000, guid: 1c68f91bb40748e47a626d8300887e7e, type: 2}
   verySpecialEnemies:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 1c68f91bb40748e47a626d8300887e7e, type: 2}
+  - {fileID: 11400000, guid: 1c68f91bb40748e47a626d8300887e7e, type: 2}
   spawnWaves:
   - 1
-  - 2
+  - 8

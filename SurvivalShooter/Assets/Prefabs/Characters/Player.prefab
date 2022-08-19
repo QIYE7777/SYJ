@@ -5724,7 +5724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26fece6fe8290224b859205e9357aa81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  speed: 10.8
   turnSpeed: 20
   floorMask: 8
   playerToMouse: {x: 0, y: 0, z: 0}

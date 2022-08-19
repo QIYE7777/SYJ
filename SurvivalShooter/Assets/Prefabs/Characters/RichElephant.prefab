@@ -10106,6 +10106,7 @@ MonoBehaviour:
   scoreValue: 50
   deathClip: {fileID: 8300000, guid: d03175aa0cda4c24586580b3daea1e07, type: 3}
   spawnBoltOnDeath: {fileID: 0}
+  spawnPoisonCloudOnDeath: {fileID: 0}
 --- !u!114 &114761713049082770
 MonoBehaviour:
   m_ObjectHideFlags: 0
