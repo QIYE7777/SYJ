@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51cf05d87be3caf4ab2a1da75cf8b2db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
+  anim: {fileID: 88063677182239990}
   health: {fileID: 0}
   attack: {fileID: 0}
   move: {fileID: 0}
@@ -5218,7 +5218,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 8ef317f11077fef46b1ead1e2b73cf08, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10193,10 +10192,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: DragonSoulEaterMesh
       objectReference: {fileID: 0}
+    - target: {fileID: 488463284722012302, guid: 740df979465f35f468285e71dfc2a60d, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 264fd944bcd8bb8499545899b2cf4922, type: 2}
+    - target: {fileID: 488463284722012302, guid: 740df979465f35f468285e71dfc2a60d, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 740df979465f35f468285e71dfc2a60d, type: 3}
 --- !u!4 &88063677191228178 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 488463284714602346, guid: 740df979465f35f468285e71dfc2a60d, type: 3}
+  m_PrefabInstance: {fileID: 576324096638514296}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &88063677182239990 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 488463284722012302, guid: 740df979465f35f468285e71dfc2a60d, type: 3}
   m_PrefabInstance: {fileID: 576324096638514296}
   m_PrefabAsset: {fileID: 0}

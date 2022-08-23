@@ -41,7 +41,8 @@ public class PlayerMovement : MonoBehaviour
         if (_mouseButtonDown)
             TurningMouse();
         else
-            TurningKeyboard();
+            //TurningKeyboard();
+            TurningMouse();
     }
 
     void Move(float h, float v)

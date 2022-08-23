@@ -23,7 +23,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 76c5cb493335bea4483321fc8fe90bfd, type: 2}
   - {fileID: 11400000, guid: 1c68f91bb40748e47a626d8300887e7e, type: 2}
   - {fileID: 11400000, guid: 15fae53451e46744ca98903bf0be480d, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 1c564e9fccf569444a5a7887aca4b6fa, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   specialEnemies:
@@ -34,4 +34,3 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1c68f91bb40748e47a626d8300887e7e, type: 2}
   spawnWaves:
   - 1
-  - 8
