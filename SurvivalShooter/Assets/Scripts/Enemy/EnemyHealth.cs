@@ -18,6 +18,7 @@ public class EnemyHealth : MonoBehaviour
     public SpawnBoltOnDeath spawnBoltOnDeath;
     public SpawnPoisonCloudOnDeath spawnPoisonCloudOnDeath;
     EnemyIdentifier id;
+    public bool canPlayWoundAnim = true;
 
     private void Awake()
     {
@@ -40,15 +41,10 @@ public class EnemyHealth : MonoBehaviour
     {
         if (isDead) return;
 
-        enemyAudio.Play();
-
-        currentHealth -= amount;
-
         hitParticles.transform.position = hitPoint;
         hitParticles.Play();
 
-        if (currentHealth <= 0)
-            Death();
+        TakeDamage(amount);
     }
 
     public void TakeDamage(int amount)
@@ -56,14 +52,28 @@ public class EnemyHealth : MonoBehaviour
         if (isDead) return;
 
         enemyAudio.Play();
+        float damageRatio = (float)amount / (float)startingHealth;
         currentHealth -= amount;
-
         if (currentHealth <= 0)
+        {
             Death();
+        }
+        else
+        {
+            if (damageRatio > 0.25f ||
+                (damageRatio > 0.1f && Random.value > 0.6f) ||
+                 (damageRatio > 0.01f && Random.value > 0.85f))
+            {
+                if (canPlayWoundAnim)
+                    id.anim.SetTrigger("wound");
+            }
+        }
     }
 
     void Death()
     {
+        if (isDead)
+            return;
         isDead = true;
 
         if (spawnBoltOnDeath != null)
@@ -71,22 +81,31 @@ public class EnemyHealth : MonoBehaviour
 
         if (spawnPoisonCloudOnDeath != null)
             spawnPoisonCloudOnDeath.Spawn();
-        
+
         capsuleCollider.isTrigger = true;
-        id.anim.SetTrigger("Dead");
+        id.anim.SetTrigger("die");
 
         enemyAudio.clip = deathClip;
         enemyAudio.Play();
+
+        Invoke("RemoveDeathBody", 0.35f);
     }
 
     public void StartSinking()
     {
+
+    }
+
+    public void RemoveDeathBody()
+    {
+        if (isSinking)
+            return;
+
         GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
         isSinking = true;
 
         ScoreManager.score += scoreValue;
-
         Destroy(gameObject, 2f);
     }
 }

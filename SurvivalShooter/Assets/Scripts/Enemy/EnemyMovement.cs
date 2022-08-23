@@ -12,6 +12,11 @@ public class EnemyMovement : MonoBehaviour
         nav = GetComponent<NavMeshAgent>();
     }
 
+    private void Start()
+    {
+        id.anim.SetBool("walk", true);
+    }
+
     void Update()
     {
         var player = PlayerBehaviour.instance;

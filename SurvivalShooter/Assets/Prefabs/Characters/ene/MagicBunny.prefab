@@ -148,7 +148,7 @@ Animator:
   m_GameObject: {fileID: 1283818949268800}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 10322ad27c6c4584a97bcaf7cd7f73ec, type: 3}
-  m_Controller: {fileID: 9100000, guid: 8ee0effbd02545b428c51637c9f02cb0, type: 2}
+  m_Controller: {fileID: 22100000, guid: 93469870d2cce4749804186cda81a1f1, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -215,8 +215,9 @@ MonoBehaviour:
   hitSpecialEffect:
     effectType: 0
     duration: 0
-  timeBetweenAttacks: 0.5
+  timeBetweenAttacks: 1
   attackDamage: 10
+  canPlayAttackAnim: 0
 --- !u!114 &114223847109921928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,12 +230,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10af798f3f541c64f81a0ad0e7fedfe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 1
+  startingHealth: 300
   currentHealth: 0
   sinkSpeed: 2.5
   scoreValue: 10
   deathClip: {fileID: 8300000, guid: 8b5aec79f9200d845a5d13020bc074ae, type: 3}
   spawnBoltOnDeath: {fileID: 8557832072006252374}
+  spawnPoisonCloudOnDeath: {fileID: 0}
+  canPlayWoundAnim: 0
 --- !u!114 &114730947050797648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,6 +392,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51cf05d87be3caf4ab2a1da75cf8b2db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 95595167536430152}
+  health: {fileID: 0}
+  attack: {fileID: 0}
+  move: {fileID: 0}
 --- !u!114 &8557832072006252374
 MonoBehaviour:
   m_ObjectHideFlags: 0
