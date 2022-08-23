@@ -73,8 +73,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.14498512, b: 0, a: 1}
-  m_Intensity: 0.75
-  m_Range: 5.82
+  m_Intensity: 2
+  m_Range: 3
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -9893,7 +9893,7 @@ GameObject:
   - component: {fileID: 135409158097274046}
   - component: {fileID: -4420887136459156363}
   m_Layer: 3
-  m_Name: RichElephant 1
+  m_Name: BigEye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
