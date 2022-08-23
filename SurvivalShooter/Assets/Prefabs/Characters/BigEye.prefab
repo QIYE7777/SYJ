@@ -10158,6 +10158,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51cf05d87be3caf4ab2a1da75cf8b2db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 8483282983457575103}
+  health: {fileID: 0}
+  attack: {fileID: 0}
+  move: {fileID: 0}
 --- !u!1 &1956919396473434
 GameObject:
   m_ObjectHideFlags: 0
@@ -10297,6 +10301,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlimeMeshPBR
       objectReference: {fileID: 0}
+    - target: {fileID: 4892207760729792769, guid: d4063392a3181af44b167b94269c5915, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3614907c606342a46a9d218989db392e, type: 2}
     - target: {fileID: 4892207760733937601, guid: d4063392a3181af44b167b94269c5915, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -10306,5 +10314,10 @@ PrefabInstance:
 --- !u!4 &8483282983465008973 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4892207760720236275, guid: d4063392a3181af44b167b94269c5915, type: 3}
+  m_PrefabInstance: {fileID: 3917623583457653182}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8483282983457575103 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4892207760729792769, guid: d4063392a3181af44b167b94269c5915, type: 3}
   m_PrefabInstance: {fileID: 3917623583457653182}
   m_PrefabAsset: {fileID: 0}

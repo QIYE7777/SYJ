@@ -1,40 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
     public HitSpecialEffectData hitSpecialEffect;
-
     public float timeBetweenAttacks = 0.5f;
     public int attackDamage = 10;
-    Animator anim;
-    GameObject player;
-    PlayerHealth playerHealth;
-    EnemyHealth enemyHealth;
-    PlayerSpecialState playerSpecialState;
-
     bool playerInRange;
     float timer;
 
+    EnemyIdentifier id;
+
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerHealth = player.GetComponent<PlayerHealth>();
-        playerSpecialState = player.GetComponent<PlayerSpecialState>();
-        enemyHealth = GetComponent<EnemyHealth>();
-        anim = GetComponent<Animator>();
+        id = GetComponent<EnemyIdentifier>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == player)
+        if (other.gameObject == PlayerBehaviour.instance.gameObject)
             playerInRange = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == player)
+        if (other.gameObject == PlayerBehaviour.instance.gameObject)
             playerInRange = false;
     }
 
@@ -43,21 +33,22 @@ public class EnemyAttack : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer >= timeBetweenAttacks && playerInRange && enemyHealth.currentHealth > 0)
+        if (timer >= timeBetweenAttacks && playerInRange && id.health.currentHealth > 0)
         {
             Attack();
         }
 
-        if (playerHealth.currentHealth <= 0)
-            anim.SetTrigger("PlayerDead");
+        var player = PlayerBehaviour.instance;
+        if (player.health.currentHealth <= 0)
+            id.anim.SetTrigger("PlayerDead");
     }
 
     void Attack()
     {
         timer = 0f;
-
-        playerHealth.TakeDamage(attackDamage);
+        var player = PlayerBehaviour.instance;
+        player.health.TakeDamage(attackDamage);
         if (hitSpecialEffect != null && hitSpecialEffect.effectType != HitSpecialEffectData.HitSpecialEffectType.None)
-            playerSpecialState.ApplyHitSpecialEffect(hitSpecialEffect);
+            player.specialState.ApplyHitSpecialEffect(hitSpecialEffect);
     }
 }

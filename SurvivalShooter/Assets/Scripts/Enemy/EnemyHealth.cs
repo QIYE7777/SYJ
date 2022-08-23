@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-
     public int startingHealth = 100;
     public int currentHealth;
     public float sinkSpeed = 2.5f;
     public int scoreValue = 10;
     public AudioClip deathClip;
 
-    Animator anim;
     AudioSource enemyAudio;
     ParticleSystem hitParticles;
     CapsuleCollider capsuleCollider;
@@ -19,10 +17,11 @@ public class EnemyHealth : MonoBehaviour
     bool isSinking;
     public SpawnBoltOnDeath spawnBoltOnDeath;
     public SpawnPoisonCloudOnDeath spawnPoisonCloudOnDeath;
+    EnemyIdentifier id;
 
     private void Awake()
     {
-        anim = GetComponent<Animator>();
+        id = GetComponent<EnemyIdentifier>();
         enemyAudio = GetComponent<AudioSource>();
         hitParticles = GetComponentInChildren<ParticleSystem>();
         capsuleCollider = GetComponent<CapsuleCollider>();
@@ -74,7 +73,7 @@ public class EnemyHealth : MonoBehaviour
             spawnPoisonCloudOnDeath.Spawn();
         
         capsuleCollider.isTrigger = true;
-        anim.SetTrigger("Dead");
+        id.anim.SetTrigger("Dead");
 
         enemyAudio.clip = deathClip;
         enemyAudio.Play();

@@ -5,6 +5,21 @@ public class EnemyIdentifier : MonoBehaviour
 {
     public static List<EnemyIdentifier> enemies = new List<EnemyIdentifier>();
 
+    public Animator anim;
+    [HideInInspector]
+    public EnemyHealth health;
+    [HideInInspector]
+    public EnemyAttack attack;
+    [HideInInspector]
+    public EnemyMovement move;
+
+    private void Awake()
+    {
+        health = GetComponent<EnemyHealth>();
+        move = GetComponent<EnemyMovement>();
+        attack = GetComponent<EnemyAttack>();
+    }
+
     private void OnEnable()
     {
         enemies.Add(this);
@@ -17,7 +32,7 @@ public class EnemyIdentifier : MonoBehaviour
 
     public static bool NoEnemyExist()
     {
-        Debug.Log(enemies.Count);
+        //Debug.Log(enemies.Count);
         return enemies.Count == 0;
     }
 }

@@ -7,17 +7,21 @@ public class PlayerBehaviour : MonoBehaviour
     public NavMeshAgent meshAgent;
     public Transform target;
     public static PlayerBehaviour instance;
-
+    public PlayerHealth health { get; private set; }
+    public PlayerSpecialState specialState { get; private set; }
+    
     private void Awake()
     {
         instance = this;
         _tempPaths = new List<GameObject>();
+        health = GetComponent<PlayerHealth>();
+        specialState = GetComponent<PlayerSpecialState>();
     }
 
     private void Update()
     {
-      // CheckDrawPath();
-       // CheckMove();
+        // CheckDrawPath();
+        // CheckMove();
     }
 
     void CheckMove()
