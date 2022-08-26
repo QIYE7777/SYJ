@@ -17,6 +17,7 @@ public class EnemyHealth : MonoBehaviour
     bool isSinking;
     public SpawnBoltOnDeath spawnBoltOnDeath;
     public SpawnPoisonCloudOnDeath spawnPoisonCloudOnDeath;
+    public ExplodeOnDeath explodeOnDeath;
     EnemyIdentifier id;
     public bool canPlayWoundAnim = true;
 
@@ -81,6 +82,9 @@ public class EnemyHealth : MonoBehaviour
 
         if (spawnPoisonCloudOnDeath != null)
             spawnPoisonCloudOnDeath.Spawn();
+
+        if (explodeOnDeath != null)
+            explodeOnDeath.Spawn();
 
         capsuleCollider.isTrigger = true;
         id.anim.SetTrigger("die");

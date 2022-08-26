@@ -5023,7 +5023,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1707758394825964}
   m_LocalRotation: {x: -0.17364825, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: 1.194, z: 0.878}
+  m_LocalPosition: {x: 0, y: 0.324, z: 0.345}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4299631297569242}
@@ -9826,7 +9826,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 8ef317f11077fef46b1ead1e2b73cf08, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9890,6 +9889,7 @@ GameObject:
   - component: {fileID: 136467491578855048}
   - component: {fileID: 135409158097274046}
   - component: {fileID: -4420887136459156363}
+  - component: {fileID: 7293103169327218178}
   m_Layer: 3
   m_Name: ThornyEye
   m_TagString: Untagged
@@ -10142,6 +10142,19 @@ MonoBehaviour:
   health: {fileID: 0}
   attack: {fileID: 0}
   move: {fileID: 0}
+--- !u!114 &7293103169327218178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944203798625708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac666b8916408b44b81bfea0a523ff3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 4114711063623214966, guid: dea795b5fc6683942a4eb3f8f051f1e1, type: 3}
 --- !u!1001 &1217342422863892687
 PrefabInstance:
   m_ObjectHideFlags: 0
