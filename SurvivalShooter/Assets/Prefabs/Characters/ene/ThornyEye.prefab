@@ -10079,8 +10079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10af798f3f541c64f81a0ad0e7fedfe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 300
-  currentHealth: 0
+  hp: 0
   sinkSpeed: 2.5
   scoreValue: 50
   deathClip: {fileID: 8300000, guid: d03175aa0cda4c24586580b3daea1e07, type: 3}
@@ -10102,6 +10101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07905624f4d3fd8498849ced4983e600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dec: 600
 --- !u!136 &136467491578855048
 CapsuleCollider:
   m_ObjectHideFlags: 0

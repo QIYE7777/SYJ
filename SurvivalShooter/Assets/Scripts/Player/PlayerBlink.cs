@@ -32,7 +32,10 @@ public class PlayerBlink : MonoBehaviour
     {
         timer += Time.deltaTime;
         if (Input.GetButton("Jump") && timer >= timeBetweenBlinks && Time.timeScale != 0)
+        {
             Blink();
+        }
+
 
         if (trait.activeSelf && Time.time > _blinkTrailDisappearTimestamp)
             trait.SetActive(false);
