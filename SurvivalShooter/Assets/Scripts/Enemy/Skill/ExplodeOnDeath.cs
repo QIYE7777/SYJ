@@ -8,6 +8,6 @@ public class ExplodeOnDeath : MonoBehaviour
     {
         var explode = Instantiate(prefab, transform.parent);
         explode.transform.position = transform.position;
-        Destroy(explode, 1);
+        Destroy(explode, 2);
     }
 }

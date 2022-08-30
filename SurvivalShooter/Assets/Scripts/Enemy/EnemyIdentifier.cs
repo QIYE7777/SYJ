@@ -35,4 +35,11 @@ public class EnemyIdentifier : MonoBehaviour
         //Debug.Log(enemies.Count);
         return enemies.Count == 0;
     }
+
+    public void InitializeEnemyPrototype(EnemyPrototype proto)
+    {
+        health.ResetHp(proto.hp);
+        attack.attackDamage = proto.attack;
+        move.SetSpeed(proto.speed);
+    }
 }

@@ -5230,8 +5230,11 @@ MonoBehaviour:
   sinkSpeed: 2.5
   scoreValue: 50
   deathClip: {fileID: 8300000, guid: d03175aa0cda4c24586580b3daea1e07, type: 3}
+  hitParticles: {fileID: 198201086433565370}
+  dieParticles: {fileID: 198993111915903096}
   spawnBoltOnDeath: {fileID: 0}
   spawnPoisonCloudOnDeath: {fileID: 0}
+  explodeOnDeath: {fileID: 0}
   canPlayWoundAnim: 0
 --- !u!114 &114761713049082770
 MonoBehaviour:
@@ -5432,5 +5435,10 @@ PrefabInstance:
 --- !u!4 &4574482076657484 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1967506476491225273, guid: a3a402717ee92d34287650cbf0e2473c, type: 3}
+  m_PrefabInstance: {fileID: 1971939748096237557}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &198201086433565370 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1845800842868278607, guid: a3a402717ee92d34287650cbf0e2473c, type: 3}
   m_PrefabInstance: {fileID: 1971939748096237557}
   m_PrefabAsset: {fileID: 0}

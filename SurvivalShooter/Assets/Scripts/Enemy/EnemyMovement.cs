@@ -12,6 +12,11 @@ public class EnemyMovement : MonoBehaviour
         nav = GetComponent<NavMeshAgent>();
     }
 
+    public void SetSpeed(float s)
+    {
+        nav.speed = s;
+    }
+
     private void Start()
     {
         id.anim.SetBool("walk", true);
@@ -21,7 +26,7 @@ public class EnemyMovement : MonoBehaviour
     {
         var player = PlayerBehaviour.instance;
         var playerHealth = player.health;
-        if (id.health.currentHealth > 0 && playerHealth.currentHealth > 0)
+        if (id.health.hp > 0 && playerHealth.currentHealth > 0)
             nav.SetDestination(player.transform.position);
         else
             nav.enabled = false;

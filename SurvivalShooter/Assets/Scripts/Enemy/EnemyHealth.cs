@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int startingHealth = 100;
-    public int currentHealth;
+    int _hpMax;
+    public int hp;
     public float sinkSpeed = 2.5f;
     public int scoreValue = 10;
     public AudioClip deathClip;
 
     AudioSource enemyAudio;
-    ParticleSystem hitParticles;
+    public ParticleSystem hitParticles;
+    public ParticleSystem dieParticles;
     CapsuleCollider capsuleCollider;
     bool isDead;
     bool isSinking;
@@ -25,12 +26,14 @@ public class EnemyHealth : MonoBehaviour
     {
         id = GetComponent<EnemyIdentifier>();
         enemyAudio = GetComponent<AudioSource>();
-        hitParticles = GetComponentInChildren<ParticleSystem>();
         capsuleCollider = GetComponent<CapsuleCollider>();
-
-        currentHealth = startingHealth;
     }
 
+    public void ResetHp(int hp)
+    {
+        _hpMax = hp;
+        this.hp = _hpMax;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -38,24 +41,15 @@ public class EnemyHealth : MonoBehaviour
             transform.Translate(-Vector3.up * sinkSpeed * Time.deltaTime);
     }
 
-    public void TakeDamage(int amount, Vector3 hitPoint)
-    {
-        if (isDead) return;
-
-        hitParticles.transform.position = hitPoint;
-        hitParticles.Play();
-
-        TakeDamage(amount);
-    }
-
     public void TakeDamage(int amount)
     {
         if (isDead) return;
+        hitParticles.Play();
 
         enemyAudio.Play();
-        float damageRatio = (float)amount / (float)startingHealth;
-        currentHealth -= amount;
-        if (currentHealth <= 0)
+        float damageRatio = (float)amount / (float)_hpMax;
+        hp -= amount;
+        if (hp <= 0)
         {
             Death();
         }
@@ -88,7 +82,7 @@ public class EnemyHealth : MonoBehaviour
 
         capsuleCollider.isTrigger = true;
         id.anim.SetTrigger("die");
-
+        dieParticles.Play();
         enemyAudio.clip = deathClip;
         enemyAudio.Play();
 

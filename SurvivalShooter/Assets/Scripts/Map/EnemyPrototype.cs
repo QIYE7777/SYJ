@@ -7,5 +7,5 @@ public class EnemyPrototype : ScriptableObject
     public int hp;
     public int attack;
     public float speed;
-    public int gold;
+    //public int gold;
 }

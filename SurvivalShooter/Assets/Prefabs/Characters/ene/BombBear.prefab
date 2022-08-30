@@ -9940,8 +9940,11 @@ MonoBehaviour:
   sinkSpeed: 2.5
   scoreValue: 18
   deathClip: {fileID: 8300000, guid: d968eac387fec8d40adfb2f3ee23271b, type: 3}
+  hitParticles: {fileID: 198746140005203634}
+  dieParticles: {fileID: 198190495048571028}
   spawnBoltOnDeath: {fileID: 0}
   spawnPoisonCloudOnDeath: {fileID: 1450345803330962185}
+  explodeOnDeath: {fileID: 0}
   canPlayWoundAnim: 0
 --- !u!114 &114410150159246008
 MonoBehaviour:

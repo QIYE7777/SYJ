@@ -16,6 +16,8 @@ public class SpawnEnemyBehaviour : MonoBehaviour
     {
         if (e == null)
             return;
-        Instantiate(e.prefab, transform.position, transform.rotation);
+
+        var enemyId = Instantiate(e.prefab, transform.position, transform.rotation);
+        enemyId.InitializeEnemyPrototype(e);
     }
 }

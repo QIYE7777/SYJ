@@ -36,7 +36,7 @@ public class EnemyAttack : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer >= timeBetweenAttacks && playerInRange && id.health.currentHealth > 0)
+        if (timer >= timeBetweenAttacks && playerInRange && id.health.hp > 0)
         {
             Attack();
             if (canPlayAttackAnim)
