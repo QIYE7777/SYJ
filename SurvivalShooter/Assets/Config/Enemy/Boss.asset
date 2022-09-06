@@ -15,5 +15,4 @@ MonoBehaviour:
   prefab: {fileID: 8394723144096288105, guid: 324b29520dd115c4d92a22a6a3c0a0ac, type: 3}
   hp: 1000
   attack: 25
-  speed: 30
-  gold: 99999999
+  speed: 3
