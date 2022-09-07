@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerShootSuper : MonoBehaviour
 {
@@ -16,12 +17,18 @@ public class PlayerShootSuper : MonoBehaviour
     public Light faceLight;
 
     float effectsDisplayTime = 0.2f;
+    public GameObject heatWavePlane;
+    public float maxDistortion = 512;
+    public float minDistortion = 0;
+    Material _distortionMaterial;
 
     private void Awake()
     {
         gunParticles = GetComponent<ParticleSystem>();
         gunAudio = GetComponent<AudioSource>();
         gunLight = GetComponent<Light>();
+        heatWavePlane.SetActive(false);
+        _distortionMaterial = heatWavePlane.GetComponentInChildren<MeshRenderer>().material;
     }
 
     // Update is called once per frame
@@ -40,6 +47,23 @@ public class PlayerShootSuper : MonoBehaviour
         gunLight.enabled = false;
     }
 
+    void PlayHeatWave()
+    {
+        heatWavePlane.transform.localScale = Vector3.one * 0.1f;
+        var camPos = Camera.main.transform.position;
+        var heatWavePos = heatWavePlane.transform.position;
+        heatWavePlane.transform.localPosition = Vector3.zero;
+        heatWavePlane.transform.position += (camPos - heatWavePos).normalized * 1f ;
+        _distortionMaterial.SetFloat("_BumpAmt", maxDistortion);
+        //_distortionMaterial.DOKill();
+        _distortionMaterial.DOFloat(minDistortion, "_BumpAmt", 0.4f).SetEase(Ease.OutCubic);
+
+        heatWavePlane.SetActive(true);
+        heatWavePlane.transform.DOKill();
+        heatWavePlane.transform.DOScale(0.66f, 0.4f).OnComplete(
+            () => { heatWavePlane.SetActive(false); });
+    }
+
     void Shoot()
     {
         timer = 0f;
@@ -50,6 +74,7 @@ public class PlayerShootSuper : MonoBehaviour
         gunParticles.Stop();
         gunParticles.Play();
 
+        PlayHeatWave();
         var allTargets = new List<EnemyIdentifier>();
         var shootResult = Physics.RaycastAll(transform.position, transform.forward, range, 1 << shootableMask);
         foreach (var res in shootResult)
