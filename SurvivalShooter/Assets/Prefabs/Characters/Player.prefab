@@ -5307,7 +5307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damagePerShot: 1
-  timeBetweenBullets: 0.5
+  timeBetweenBullets: 0.6
   range: 8
   shootableMask: 3
   faceLight: {fileID: 1313939715332721048}
