@@ -9860,7 +9860,7 @@ GameObject:
   - component: {fileID: 136167437456988478}
   - component: {fileID: 135901804349156954}
   - component: {fileID: -2752941489969639991}
-  - component: {fileID: 1450345803330962185}
+  - component: {fileID: 8805687853255280163}
   m_Layer: 3
   m_Name: LazyGhost
   m_TagString: Untagged
@@ -9903,6 +9903,7 @@ MonoBehaviour:
     duration: 0
   timeBetweenAttacks: 1
   attackDamage: 15
+  slowspeed: {fileID: 0}
   canPlayAttackAnim: 1
 --- !u!114 &114202093503272786
 MonoBehaviour:
@@ -9923,7 +9924,7 @@ MonoBehaviour:
   hitParticles: {fileID: 198746140005203634}
   dieParticles: {fileID: 198190495048571028}
   spawnBoltOnDeath: {fileID: 0}
-  spawnPoisonCloudOnDeath: {fileID: 1450345803330962185}
+  spawnPoisonCloudOnDeath: {fileID: 0}
   explodeOnDeath: {fileID: 0}
   canPlayWoundAnim: 1
 --- !u!114 &114410150159246008
@@ -10128,7 +10129,7 @@ MonoBehaviour:
   health: {fileID: 0}
   attack: {fileID: 0}
   move: {fileID: 0}
---- !u!114 &1450345803330962185
+--- !u!114 &8805687853255280163
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10137,10 +10138,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1499081237720858}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25ae58221616c8747bbd0141b400a6f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f5f681f26569bd42bd6f7b20bd46786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8074055216385898881, guid: e57c7e87d10d9914e85de3daac78b9c1, type: 3}
+  character: {fileID: 6221270653699108372, guid: 83a12dad873d6384a82bee20c6e51022, type: 3}
+  slowDown: 6
+  slowRate: 1.5
 --- !u!1001 &3466252775161193873
 PrefabInstance:
   m_ObjectHideFlags: 0

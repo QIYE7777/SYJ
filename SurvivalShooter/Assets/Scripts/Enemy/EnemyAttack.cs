@@ -9,6 +9,7 @@ public class EnemyAttack : MonoBehaviour
     bool playerInRange;
     float timer;
     bool _canValidateAttack;
+    public SlowSpeed  slowspeed;
 
     EnemyIdentifier id;
 
@@ -50,6 +51,7 @@ public class EnemyAttack : MonoBehaviour
 
     void Attack()
     {
+
         timer = 0f;
         _canValidateAttack = true;
         Invoke("OnAttacked", 0.25f);
@@ -61,6 +63,10 @@ public class EnemyAttack : MonoBehaviour
             return;
 
         _canValidateAttack = false;
+
+        if (slowspeed != null)
+            slowspeed.Slow();
+
         var player = PlayerBehaviour.instance;
         player.health.TakeDamage(attackDamage);
         if (hitSpecialEffect != null && hitSpecialEffect.effectType != HitSpecialEffectData.HitSpecialEffectType.None)
