@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnitySampleAssets.CrossPlatformInput;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : PlayerComponent
 {
     public static PlayerMovement instance;
     public float speed = 6f;
     public float turnSpeed = 20f;
     public Vector3 movement { get; private set; }
     Animator anim;
-    Rigidbody playerRigidbody;
+    public CharacterController cc;
     public int floorMask;
     float camRayLength = 100f;
     public Vector3 playerToMouse;
 
     Quaternion m_Rotation = Quaternion.identity;
+    public Transform rotatePart;
 
     bool _mouseButtonDown;
 
@@ -23,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     {
         instance = this;
         anim = GetComponent<Animator>();
-        playerRigidbody = GetComponent<Rigidbody>();
+        cc = GetComponent<CharacterController>();
     }
 
     private void Update()
@@ -38,19 +39,14 @@ public class PlayerMovement : MonoBehaviour
         Move(h, v);
         Animating(h, v);
 
-        if (_mouseButtonDown)
-            TurningMouse();
-        else
-            //TurningKeyboard();
-            TurningMouse();
+        TurningMouse();
     }
 
     void Move(float h, float v)
     {
         movement = new Vector3(h, 0f, v);
         movement = movement.normalized * speed * Time.deltaTime;
-
-        playerRigidbody.MovePosition(transform.position + movement);
+        cc.SimpleMove(movement.normalized * speed);
     }
 
     void TurningKeyboard()
@@ -61,9 +57,7 @@ public class PlayerMovement : MonoBehaviour
         rotateDir.y = 0;
         if (rotateDir.magnitude == 0)
             return;
-
-        m_Rotation = Quaternion.LookRotation(movement);
-        playerRigidbody.MoveRotation(m_Rotation);
+        rotatePart.forward = rotateDir.normalized;
     }
 
     void TurningMouse()
@@ -72,11 +66,9 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit floorHit;
         if (Physics.Raycast(camRay, out floorHit, camRayLength, (1 << floorMask)))
         {
-            //Debug.Log(floorHit.point);
             playerToMouse = floorHit.point - transform.position;
             playerToMouse.y = 0f;
-            Quaternion newRotatation = Quaternion.LookRotation(playerToMouse);
-            playerRigidbody.MoveRotation(newRotatation);
+            rotatePart.forward = playerToMouse.normalized;
         }
     }
 

@@ -93,7 +93,9 @@ public class RoomBehaviour : MonoBehaviour
 
     void SpawnPlayer()
     {
-        var player = Instantiate(SceneSwitcher.instance.playerPrefab, entrance.position, entrance.rotation, entrance.transform.parent);
+        var spawnPosition = entrance.position;
+        spawnPosition.y = 0;
+        var player = Instantiate(SceneSwitcher.instance.playerPrefab, spawnPosition, entrance.rotation, entrance.transform.parent);
         CameraFollow.instance.Init(player.transform);
     }
 }

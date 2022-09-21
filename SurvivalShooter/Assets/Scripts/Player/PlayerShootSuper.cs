@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class PlayerShootSuper : MonoBehaviour
+public class PlayerShootSuper : PlayerComponent
 {
     public int damagePerShot = 20;
     public float timeBetweenBullets = 0.15f;

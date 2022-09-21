@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayerBlink : MonoBehaviour
+public class PlayerBlink : PlayerComponent
 {
     public float timeBetweenBlinks = 1.2f;
     float timer;
@@ -49,7 +49,11 @@ public class PlayerBlink : MonoBehaviour
         timer = 0;
         var pos = GetBlinkTargetPlace();
         pos.y = 0;
+        //Debug.Log(transform.position);
+        //Debug.Log(pos);
+        host.move.cc.enabled = false;
         transform.position = pos;
+        host.move.cc.enabled = true;
     }
 
     Vector3 GetBlinkDirection()

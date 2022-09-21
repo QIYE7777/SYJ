@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : PlayerComponent
 {
     public int startingHealth = 100;
     public int currentHealth;
