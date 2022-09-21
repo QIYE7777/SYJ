@@ -102,8 +102,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4217207118733604}
-  - component: {fileID: 54618191216997806}
-  - component: {fileID: 136226240234506268}
   - component: {fileID: 135739428724294544}
   - component: {fileID: 114238634760190730}
   - component: {fileID: 114223847109921928}
@@ -113,6 +111,7 @@ GameObject:
   - component: {fileID: 195211502315345458}
   - component: {fileID: 8394723144096288105}
   - component: {fileID: 8557832072006252374}
+  - component: {fileID: 78036560144341478}
   m_Layer: 3
   m_Name: Boss
   m_TagString: Untagged
@@ -137,36 +136,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &54618191216997806
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1283818949268800}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: Infinity
-  m_AngularDrag: Infinity
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 84
-  m_CollisionDetection: 0
---- !u!136 &136226240234506268
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1283818949268800}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.5
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!135 &135739428724294544
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -197,6 +166,7 @@ MonoBehaviour:
     duration: 0
   timeBetweenAttacks: 1
   attackDamage: 10
+  slowspeed: {fileID: 0}
   canPlayAttackAnim: 1
 --- !u!114 &114223847109921928
 MonoBehaviour:
@@ -392,6 +362,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boltLauncherPrefab: {fileID: 394867987034987684, guid: b7e647714e6cee048a8c6cbf615cd074, type: 3}
+--- !u!143 &78036560144341478
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283818949268800}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1459112493018898
 GameObject:
   m_ObjectHideFlags: 0

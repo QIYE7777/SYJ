@@ -13,7 +13,6 @@ public class EnemyHealth : MonoBehaviour
     AudioSource enemyAudio;
     public ParticleSystem hitParticles;
     public ParticleSystem dieParticles;
-    CapsuleCollider capsuleCollider;
     bool isDead;
     bool isSinking;
     public SpawnBoltOnDeath spawnBoltOnDeath;
@@ -26,7 +25,6 @@ public class EnemyHealth : MonoBehaviour
     {
         id = GetComponent<EnemyIdentifier>();
         enemyAudio = GetComponent<AudioSource>();
-        capsuleCollider = GetComponent<CapsuleCollider>();
     }
 
     public void ResetHp(int hp)
@@ -80,7 +78,8 @@ public class EnemyHealth : MonoBehaviour
         if (explodeOnDeath != null)
             explodeOnDeath.Spawn();
 
-        capsuleCollider.isTrigger = true;
+        var cc = GetComponent<CharacterController>();
+        cc.enabled = false;
         id.anim.SetTrigger("die");
         dieParticles.Play();
         enemyAudio.clip = deathClip;
@@ -100,7 +99,6 @@ public class EnemyHealth : MonoBehaviour
             return;
 
         GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
-        GetComponent<Rigidbody>().isKinematic = true;
         isSinking = true;
 
         ScoreManager.score += scoreValue;

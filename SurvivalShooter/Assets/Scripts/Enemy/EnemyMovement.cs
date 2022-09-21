@@ -8,11 +8,12 @@ public class EnemyMovement : MonoBehaviour
     public float dec = 100;
     float _knockSpeed;
     Vector3 _knockDir;
-
+    CharacterController cc;
     private void Awake()
     {
         id = GetComponent<EnemyIdentifier>();
         nav = GetComponent<NavMeshAgent>();
+        cc = GetComponent<CharacterController>();
     }
 
     public void SetSpeed(float s)
@@ -47,7 +48,7 @@ public class EnemyMovement : MonoBehaviour
             return;
         }
 
-        transform.position += _knockDir * _knockSpeed * Time.deltaTime;
+        cc.SimpleMove(_knockDir * _knockSpeed);
     }
 
     void Walk()

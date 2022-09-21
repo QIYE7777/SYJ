@@ -28,6 +28,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 76c5cb493335bea4483321fc8fe90bfd, type: 2}
   - {fileID: 11400000, guid: 76c5cb493335bea4483321fc8fe90bfd, type: 2}
   spawnWaves:
-  - 1
-  - 9
   - 2
+  - 1
+  - 1

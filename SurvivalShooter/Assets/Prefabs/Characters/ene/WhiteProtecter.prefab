@@ -9855,12 +9855,11 @@ GameObject:
   - component: {fileID: 114410150159246008}
   - component: {fileID: 114195364865018464}
   - component: {fileID: 82282192374140768}
-  - component: {fileID: 54189672328016590}
   - component: {fileID: 195912758188770196}
-  - component: {fileID: 136167437456988478}
   - component: {fileID: 135901804349156954}
   - component: {fileID: -2752941489969639991}
   - component: {fileID: 1450345803330962185}
+  - component: {fileID: 7712186698727382879}
   m_Layer: 3
   m_Name: WhiteProtecter
   m_TagString: Untagged
@@ -9902,6 +9901,7 @@ MonoBehaviour:
     duration: 0
   timeBetweenAttacks: 1
   attackDamage: 15
+  slowspeed: {fileID: 0}
   canPlayAttackAnim: 1
 --- !u!114 &114202093503272786
 MonoBehaviour:
@@ -10046,22 +10046,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!54 &54189672328016590
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1499081237720858}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: Infinity
-  m_AngularDrag: Infinity
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 84
-  m_CollisionDetection: 0
 --- !u!195 &195912758188770196
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -10084,20 +10068,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!136 &136167437456988478
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1499081237720858}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.5
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!135 &135901804349156954
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10140,6 +10110,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 8074055216385898881, guid: e57c7e87d10d9914e85de3daac78b9c1, type: 3}
+--- !u!143 &7712186698727382879
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499081237720858}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &8563526468157316791
 PrefabInstance:
   m_ObjectHideFlags: 0

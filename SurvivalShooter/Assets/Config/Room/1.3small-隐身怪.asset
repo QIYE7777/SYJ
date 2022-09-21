@@ -29,6 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1c68f91bb40748e47a626d8300887e7e, type: 2}
   - {fileID: 11400000, guid: 1c68f91bb40748e47a626d8300887e7e, type: 2}
   spawnWaves:
-  - 1
-  - 9
   - 2
+  - 1
+  - 1

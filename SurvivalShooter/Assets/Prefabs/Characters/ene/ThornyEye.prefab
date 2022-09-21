@@ -9880,16 +9880,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4299631297569242}
-  - component: {fileID: 54514101255010558}
   - component: {fileID: 82596927210406732}
   - component: {fileID: 195147020319241770}
   - component: {fileID: 114519164917293406}
   - component: {fileID: 114877193769470842}
   - component: {fileID: 114761713049082770}
-  - component: {fileID: 136467491578855048}
   - component: {fileID: 135409158097274046}
   - component: {fileID: -4420887136459156363}
   - component: {fileID: 7293103169327218178}
+  - component: {fileID: -6072713320060848573}
   m_Layer: 3
   m_Name: ThornyEye
   m_TagString: Untagged
@@ -9915,22 +9914,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &54514101255010558
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1944203798625708}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: Infinity
-  m_AngularDrag: Infinity
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 84
-  m_CollisionDetection: 0
 --- !u!82 &82596927210406732
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10066,6 +10049,7 @@ MonoBehaviour:
     duration: 0
   timeBetweenAttacks: 1
   attackDamage: 30
+  slowspeed: {fileID: 0}
   canPlayAttackAnim: 1
 --- !u!114 &114877193769470842
 MonoBehaviour:
@@ -10102,20 +10086,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dec: 600
---- !u!136 &136467491578855048
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1944203798625708}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.7
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.43, z: 0}
 --- !u!135 &135409158097274046
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10158,6 +10128,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 4114711063623214966, guid: dea795b5fc6683942a4eb3f8f051f1e1, type: 3}
+--- !u!143 &-6072713320060848573
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944203798625708}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1217342422863892687
 PrefabInstance:
   m_ObjectHideFlags: 0

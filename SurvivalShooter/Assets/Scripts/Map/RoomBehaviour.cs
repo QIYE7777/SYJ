@@ -10,9 +10,10 @@ public class RoomBehaviour : MonoBehaviour
     public DoorBehaviour exit;
     public Transform entrance;
 
-    float _nextWaveTimestamp;
-    int _nextWaveIndex;
+    float _nextWaveWaitTime;
+    int _waveIndex;
     public static RoomBehaviour instance;
+    bool _hasWaveToSpawn;
 
     private void Awake()
     {
@@ -40,16 +41,53 @@ public class RoomBehaviour : MonoBehaviour
         HideExitEndEntranceCube();
         SpawnPlayer();
 
-        _nextWaveIndex = 0;
-        _nextWaveTimestamp = Time.time + SceneSwitcher.instance.roomPrototype.spawnWaves[_nextWaveIndex];
+        _hasWaveToSpawn = false;
+        _waveIndex = 0;
+        _nextWaveWaitTime = 0;
     }
 
     private void Update()
     {
-        if (_nextWaveTimestamp >= 0 && Time.time > _nextWaveTimestamp)
+        if (CombatManager.instance.HasEnemyLeft(true))
+            return;//有敌人时，什么都不做
+
+        _nextWaveWaitTime -= Time.deltaTime;
+        if (_nextWaveWaitTime < 0)
         {
-            TrySpawn();
+            if (_hasWaveToSpawn)
+                TrySpawn();
+            else
+                PrepareWave();
         }
+    }
+
+    void PrepareWave()
+    {
+        Debug.Log("PrepareWave");
+        if (IsSpawnDone())
+            return;
+        Debug.Log("准备生成第" + (_waveIndex + 1) + "波");
+        _nextWaveWaitTime = SceneSwitcher.instance.roomPrototype.spawnWaves[_waveIndex];
+        _hasWaveToSpawn = true;
+    }
+
+    void TrySpawn()
+    {
+        Debug.Log("生成第" + (_waveIndex + 1) + "波");
+        if (IsSpawnDone())
+        {
+            Debug.Log("生成完了");
+            return;
+        }
+
+        List<EnemyPrototype> normalEnemies = SceneSwitcher.instance.roomPrototype.normalEnemies;
+        List<EnemyPrototype> specialEnemies = SceneSwitcher.instance.roomPrototype.specialEnemies;
+        List<EnemyPrototype> verySpecialEnemies = SceneSwitcher.instance.roomPrototype.verySpecialEnemies;
+        SpawnOneKindOfEnemy(normalEnemies, normalSpawns);
+        SpawnOneKindOfEnemy(specialEnemies, specialSpawns);
+        SpawnOneKindOfEnemy(verySpecialEnemies, verySpecialSpawns);
+        _waveIndex += 1;
+        _hasWaveToSpawn = false;
     }
 
     void SpawnOneKindOfEnemy(List<EnemyPrototype> enemies, List<SpawnEnemyBehaviour> spots)
@@ -60,35 +98,13 @@ public class RoomBehaviour : MonoBehaviour
                 continue;
             if (i >= enemies.Count)
                 continue;
-            spots[i].Spawn(enemies[i]);
-        }
-    }
-
-    void TrySpawn()
-    {
-        Debug.Log("生成第" + (_nextWaveIndex + 1) + "波");
-        List<EnemyPrototype> normalEnemies = SceneSwitcher.instance.roomPrototype.normalEnemies;
-        List<EnemyPrototype> specialEnemies = SceneSwitcher.instance.roomPrototype.specialEnemies;
-        List<EnemyPrototype> verySpecialEnemies = SceneSwitcher.instance.roomPrototype.verySpecialEnemies;
-        SpawnOneKindOfEnemy(normalEnemies, normalSpawns);
-        SpawnOneKindOfEnemy(specialEnemies, specialSpawns);
-        SpawnOneKindOfEnemy(verySpecialEnemies, verySpecialSpawns);
-
-        _nextWaveIndex += 1;
-        if (IsSpawnDone())
-        {
-            Debug.Log("生成完了");
-            _nextWaveTimestamp = -1;
-        }
-        else
-        {
-            _nextWaveTimestamp = Time.time + SceneSwitcher.instance.roomPrototype.spawnWaves[_nextWaveIndex];
+            spots[i].Spawn(enemies[i], Random.Range(0f,2.5f));
         }
     }
 
     public bool IsSpawnDone()
     {
-        return _nextWaveIndex >= SceneSwitcher.instance.roomPrototype.spawnWaves.Count;
+        return _waveIndex >= SceneSwitcher.instance.roomPrototype.spawnWaves.Count;
     }
 
     void SpawnPlayer()
