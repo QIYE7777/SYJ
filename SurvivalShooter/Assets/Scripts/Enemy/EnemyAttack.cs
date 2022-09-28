@@ -64,11 +64,11 @@ public class EnemyAttack : MonoBehaviour
 
         _canValidateAttack = false;
 
-        if (slowspeed != null)
-            slowspeed.Slow();
-
         var player = PlayerBehaviour.instance;
         player.health.TakeDamage(attackDamage);
+        if (slowspeed != null)
+            slowspeed.Slow(player);
+
         if (hitSpecialEffect != null && hitSpecialEffect.effectType != HitSpecialEffectData.HitSpecialEffectType.None)
             player.specialState.ApplyHitSpecialEffect(hitSpecialEffect);
     }

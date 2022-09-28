@@ -9902,7 +9902,7 @@ MonoBehaviour:
     duration: 0
   timeBetweenAttacks: 1
   attackDamage: 15
-  slowspeed: {fileID: 0}
+  slowspeed: {fileID: 8805687853255280163}
   canPlayAttackAnim: 1
 --- !u!114 &114202093503272786
 MonoBehaviour:
@@ -10110,9 +10110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5f681f26569bd42bd6f7b20bd46786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 6221270653699108372, guid: 83a12dad873d6384a82bee20c6e51022, type: 3}
-  slowDown: 6
-  slowRate: 1.5
+  slowDown: 5.5
+  duration: 3
 --- !u!143 &-7423764650468131547
 CharacterController:
   m_ObjectHideFlags: 0

@@ -44,6 +44,8 @@ public class RoomBehaviour : MonoBehaviour
         _hasWaveToSpawn = false;
         _waveIndex = 0;
         _nextWaveWaitTime = 0;
+
+        RoguelikeCombat.RoguelikeRewardSystem.instance.StartNewEvent();
     }
 
     private void Update()

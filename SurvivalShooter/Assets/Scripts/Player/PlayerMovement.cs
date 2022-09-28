@@ -19,12 +19,16 @@ public class PlayerMovement : PlayerComponent
     public Transform rotatePart;
 
     bool _mouseButtonDown;
+    bool _isSlowed;
+    float _resumeSlowDownTimestamp;
+    float _slowValue;
 
     private void Awake()
     {
         instance = this;
         anim = GetComponent<Animator>();
         cc = GetComponent<CharacterController>();
+        _isSlowed = false;
     }
 
     private void Update()
@@ -40,13 +44,28 @@ public class PlayerMovement : PlayerComponent
         Animating(h, v);
 
         TurningMouse();
+
+        if (_isSlowed && Time.time > _resumeSlowDownTimestamp)
+            _isSlowed = false;
+    }
+
+    public void SlowSpeed(float duration, float slowValue)
+    {
+        _isSlowed = true;
+        _resumeSlowDownTimestamp = Time.time + duration;
+        _slowValue = slowValue;
     }
 
     void Move(float h, float v)
     {
         movement = new Vector3(h, 0f, v);
-        movement = movement.normalized * speed * Time.deltaTime;
-        cc.SimpleMove(movement.normalized * speed);
+        //movement = movement.normalized * speed * Time.deltaTime;
+        var realSpeed = speed;
+        if (_isSlowed)
+        {
+            realSpeed -= _slowValue;
+        }
+        cc.SimpleMove(movement.normalized * realSpeed);
     }
 
     void TurningKeyboard()

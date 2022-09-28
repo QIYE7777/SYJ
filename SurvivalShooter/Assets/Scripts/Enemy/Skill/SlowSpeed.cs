@@ -2,40 +2,11 @@
 
 public class SlowSpeed : MonoBehaviour
 {
-    public GameObject character;
     public float slowDown = 3;
-    private float speedTimestamp;
-    public float slowRate = 1.5f;
+    public float duration = 1.5f;
 
-    PlayerMovement playerMovement;
-
-    private void Awake()
+    public void Slow(PlayerBehaviour player)
     {
-        playerMovement = GetComponent<PlayerMovement>();
+        player.move.SlowSpeed(duration, slowDown);
     }
-
-    public void Slow()
-    {
-        playerMovement.speed  =- slowDown;
-        if (Time.time - speedTimestamp > slowRate)
-        {
-            playerMovement.speed =+ slowDown;
-        }
-    }
-    /*
-    private void Start()
-    {
-        speedTimestamp = Time.time;
-    }
-
-    private void Update()
-    {
-        if (Time.time > speedTimestamp)
-        {
-            speedTimestamp += slowRate;
-
-            Slow();
-        }
-    }
-    */
 }

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dba6dee99f96e149afb9763323c2ed7, type: 3}
+  m_Name: New Roguelike Reward Config
+  m_EditorClassIdentifier: 
+  roguelikeRewards:
+  - {fileID: 11400000, guid: c03a6833c07945341b2b222ccf293fbd, type: 2}
+  - {fileID: 11400000, guid: 1d5607db4aedec944acb6d0eaf59d384, type: 2}
+  - {fileID: 11400000, guid: bace7ca6b507cf14ba2e4631f4e89219, type: 2}
