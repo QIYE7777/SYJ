@@ -3,6 +3,7 @@
 public class Hemophagia : MonoBehaviour
 {
     PlayerHealth playerHealth;
+    public int healPerShoot = 0;
 
     private void Awake()
     {
@@ -11,6 +12,9 @@ public class Hemophagia : MonoBehaviour
 
     public void SuckBlood()
     {
-        playerHealth.Hemophagia();
+        if (healPerShoot>0)
+        {
+            playerHealth.Heal(healPerShoot);
+        }
     }
 }

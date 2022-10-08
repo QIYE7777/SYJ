@@ -87,6 +87,7 @@ public class PlayerMovement : PlayerComponent
         {
             playerToMouse = floorHit.point - transform.position;
             playerToMouse.y = 0f;
+            //Debug.Log(playerToMouse.normalized);
             rotatePart.forward = playerToMouse.normalized;
         }
     }

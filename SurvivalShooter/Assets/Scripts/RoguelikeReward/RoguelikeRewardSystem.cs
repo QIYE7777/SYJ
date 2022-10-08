@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 namespace RoguelikeCombat
 {
@@ -7,9 +8,12 @@ namespace RoguelikeCombat
         public static RoguelikeRewardSystem instance;
         public RoguelikeRewardConfig config;
 
+        public List<RoguelikeUpgradeId> perks;
+
         private void Awake()
         {
             instance = this;
+            perks = new List<RoguelikeUpgradeId>();
         }
 
         public void StartNewEvent()
@@ -24,6 +28,29 @@ namespace RoguelikeCombat
             RoguelikeRewardWindowBehaviour.instance.Setup(data);
 
             RoguelikeRewardWindowBehaviour.instance.Show();
+        }
+
+        public void AddPerk(RoguelikeUpgradeId id)
+        {
+            perks.Add(id);
+
+            var player = PlayerBehaviour.instance;
+            switch (id)
+            {
+                case RoguelikeUpgradeId.None:
+                    break;
+                case RoguelikeUpgradeId.Leech_5:
+                    player.shooting.hemophagia.healPerShoot = 5;
+                    break;
+                case RoguelikeUpgradeId.Leech_10:
+                    player.shooting.hemophagia.healPerShoot = 10;
+                    break;
+            }
+        }
+
+        public bool HasPerk(RoguelikeUpgradeId id)
+        {
+            return perks.IndexOf(id) >= 0;
         }
     }
 }

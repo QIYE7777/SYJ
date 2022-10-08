@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerHealth : PlayerComponent
 {
-    public int startingHealth = 100;
+    public int hpMax = 100;
     public int currentHealth;
 
     public AudioClip deathClip;
@@ -21,22 +21,32 @@ public class PlayerHealth : PlayerComponent
         playerAudio = GetComponent<AudioSource>();
         playerMovement = GetComponent<PlayerMovement>();
         playerShooting = GetComponentInChildren<PlayerShooting>();
-        currentHealth = startingHealth;
+        currentHealth = hpMax;
     }
 
     public void Start()
     {
-        currentHealth = startingHealth;
+        currentHealth = hpMax;
         HudBehaviour.instance.SetHpBar(1);
         preventDeathCount = 1;
+    }
+
+    public void Heal(int amount)
+    {
+        if (isDead)
+            return;
+
+        currentHealth += amount;
+        if (currentHealth > hpMax)
+            currentHealth = hpMax;
+
+        RefreshHpBar();
     }
 
     public void TakeDamage(int amount)
     {
         if (isDead)
-        {
             return;
-        }
 
         HudBehaviour.instance.OnDamaged();
         currentHealth -= amount;
@@ -50,24 +60,21 @@ public class PlayerHealth : PlayerComponent
         }
 
         if (currentHealth < 0)
-        {
             currentHealth = 0;
-        }
 
-        float currentHpRatio = (float)currentHealth / (float)startingHealth;
-        HudBehaviour.instance.SetHpBar(Mathf.Pow(currentHpRatio, 1.5f));//让最后的血条显得更耐用的一点，增加玩家残血过关的概率
+        RefreshHpBar();
         playerAudio.Play();
 
         if (currentHealth <= 0 && !isDead)
-        {
             Death();
-        }
     }
 
-    public void Hemophagia()
+    void RefreshHpBar()
     {
-        currentHealth = currentHealth + 20;
+        float currentHpRatio = (float)currentHealth / (float)hpMax;
+        HudBehaviour.instance.SetHpBar(Mathf.Pow(currentHpRatio, 1.5f));//让最后的血条显得更耐用的一点，增加玩家残血过关的概率
     }
+
     void Death()
     {
         isDead = true;

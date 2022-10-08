@@ -18,9 +18,12 @@ namespace RoguelikeCombat
         public GameObject detailPanel;
         public List<RoguelikeRewardSlotBehaviour> slots;
 
+        RoguelikeUpgradeId _currentSelectedRoguelikeUpgradeId;
+
         private void Awake()
         {
             instance = this;
+            _currentSelectedRoguelikeUpgradeId = RoguelikeUpgradeId.None;
         }
 
         private void Start()
@@ -30,6 +33,7 @@ namespace RoguelikeCombat
 
         public void Setup(RoguelikeRewardEventData data)
         {
+            _currentSelectedRoguelikeUpgradeId = RoguelikeUpgradeId.None;
             _data = data;
 
             button.SetActive(false);
@@ -62,6 +66,7 @@ namespace RoguelikeCombat
 
         public void ShowDetail(RoguelikeRewardPrototype proto)
         {
+            _currentSelectedRoguelikeUpgradeId = proto.id;
             button.SetActive(true);
 
             detailTitle.text = proto.title;
@@ -76,6 +81,7 @@ namespace RoguelikeCombat
 
         public void OnClickConfirm()
         {
+            RoguelikeRewardSystem.instance.AddPerk(_currentSelectedRoguelikeUpgradeId);
             Hide();
         }
 
