@@ -80,6 +80,11 @@ public class EnemyHealth : MonoBehaviour
 
         var cc = GetComponent<CharacterController>();
         cc.enabled = false;
+        var cols = GetComponentsInChildren<Collider>();
+        foreach (var col in cols)
+        {
+            col.enabled = false;
+        }
         id.anim.SetTrigger("die");
         dieParticles.Play();
         enemyAudio.clip = deathClip;

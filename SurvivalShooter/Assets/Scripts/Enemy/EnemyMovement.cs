@@ -9,6 +9,7 @@ public class EnemyMovement : MonoBehaviour
     float _knockSpeed;
     Vector3 _knockDir;
     CharacterController cc;
+
     private void Awake()
     {
         id = GetComponent<EnemyIdentifier>();

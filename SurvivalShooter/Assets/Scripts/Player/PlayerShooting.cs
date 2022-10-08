@@ -59,8 +59,8 @@ public class PlayerShooting : PlayerComponent
         if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.MultiShoot_add2shoot_30degree))
         {
             //add 2 shoot
-            FireShoot(30);
-            FireShoot(-30);
+            FireShoot(35);
+            FireShoot(-35);
         }
     }
 
@@ -75,6 +75,8 @@ public class PlayerShooting : PlayerComponent
 
         Ray shootRay = new Ray();
         shootRay.origin = transform.position;
+        Vector3 relativeDirection = Vector3.forward;
+
         if (angleOffset == 0)
         {
             shootRay.direction = transform.forward;
@@ -82,10 +84,12 @@ public class PlayerShooting : PlayerComponent
         else if (angleOffset > 0)
         {
             shootRay.direction = Vector3.RotateTowards(transform.forward, transform.right, angleOffset * Mathf.Deg2Rad, float.MaxValue);
+            relativeDirection = Vector3.RotateTowards(Vector3.forward, Vector3.right, angleOffset * Mathf.Deg2Rad, float.MaxValue);
         }
         else if (angleOffset < 0)
         {
             shootRay.direction = Vector3.RotateTowards(transform.forward, -transform.right, -angleOffset * Mathf.Deg2Rad, float.MaxValue);
+            relativeDirection = Vector3.RotateTowards(Vector3.forward, -Vector3.right, -angleOffset * Mathf.Deg2Rad, float.MaxValue);
         }
 
         if (Physics.Raycast(shootRay, out shootHit, range, 1 << shootableMask))
@@ -95,11 +99,11 @@ public class PlayerShooting : PlayerComponent
                 enemyHealth.TakeDamage(damagePerShot);
             hemophagia.SuckBlood();
 
-            gunLine.SetPosition(1, shootHit.point - transform.position);
+            gunLine.SetPosition(1, relativeDirection * (shootHit.point - shootRay.origin).magnitude);
         }
         else
         {
-            gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range - transform.position);
+            gunLine.SetPosition(1, relativeDirection * range);
         }
     }
 }
