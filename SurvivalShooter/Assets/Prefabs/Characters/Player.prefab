@@ -5305,6 +5305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae87527adeb3b547a32bce765632727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  host: {fileID: 0}
   damagePerShot: 1
   timeBetweenBullets: 0.6
   range: 8
@@ -10755,9 +10756,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c142a09c00167504aae75c0ec0a12a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  host: {fileID: 0}
   damagePerShot: 35
   timeBetweenBullets: 0.12
   range: 100
+  hemophagia: {fileID: 0}
   shootableMask: 3
   faceLight: {fileID: 6328412523733007438}
 --- !u!108 &6327803837412679730
@@ -10946,6 +10949,7 @@ GameObject:
   - component: {fileID: -5473554322171537783}
   - component: {fileID: 6933085758474946998}
   - component: {fileID: 1495493985850559047}
+  - component: {fileID: 8138776424194376445}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -11098,8 +11102,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26fece6fe8290224b859205e9357aa81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  host: {fileID: 0}
   speed: 6
   turnSpeed: 20
+  cc: {fileID: 0}
   floorMask: 8
   playerToMouse: {x: 0, y: 0, z: 0}
   rotatePart: {fileID: 6223564712793441620}
@@ -11115,7 +11121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32a27f16469844242be06f17b8598f4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 25000
+  host: {fileID: 0}
+  startingHealth: 250
   currentHealth: 0
   deathClip: {fileID: 8300000, guid: b8d5f3bf249439b4a9051cba9312d806, type: 3}
 --- !u!114 &6219472072618714752
@@ -11130,6 +11137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95095c8ca8ab624fb941b78af06d652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  host: {fileID: 0}
   timeBetweenBlinks: 0.5
   blinkDistance: 5
   gunPos: {fileID: 6219472071997793784}
@@ -11191,6 +11199,18 @@ MonoBehaviour:
   restTicks: 0
   slowRatio: 0
   poisonDot: 0
+--- !u!114 &8138776424194376445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6221270653699108372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12b3badd0cacb934da2f692fc9ac9182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6221277601388354880
 GameObject:
   m_ObjectHideFlags: 0

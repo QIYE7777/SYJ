@@ -9,6 +9,8 @@ public class PlayerShooting : PlayerComponent
     public float timeBetweenBullets = 0.15f;
     public float range = 100f;
 
+    public Hemophagia hemophagia;
+
     float timer;
     Ray shootRay = new Ray();
     RaycastHit shootHit;
@@ -68,6 +70,9 @@ public class PlayerShooting : PlayerComponent
             EnemyHealth enemyHealth = shootHit.collider.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
                 enemyHealth.TakeDamage(damagePerShot);
+                if (hemophagia != null)
+                    hemophagia.SuckBlood();
+
 
             gunLine.SetPosition(1, shootHit.point);
         }

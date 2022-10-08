@@ -8,7 +8,6 @@ public class PlayerHealth : PlayerComponent
 
     public AudioClip deathClip;
 
-
     Animator anim;
     AudioSource playerAudio;
     PlayerMovement playerMovement;
@@ -65,6 +64,10 @@ public class PlayerHealth : PlayerComponent
         }
     }
 
+    public void Hemophagia()
+    {
+        currentHealth = currentHealth + 20;
+    }
     void Death()
     {
         isDead = true;
