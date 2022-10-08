@@ -10,7 +10,7 @@ public class SceneSwitcher : MonoBehaviour
 
     int currentIndex;
 
-    public GameObject playerPrefab;
+    public PlayerBehaviour playerPrefab;
 
     private void Awake()
     {
@@ -35,6 +35,7 @@ public class SceneSwitcher : MonoBehaviour
         var room = currentLevel.rooms[currentIndex];
         roomPrototype = room;
         SceneManager.LoadScene(room.sceneName, LoadSceneMode.Single);
+        Debug.Log("SwitchToRoomOfLevel" + room);
     }
 
     public void SwitchToNextRoom()

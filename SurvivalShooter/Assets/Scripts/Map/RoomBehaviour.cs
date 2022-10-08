@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
+using DG.Tweening;
 
 public class RoomBehaviour : MonoBehaviour
 {
@@ -39,13 +41,49 @@ public class RoomBehaviour : MonoBehaviour
     private void Start()
     {
         HideExitEndEntranceCube();
-        SpawnPlayer();
+        RoguelikeCombat.RoguelikeRewardSystem.instance.StartNewEvent();
+
+
+
+        //var door = Instantiate(CombatManager.instance.levelStartDoor);
+        //var spawnPosition = entrance.position;
+        //spawnPosition.y = 7;
+        //door.transform.position = spawnPosition;
+        //door.transform.DOMoveY(0, 3).SetEase(Ease.OutCubic);
+        //
+        //var player = Instantiate(SceneSwitcher.instance.playerPrefab, door.transform.position, entrance.rotation, door.transform);
+        //CameraFollow.instance.Init(player.transform);
+        //
+        //Destroy(door, 7);
+        //StartCoroutine(StartLevelPlay());
+
+        var spawnPosition = entrance.position;
+        spawnPosition.y = 0;
+        var player = Instantiate(SceneSwitcher.instance.playerPrefab, spawnPosition, entrance.rotation, entrance.transform.parent);
+        CameraFollow.instance.Init(player.transform);
+        _hasWaveToSpawn = false;
+        _waveIndex = 0;
+        _nextWaveWaitTime = 0;
+    }
+
+    IEnumerator StartLevelPlay()
+    {
+        var player = PlayerBehaviour.instance;
+        yield return new WaitForSeconds(0.2f);
+        player.move.enabled = false;
+        player.shooting.enabled = false;
+        player.shootSuper.enabled = false;
+
+        yield return new WaitForSeconds(6);
+        Debug.Log(11);
+        player.transform.SetParent(entrance.transform.parent);
+        player.move.enabled = true;
+        player.shooting.enabled = true;
+        player.shootSuper.enabled = true;
 
         _hasWaveToSpawn = false;
         _waveIndex = 0;
         _nextWaveWaitTime = 0;
-
-        RoguelikeCombat.RoguelikeRewardSystem.instance.StartNewEvent();
     }
 
     private void Update()
@@ -100,20 +138,12 @@ public class RoomBehaviour : MonoBehaviour
                 continue;
             if (i >= enemies.Count)
                 continue;
-            spots[i].Spawn(enemies[i], Random.Range(0f,2.5f));
+            spots[i].Spawn(enemies[i], Random.Range(0f, 2.5f));
         }
     }
 
     public bool IsSpawnDone()
     {
         return _waveIndex >= SceneSwitcher.instance.roomPrototype.spawnWaves.Count;
-    }
-
-    void SpawnPlayer()
-    {
-        var spawnPosition = entrance.position;
-        spawnPosition.y = 0;
-        var player = Instantiate(SceneSwitcher.instance.playerPrefab, spawnPosition, entrance.rotation, entrance.transform.parent);
-        CameraFollow.instance.Init(player.transform);
     }
 }

@@ -995,7 +995,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLevel: {fileID: 11400000, guid: 6a8aa91b0f365d24ebd246206670b3e6, type: 2}
   roomPrototype: {fileID: 0}
-  playerPrefab: {fileID: 6221270653699108372, guid: 83a12dad873d6384a82bee20c6e51022, type: 3}
+  playerPrefab: {fileID: 6933085758474946998, guid: 83a12dad873d6384a82bee20c6e51022, type: 3}
 --- !u!114 &411635882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2044,6 +2044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnEnemyVfx: {fileID: 8964153313038274762, guid: 4750208103eef404cb19f46601c804aa, type: 3}
   spawnEnemyTimeAfterVfx: 2.7
+  levelStartDoor: {fileID: -927199367670048503, guid: 01102a114103e314d9426fb5357b454a, type: 3}
 --- !u!114 &677338127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2057,6 +2058,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 1015fc27bd3bf974f8183128d2673b43, type: 2}
+  perks: 
 --- !u!1 &781970203
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class CombatManager : MonoBehaviour
     public static CombatManager instance;
     public GameObject spawnEnemyVfx;
     public float spawnEnemyTimeAfterVfx = 2.7f;
+    public GameObject levelStartDoor;
 
     private void Awake()
     {
