@@ -6,9 +6,12 @@ public class EnemyMovement : MonoBehaviour
     NavMeshAgent nav;
     EnemyIdentifier id;
     public float dec = 100;
-    float _knockSpeed;
+    public float _knockSpeed;
     Vector3 _knockDir;
     CharacterController cc;
+
+    float _resumeSlowDownTimestamp;
+    bool _isFreezed;
 
     private void Awake()
     {
@@ -37,6 +40,9 @@ public class EnemyMovement : MonoBehaviour
         {
             Walk();
         }
+
+        if (_isFreezed && Time.time > _resumeSlowDownTimestamp)
+            _isFreezed = false;
     }
 
     void CheckKnockback()
@@ -69,5 +75,12 @@ public class EnemyMovement : MonoBehaviour
         _knockDir = dir.normalized;
         _knockSpeed = speed;
         nav.enabled = false;
+    }
+
+    public void Freeze(float duration, float slowDown)
+    {
+        _isFreezed = true;
+        _resumeSlowDownTimestamp = Time.time + duration;
+        _knockSpeed -= slowDown;
     }
 }

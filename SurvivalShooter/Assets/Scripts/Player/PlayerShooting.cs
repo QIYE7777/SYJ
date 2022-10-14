@@ -9,6 +9,7 @@ public class PlayerShooting : PlayerComponent
     public float range = 100f;
 
     public Hemophagia hemophagia { get; private set; }
+    public PlayerFreeze freeze;
 
     float timer;
     RaycastHit shootHit;
@@ -27,6 +28,7 @@ public class PlayerShooting : PlayerComponent
         gunAudio = GetComponent<AudioSource>();
         gunLight = GetComponent<Light>();
         hemophagia = host.GetComponent<Hemophagia>();
+        freeze = GetComponent<PlayerFreeze>();
     }
 
     // Update is called once per frame
@@ -100,6 +102,9 @@ public class PlayerShooting : PlayerComponent
             hemophagia.SuckBlood();
 
             gunLine.SetPosition(1, relativeDirection * (shootHit.point - shootRay.origin).magnitude);
+
+            freeze.Slow();
+
         }
         else
         {
