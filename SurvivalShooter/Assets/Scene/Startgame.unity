@@ -2044,7 +2044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnEnemyVfx: {fileID: 8964153313038274762, guid: 4750208103eef404cb19f46601c804aa, type: 3}
   spawnEnemyTimeAfterVfx: 2.7
-  levelStartDoor: {fileID: -927199367670048503, guid: 01102a114103e314d9426fb5357b454a, type: 3}
+  levelStartDoor: {fileID: 4084991624025970234, guid: e80cb959881205141a47e673046acc83, type: 3}
 --- !u!114 &677338127
 MonoBehaviour:
   m_ObjectHideFlags: 0

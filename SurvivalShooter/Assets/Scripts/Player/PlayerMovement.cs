@@ -22,6 +22,8 @@ public class PlayerMovement : PlayerComponent
     bool _isSlowed;
     float _resumeSlowDownTimestamp;
     float _slowValue;
+    public bool disableMove;
+    public bool simulateMoveForward;
 
     private void Awake()
     {
@@ -33,6 +35,16 @@ public class PlayerMovement : PlayerComponent
 
     private void Update()
     {
+        if (simulateMoveForward)
+        {
+            Move(0, 1);
+            Animating(0, 1);
+            rotatePart.forward = Vector3.forward;
+        }
+
+        if (disableMove)
+            return;
+
         if (Input.GetMouseButtonDown(0))
             _mouseButtonDown = true;
         if (Input.GetMouseButtonUp(0))

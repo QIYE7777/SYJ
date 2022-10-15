@@ -12,6 +12,7 @@ public class EnemyIdentifier : MonoBehaviour
     public EnemyAttack attack;
     [HideInInspector]
     public EnemyMovement move;
+    public EnemyPrototype proto;
 
     private void Awake()
     {
@@ -36,10 +37,11 @@ public class EnemyIdentifier : MonoBehaviour
         return enemies.Count == 0;
     }
 
-    public void InitializeEnemyPrototype(EnemyPrototype proto)
+    public void InitializeEnemyPrototype(EnemyPrototype p)
     {
-        health.ResetHp(proto.hp);
+        proto = p;
+        health.ResetHp(p.hp);
         attack.attackDamage = proto.attack;
-        move.SetSpeed(proto.speed);
+        move.SetSpeed(p.speed);
     }
 }

@@ -22,6 +22,12 @@ public class CameraFollow : MonoBehaviour
         transform.position = targetCamPos;
     }
 
+    public void SyncPos(Vector3 targetPos)
+    {
+        Vector3 targetCamPos = targetPos + offset;
+        transform.position = targetCamPos;
+    }
+
     private void FixedUpdate()
     {
         if (_target == null)

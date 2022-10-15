@@ -1,13 +1,8 @@
 ﻿using UnityEngine;
 
-public class PlayerFreeze : MonoBehaviour
+[System.Serializable]
+public class PlayerFreeze
 {
-    public float slowDown = 100;
+    public float slowDown = 0.8f;
     public float duration = 3f;
-
-    public void Slow()
-    {
-        EnemyMovement.Freeze() ;
-    }
 }
-

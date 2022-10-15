@@ -1,5 +1,6 @@
 ﻿using UnityEngine.AI;
 using UnityEngine;
+using com;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class EnemyMovement : MonoBehaviour
     CharacterController cc;
 
     float _resumeSlowDownTimestamp;
-    bool _isFreezed;
+    bool _isSlowed;
 
     private void Awake()
     {
@@ -23,6 +24,13 @@ public class EnemyMovement : MonoBehaviour
     public void SetSpeed(float s)
     {
         nav.speed = s;
+    }
+
+    public void SlowDown(float slowDownRatio, float duration)
+    {
+        nav.speed = id.proto.speed * (1 - slowDownRatio);
+        _isSlowed = true;
+        _resumeSlowDownTimestamp = GameTime.time + duration;
     }
 
     private void Start()
@@ -41,8 +49,11 @@ public class EnemyMovement : MonoBehaviour
             Walk();
         }
 
-        if (_isFreezed && Time.time > _resumeSlowDownTimestamp)
-            _isFreezed = false;
+        if (_isSlowed && Time.time > _resumeSlowDownTimestamp)
+        {
+            _isSlowed = false;
+            nav.speed = id.proto.speed;
+        }
     }
 
     void CheckKnockback()
@@ -75,12 +86,5 @@ public class EnemyMovement : MonoBehaviour
         _knockDir = dir.normalized;
         _knockSpeed = speed;
         nav.enabled = false;
-    }
-
-    public void Freeze(float duration, float slowDown)
-    {
-        _isFreezed = true;
-        _resumeSlowDownTimestamp = Time.time + duration;
-        _knockSpeed -= slowDown;
     }
 }

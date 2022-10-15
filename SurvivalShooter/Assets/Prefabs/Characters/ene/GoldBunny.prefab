@@ -9856,7 +9856,6 @@ GameObject:
   - component: {fileID: 114195364865018464}
   - component: {fileID: 82282192374140768}
   - component: {fileID: 195912758188770196}
-  - component: {fileID: 135901804349156954}
   - component: {fileID: -2752941489969639991}
   - component: {fileID: 1450345803330962185}
   - component: {fileID: 2877734138932563100}
@@ -9938,6 +9937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dec: 600
+  _knockSpeed: 0
 --- !u!114 &114195364865018464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10068,19 +10068,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!135 &135901804349156954
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1499081237720858}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.8
-  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!114 &-2752941489969639991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10097,6 +10084,7 @@ MonoBehaviour:
   health: {fileID: 0}
   attack: {fileID: 0}
   move: {fileID: 0}
+  proto: {fileID: 0}
 --- !u!114 &1450345803330962185
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,10 +6,24 @@ public class EnemyAttack : MonoBehaviour
     public HitSpecialEffectData hitSpecialEffect;
     public float timeBetweenAttacks = 0.5f;
     public int attackDamage = 10;
-    bool playerInRange;
+    public float attackPrepareTime = 0.25f;
+    public float attackPosFrontDistance = 0.6f;
+    public float attackRange =0.9f;
+
+    bool playerInRange
+    {
+        get
+        {
+            var attackPos = transform.position + transform.forward * attackPosFrontDistance;
+            var dist = PlayerBehaviour.instance.transform.position - attackPos;
+            dist.y = 0;
+            return dist.magnitude < attackRange;
+        }
+    }
+
     float timer;
     bool _canValidateAttack;
-    public SlowSpeed  slowspeed;
+    public SlowSpeed slowspeed;
 
     EnemyIdentifier id;
 
@@ -18,18 +32,6 @@ public class EnemyAttack : MonoBehaviour
     private void Awake()
     {
         id = GetComponent<EnemyIdentifier>();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject == PlayerBehaviour.instance.gameObject)
-            playerInRange = true;
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject == PlayerBehaviour.instance.gameObject)
-            playerInRange = false;
     }
 
     // Update is called once per frame
@@ -54,14 +56,15 @@ public class EnemyAttack : MonoBehaviour
 
         timer = 0f;
         _canValidateAttack = true;
-        Invoke("OnAttacked", 0.25f);
+        Invoke("OnAttacked", attackPrepareTime);
     }
 
     void OnAttacked()
     {
         if (!_canValidateAttack)
             return;
-
+        if (!playerInRange)
+            return;
         _canValidateAttack = false;
 
         var player = PlayerBehaviour.instance;

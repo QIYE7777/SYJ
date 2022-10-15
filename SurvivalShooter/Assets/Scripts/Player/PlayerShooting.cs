@@ -28,7 +28,6 @@ public class PlayerShooting : PlayerComponent
         gunAudio = GetComponent<AudioSource>();
         gunLight = GetComponent<Light>();
         hemophagia = host.GetComponent<Hemophagia>();
-        freeze = GetComponent<PlayerFreeze>();
     }
 
     // Update is called once per frame
@@ -61,8 +60,8 @@ public class PlayerShooting : PlayerComponent
         if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.MultiShoot_add2shoot_30degree))
         {
             //add 2 shoot
-            FireShoot(35);
-            FireShoot(-35);
+            FireShoot(8);
+            FireShoot(-8);
         }
     }
 
@@ -73,7 +72,7 @@ public class PlayerShooting : PlayerComponent
         gunLine.gameObject.SetActive(true);
         gunLine.transform.localPosition = Vector3.zero;
         gunLine.SetPosition(0, Vector3.zero);
-        Destroy(gunLine.gameObject, timeBetweenBullets);
+        Destroy(gunLine.gameObject, timeBetweenBullets-0.07f);
 
         Ray shootRay = new Ray();
         shootRay.origin = transform.position;
@@ -98,13 +97,14 @@ public class PlayerShooting : PlayerComponent
         {
             EnemyHealth enemyHealth = shootHit.collider.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
+            {
                 enemyHealth.TakeDamage(damagePerShot);
-            hemophagia.SuckBlood();
+                hemophagia.SuckBlood();
+                var move =  shootHit.collider.GetComponent<EnemyMovement>();
+                move.SlowDown(freeze.slowDown, freeze.duration);
+            }
 
             gunLine.SetPosition(1, relativeDirection * (shootHit.point - shootRay.origin).magnitude);
-
-            freeze.Slow();
-
         }
         else
         {

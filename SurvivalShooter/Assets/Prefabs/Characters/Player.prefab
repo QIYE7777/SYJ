@@ -10896,8 +10896,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   host: {fileID: 0}
   damagePerShot: 35
-  timeBetweenBullets: 0.12
+  timeBetweenBullets: 0.2
   range: 100
+  freeze:
+    slowDown: 0.99
+    duration: 3
   shootableMask: 3
   gunLinePrefab: {fileID: 1976383910456860692}
   faceLight: {fileID: 6328412523733007438}

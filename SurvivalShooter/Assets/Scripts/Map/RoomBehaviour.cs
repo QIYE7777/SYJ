@@ -41,43 +41,45 @@ public class RoomBehaviour : MonoBehaviour
     private void Start()
     {
         HideExitEndEntranceCube();
-        RoguelikeCombat.RoguelikeRewardSystem.instance.StartNewEvent();
+        //RoguelikeCombat.RoguelikeRewardSystem.instance.StartNewEvent();
 
 
 
-        //var door = Instantiate(CombatManager.instance.levelStartDoor);
-        //var spawnPosition = entrance.position;
-        //spawnPosition.y = 7;
-        //door.transform.position = spawnPosition;
-        //door.transform.DOMoveY(0, 3).SetEase(Ease.OutCubic);
-        //
-        //var player = Instantiate(SceneSwitcher.instance.playerPrefab, door.transform.position, entrance.rotation, door.transform);
-        //CameraFollow.instance.Init(player.transform);
-        //
-        //Destroy(door, 7);
-        //StartCoroutine(StartLevelPlay());
-
+        var door = Instantiate(CombatManager.instance.levelStartDoor);
         var spawnPosition = entrance.position;
-        spawnPosition.y = 0;
-        var player = Instantiate(SceneSwitcher.instance.playerPrefab, spawnPosition, entrance.rotation, entrance.transform.parent);
-        CameraFollow.instance.Init(player.transform);
-        _hasWaveToSpawn = false;
-        _waveIndex = 0;
-        _nextWaveWaitTime = 0;
+        spawnPosition.y = 8;
+        door.transform.position = spawnPosition;
+        door.transform.DOMoveY(0, 1.2f).SetEase(Ease.InCubic).OnComplete(
+            () =>
+            {
+                CameraFollow.instance.enabled = true;
+                CameraFollow.instance.Init(PlayerBehaviour.instance.transform);
+            });
+
+        var player = Instantiate(SceneSwitcher.instance.playerPrefab, door.transform.position, entrance.rotation, door.transform);
+        player.transform.localPosition = new Vector3(-0.034f, 0.407f, 0.694f);
+        player.move.cc.enabled = false;
+        // CameraFollow.instance.Init(player.transform);
+        CameraFollow.instance.SyncPos(entrance.position);
+        CameraFollow.instance.enabled = false;
+        Destroy(door, 7);
+        StartCoroutine(StartLevelPlay());
+
+        player.move.disableMove = true;
+        player.shooting.enabled = false;
+        player.shootSuper.enabled = false;
     }
 
     IEnumerator StartLevelPlay()
     {
         var player = PlayerBehaviour.instance;
-        yield return new WaitForSeconds(0.2f);
-        player.move.enabled = false;
-        player.shooting.enabled = false;
-        player.shootSuper.enabled = false;
-
-        yield return new WaitForSeconds(6);
-        Debug.Log(11);
+        yield return new WaitForSeconds(1.5f);
+        player.move.cc.enabled = true;
+        player.move.simulateMoveForward = true;
+        yield return new WaitForSeconds(1.1f);
         player.transform.SetParent(entrance.transform.parent);
-        player.move.enabled = true;
+        player.move.disableMove = false;
+        player.move.simulateMoveForward = false;
         player.shooting.enabled = true;
         player.shootSuper.enabled = true;
 
