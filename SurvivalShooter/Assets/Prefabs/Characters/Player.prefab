@@ -5540,8 +5540,8 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.9150943, g: 0.7442593, b: 0.44459772, a: 1}
-  m_Intensity: 12
+  m_Color: {r: 0.9137255, g: 0.5812752, b: 0.44313726, a: 1}
+  m_Intensity: 14
   m_Range: 12
   m_SpotAngle: 60
   m_InnerSpotAngle: 4
@@ -11143,6 +11143,8 @@ MonoBehaviour:
   floorMask: 8
   playerToMouse: {x: 0, y: 0, z: 0}
   rotatePart: {fileID: 6223564712793441620}
+  disableMove: 0
+  simulateMoveForward: 0
 --- !u!114 &6324637390232666586
 MonoBehaviour:
   m_ObjectHideFlags: 0
