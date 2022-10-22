@@ -10,6 +10,8 @@ namespace RoguelikeCombat
 
         public List<RoguelikeUpgradeId> perks;
 
+        StartRoomDoor door;
+
         private void Awake()
         {
             instance = this;
@@ -32,7 +34,14 @@ namespace RoguelikeCombat
 
         public void OnEventFinished()
         {
-            Debug.Log("TODO door show and take you up");
+            //Debug.Log("TODO door show and take you up");
+            door.transform.DOMoveY(0, 1.2f).SetEase(Ease.InCubic).OnComplete();
+            yield return new WaitForSeconds(1.0f);
+            door.OpenDoor();
+            yield return new WaitForSeconds(0.2f);
+            door.CloseDoor();
+
+
             com.GameTime.timeScale = 1;
             SceneSwitcher.instance.SwitchToNextRoom();
         }

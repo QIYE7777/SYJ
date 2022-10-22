@@ -21,9 +21,9 @@ public class RoomRewardBehaviour : MonoBehaviour
 
     IEnumerator ShowRoguelike()
     {
-        yield return new WaitForSeconds(2.8f);
+        yield return new WaitForSeconds(6.2f);
         vfx.transform.SetParent(null);
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(0.2f);
         RoguelikeCombat.RoguelikeRewardSystem.instance.StartNewEvent();
     }
 }

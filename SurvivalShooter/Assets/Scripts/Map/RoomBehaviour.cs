@@ -93,7 +93,7 @@ public class RoomBehaviour : MonoBehaviour
           () => { Destroy(door.gameObject); });
     }
 
-    private void Update()
+        private void Update()
     {
         if (CombatManager.instance.HasEnemyLeft(true))
             return;//有敌人时，什么都不做
