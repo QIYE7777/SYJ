@@ -30,6 +30,12 @@ namespace RoguelikeCombat
             RoguelikeRewardWindowBehaviour.instance.Show();
         }
 
+        public void OnEventFinished()
+        {
+            Debug.Log("TODO door show and take you up");
+            SceneSwitcher.instance.SwitchToNextRoom();
+        }
+
         public void AddPerk(RoguelikeUpgradeId id)
         {
             perks.Add(id);

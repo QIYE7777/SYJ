@@ -107,6 +107,19 @@ public class EnemyHealth : MonoBehaviour
         isSinking = true;
 
         ScoreManager.score += scoreValue;
-        Destroy(gameObject, 2f);
+        StartCoroutine(OnBodyRemoved());
+    }
+
+    IEnumerator OnBodyRemoved()
+    {
+        yield return new WaitForSeconds(2);
+        CheckLevelEnd();
+        Destroy(gameObject);
+    }
+
+    void CheckLevelEnd()
+    {
+        if (!CombatManager.instance.HasEnemyLeft(true) && RoomBehaviour.instance.IsSpawnDone())
+            RoomBehaviour.instance.LevelEnd();
     }
 }

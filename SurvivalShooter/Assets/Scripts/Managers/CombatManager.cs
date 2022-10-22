@@ -7,6 +7,7 @@ public class CombatManager : MonoBehaviour
     public GameObject spawnEnemyVfx;
     public float spawnEnemyTimeAfterVfx = 2.7f;
     public GameObject levelStartDoor;
+    public RoomRewardBehaviour roomRewardPrefab;
 
     private void Awake()
     {

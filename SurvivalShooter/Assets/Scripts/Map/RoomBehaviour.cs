@@ -41,8 +41,6 @@ public class RoomBehaviour : MonoBehaviour
     private void Start()
     {
         HideExitEndEntranceCube();
-        //RoguelikeCombat.RoguelikeRewardSystem.instance.StartNewEvent();
-
         var door = Instantiate(CombatManager.instance.levelStartDoor);
         var spawnPosition = entrance.position;
         spawnPosition.y = 8;
@@ -157,5 +155,10 @@ public class RoomBehaviour : MonoBehaviour
     public bool IsSpawnDone()
     {
         return _waveIndex >= SceneSwitcher.instance.roomPrototype.spawnWaves.Count;
+    }
+
+    public void LevelEnd()
+    {
+        var roomReward = Instantiate(CombatManager.instance.roomRewardPrefab, exit.transform.position, Quaternion.identity, exit.transform.transform);
     }
 }

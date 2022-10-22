@@ -83,6 +83,7 @@ namespace RoguelikeCombat
         {
             RoguelikeRewardSystem.instance.AddPerk(_currentSelectedRoguelikeUpgradeId);
             Hide();
+            RoguelikeRewardSystem.instance.OnEventFinished();
         }
 
         public void Show()

@@ -8,8 +8,8 @@ public class DoorBehaviour : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            if (!CombatManager.instance.HasEnemyLeft(true) && RoomBehaviour.instance.IsSpawnDone())
-                SceneSwitcher.instance.SwitchToNextRoom();
+           // if (!CombatManager.instance.HasEnemyLeft(true) && RoomBehaviour.instance.IsSpawnDone())
+           //     SceneSwitcher.instance.SwitchToNextRoom();
         }
     }
 }
