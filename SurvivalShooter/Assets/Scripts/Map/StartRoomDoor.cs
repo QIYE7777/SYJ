@@ -6,9 +6,20 @@ public class StartRoomDoor : MonoBehaviour
     public Transform door;
     public Vector3 doorOpenRotation;
 
-    // Use this for initialization
-    void Start()
+    Vector3 _doorCloseRotation;
+
+    private void Start()
     {
-        door.DORotate(doorOpenRotation, 1.2f).SetDelay(1.3f).SetEase(Ease.OutBack);
+        _doorCloseRotation = door.localEulerAngles;
+    }
+
+    public void OpenDoor()
+    {
+        door.DOLocalRotate(doorOpenRotation, 1.2f).SetEase(Ease.OutBack);
+    }
+
+    public void CloseDoor()
+    {
+        door.DORotate(_doorCloseRotation, 1.2f).SetEase(Ease.InCubic);
     }
 }

@@ -43,8 +43,6 @@ public class RoomBehaviour : MonoBehaviour
         HideExitEndEntranceCube();
         //RoguelikeCombat.RoguelikeRewardSystem.instance.StartNewEvent();
 
-
-
         var door = Instantiate(CombatManager.instance.levelStartDoor);
         var spawnPosition = entrance.position;
         spawnPosition.y = 8;
@@ -62,18 +60,19 @@ public class RoomBehaviour : MonoBehaviour
         // CameraFollow.instance.Init(player.transform);
         CameraFollow.instance.SyncPos(entrance.position);
         CameraFollow.instance.enabled = false;
-        Destroy(door, 7);
-        StartCoroutine(StartLevelPlay());
+        StartCoroutine(StartLevelPlay(door.GetComponent<StartRoomDoor>()));
 
         player.move.disableMove = true;
         player.shooting.enabled = false;
         player.shootSuper.enabled = false;
     }
 
-    IEnumerator StartLevelPlay()
+    IEnumerator StartLevelPlay(StartRoomDoor door)
     {
         var player = PlayerBehaviour.instance;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.3f);
+        door.OpenDoor();
+        yield return new WaitForSeconds(0.2f);
         player.move.cc.enabled = true;
         player.move.simulateMoveForward = true;
         yield return new WaitForSeconds(1.1f);
@@ -86,6 +85,17 @@ public class RoomBehaviour : MonoBehaviour
         _hasWaveToSpawn = false;
         _waveIndex = 0;
         _nextWaveWaitTime = 0;
+
+        yield return new WaitForSeconds(1.2f);
+        //close door
+        door.CloseDoor();
+        yield return new WaitForSeconds(1.0f);
+        //rise door
+        door.transform.DOMoveY(15, 1.2f).SetEase(Ease.InCubic).OnComplete(
+          () =>
+          {
+              Destroy(door);
+          });
     }
 
     private void Update()
