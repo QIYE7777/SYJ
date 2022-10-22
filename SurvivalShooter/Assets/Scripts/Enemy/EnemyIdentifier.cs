@@ -28,7 +28,7 @@ public class EnemyIdentifier : MonoBehaviour
 
     private void OnDestroy()
     {
-        enemies.Remove(this);
+     //   enemies.Remove(this);
     }
 
     public static bool NoEnemyExist()

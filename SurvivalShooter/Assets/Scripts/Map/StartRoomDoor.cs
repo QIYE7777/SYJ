@@ -15,11 +15,11 @@ public class StartRoomDoor : MonoBehaviour
 
     public void OpenDoor()
     {
-        door.DOLocalRotate(doorOpenRotation, 1.2f).SetEase(Ease.OutBack);
+        door.DOLocalRotate(doorOpenRotation, 1.1f).SetEase(Ease.OutBack);
     }
 
     public void CloseDoor()
     {
-        door.DORotate(_doorCloseRotation, 1.2f).SetEase(Ease.InCubic);
+        door.DORotate(_doorCloseRotation, 1.1f).SetEase(Ease.InCubic);
     }
 }

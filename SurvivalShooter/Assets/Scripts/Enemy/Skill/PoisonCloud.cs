@@ -14,12 +14,12 @@ public class PoisonCloud : MonoBehaviour
 
     private void Start()
     {
-        poisonAttackTimestamp = Time.time;
+        poisonAttackTimestamp = com.GameTime.time;
     }
 
     private void Update()
     {
-        if (Time.time > poisonAttackTimestamp)
+        if (com.GameTime.time > poisonAttackTimestamp)
         {
             poisonAttackTimestamp += poisonAttackRate;
             if (isPlayerInRange)

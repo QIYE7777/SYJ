@@ -49,7 +49,7 @@ public class EnemyMovement : MonoBehaviour
             Walk();
         }
 
-        if (_isSlowed && Time.time > _resumeSlowDownTimestamp)
+        if (_isSlowed && com.GameTime.time > _resumeSlowDownTimestamp)
         {
             _isSlowed = false;
             nav.speed = id.proto.speed;
@@ -58,7 +58,7 @@ public class EnemyMovement : MonoBehaviour
 
     void CheckKnockback()
     {
-        _knockSpeed -= Time.deltaTime * dec;
+        _knockSpeed -= com.GameTime.deltaTime * dec;
         if (_knockSpeed <= 0)
         {
             //switch to walk

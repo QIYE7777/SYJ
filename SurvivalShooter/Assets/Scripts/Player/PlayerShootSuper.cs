@@ -34,7 +34,7 @@ public class PlayerShootSuper : PlayerComponent
     // Update is called once per frame
     void LateUpdate()
     {
-        timer += Time.deltaTime;
+        timer += com.GameTime.deltaTime;
         if (Input.GetButton("Fire2") && timer >= timeBetweenBullets && Time.timeScale != 0)
             Shoot();
         if (timer >= timeBetweenBullets * effectsDisplayTime)

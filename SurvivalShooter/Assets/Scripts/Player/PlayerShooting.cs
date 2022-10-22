@@ -33,8 +33,11 @@ public class PlayerShooting : PlayerComponent
     // Update is called once per frame
     void LateUpdate()
     {
-        timer += Time.deltaTime;
-        if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
+        if (com.GameTime.timeScale==0)
+            return;
+
+        timer += com.GameTime.deltaTime;
+        if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && com.GameTime.timeScale != 0)
             Shoot();
         if (timer >= timeBetweenBullets * effectsDisplayTime)
             DisableEffects();

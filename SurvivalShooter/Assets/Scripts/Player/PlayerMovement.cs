@@ -44,6 +44,8 @@ public class PlayerMovement : PlayerComponent
 
         if (disableMove)
             return;
+        if (com.GameTime.timeScale == 0)
+            return;
 
         if (Input.GetMouseButtonDown(0))
             _mouseButtonDown = true;
@@ -57,14 +59,14 @@ public class PlayerMovement : PlayerComponent
 
         TurningMouse();
 
-        if (_isSlowed && Time.time > _resumeSlowDownTimestamp)
+        if (_isSlowed && com.GameTime.time > _resumeSlowDownTimestamp)
             _isSlowed = false;
     }
 
     public void SlowSpeed(float duration, float slowValue)
     {
         _isSlowed = true;
-        _resumeSlowDownTimestamp = Time.time + duration;
+        _resumeSlowDownTimestamp = com.GameTime.time + duration;
         _slowValue = slowValue;
     }
 

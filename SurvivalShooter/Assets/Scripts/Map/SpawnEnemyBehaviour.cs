@@ -31,7 +31,7 @@ public class SpawnEnemyBehaviour : MonoBehaviour
         if (e == null)
             return;
 
-        _spawnTime = delay + Time.time;
+        _spawnTime = delay + com.GameTime.time;
         _enemyToSpawn = e;
         state = SpawnState.VFX;
     }
@@ -42,14 +42,14 @@ public class SpawnEnemyBehaviour : MonoBehaviour
             return;
 
 
-        if (Time.time > _spawnTime)
+        if (com.GameTime.time > _spawnTime)
         {
             if (state == SpawnState.VFX)
             {
                 var vfx = Instantiate(CombatManager.instance.spawnEnemyVfx, transform.position, Quaternion.identity);
                 Destroy(vfx, 5);
 
-                _spawnTime = CombatManager.instance.spawnEnemyTimeAfterVfx + Time.time;
+                _spawnTime = CombatManager.instance.spawnEnemyTimeAfterVfx + com.GameTime.time;
                 state = SpawnState.Enemy;
             }
             else if (state == SpawnState.Enemy)

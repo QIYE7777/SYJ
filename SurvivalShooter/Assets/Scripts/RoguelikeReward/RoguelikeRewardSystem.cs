@@ -26,13 +26,14 @@ namespace RoguelikeCombat
             data.rewards.Add(availableRewardPool[1]);
             data.rewards.Add(availableRewardPool[2]);
             RoguelikeRewardWindowBehaviour.instance.Setup(data);
-
             RoguelikeRewardWindowBehaviour.instance.Show();
+            com.GameTime.timeScale = 0;
         }
 
         public void OnEventFinished()
         {
             Debug.Log("TODO door show and take you up");
+            com.GameTime.timeScale = 1;
             SceneSwitcher.instance.SwitchToNextRoom();
         }
 

@@ -23,7 +23,7 @@ public class BoltLauncherBehaviour : MonoBehaviour
             bolts[i] = Instantiate(boltPrefab, transform.position, Quaternion.identity, transform.parent);
         }
 
-        _releaseTimestamp = Time.time + durationBeforeRelease;
+        _releaseTimestamp = com.GameTime.time + durationBeforeRelease;
     }
 
     private void Update()
@@ -36,7 +36,7 @@ public class BoltLauncherBehaviour : MonoBehaviour
         if (_released)
             return;
 
-        var passedTime = _releaseTimestamp - Time.time;
+        var passedTime = _releaseTimestamp - com.GameTime.time;
         var timeRatio = 1 - passedTime / durationBeforeRelease;
         var acRatio = ac.Evaluate(timeRatio);
         if (timeRatio >= 1)

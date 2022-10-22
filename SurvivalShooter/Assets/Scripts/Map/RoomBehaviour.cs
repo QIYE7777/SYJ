@@ -45,7 +45,7 @@ public class RoomBehaviour : MonoBehaviour
         var spawnPosition = entrance.position;
         spawnPosition.y = 8;
         door.transform.position = spawnPosition;
-        door.transform.DOMoveY(0, 1.2f).SetEase(Ease.InCubic).OnComplete(
+        door.transform.DOMoveY(0, 1.0f).SetEase(Ease.InCubic).OnComplete(
             () =>
             {
                 CameraFollow.instance.enabled = true;
@@ -63,6 +63,10 @@ public class RoomBehaviour : MonoBehaviour
         player.move.disableMove = true;
         player.shooting.enabled = false;
         player.shootSuper.enabled = false;
+
+        _hasWaveToSpawn = false;
+        _waveIndex = 0;
+        _nextWaveWaitTime = 0;
     }
 
     IEnumerator StartLevelPlay(StartRoomDoor door)
@@ -73,27 +77,20 @@ public class RoomBehaviour : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         player.move.cc.enabled = true;
         player.move.simulateMoveForward = true;
-        yield return new WaitForSeconds(1.1f);
+        yield return new WaitForSeconds(1.0f);
         player.transform.SetParent(entrance.transform.parent);
         player.move.disableMove = false;
         player.move.simulateMoveForward = false;
         player.shooting.enabled = true;
         player.shootSuper.enabled = true;
 
-        _hasWaveToSpawn = false;
-        _waveIndex = 0;
-        _nextWaveWaitTime = 0;
-
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(0.2f);
         //close door
         door.CloseDoor();
         yield return new WaitForSeconds(1.0f);
         //rise door
         door.transform.DOMoveY(15, 1.2f).SetEase(Ease.InCubic).OnComplete(
-          () =>
-          {
-              Destroy(door);
-          });
+          () => { Destroy(door.gameObject); });
     }
 
     private void Update()
@@ -101,7 +98,7 @@ public class RoomBehaviour : MonoBehaviour
         if (CombatManager.instance.HasEnemyLeft(true))
             return;//有敌人时，什么都不做
 
-        _nextWaveWaitTime -= Time.deltaTime;
+        _nextWaveWaitTime -= com.GameTime.deltaTime;
         if (_nextWaveWaitTime < 0)
         {
             if (_hasWaveToSpawn)
@@ -124,12 +121,6 @@ public class RoomBehaviour : MonoBehaviour
     void TrySpawn()
     {
         Debug.Log("生成第" + (_waveIndex + 1) + "波");
-        if (IsSpawnDone())
-        {
-            Debug.Log("生成完了");
-            return;
-        }
-
         List<EnemyPrototype> normalEnemies = SceneSwitcher.instance.roomPrototype.normalEnemies;
         List<EnemyPrototype> specialEnemies = SceneSwitcher.instance.roomPrototype.specialEnemies;
         List<EnemyPrototype> verySpecialEnemies = SceneSwitcher.instance.roomPrototype.verySpecialEnemies;
@@ -138,6 +129,11 @@ public class RoomBehaviour : MonoBehaviour
         SpawnOneKindOfEnemy(verySpecialEnemies, verySpecialSpawns);
         _waveIndex += 1;
         _hasWaveToSpawn = false;
+
+        if (IsSpawnDone())
+        {
+            Debug.Log("生成完了");
+        }
     }
 
     void SpawnOneKindOfEnemy(List<EnemyPrototype> enemies, List<SpawnEnemyBehaviour> spots)
@@ -154,11 +150,15 @@ public class RoomBehaviour : MonoBehaviour
 
     public bool IsSpawnDone()
     {
+        Debug.Log(this.GetHashCode() + " IsSpawnDone " + _waveIndex + " >= " + SceneSwitcher.instance.roomPrototype.spawnWaves.Count);
         return _waveIndex >= SceneSwitcher.instance.roomPrototype.spawnWaves.Count;
     }
 
     public void LevelEnd()
     {
-        var roomReward = Instantiate(CombatManager.instance.roomRewardPrefab, exit.transform.position, Quaternion.identity, exit.transform.transform);
+        var exitPos = exit.transform.position;
+        var playerPos = PlayerBehaviour.instance.transform.position;
+        var pos = exitPos + (playerPos - exitPos).normalized * 2;
+        var roomReward = Instantiate(CombatManager.instance.roomRewardPrefab, pos, Quaternion.identity, exit.transform.transform.parent);
     }
 }

@@ -30,21 +30,21 @@ public class PlayerBlink : PlayerComponent
 
     void Update()
     {
-        timer += Time.deltaTime;
-        if (Input.GetButton("Jump") && timer >= timeBetweenBlinks && Time.timeScale != 0)
+        timer += com.GameTime.deltaTime;
+        if (Input.GetButton("Jump") && timer >= timeBetweenBlinks && com.GameTime.timeScale != 0)
         {
             Blink();
         }
 
 
-        if (trait.activeSelf && Time.time > _blinkTrailDisappearTimestamp)
+        if (trait.activeSelf && com.GameTime.time > _blinkTrailDisappearTimestamp)
             trait.SetActive(false);
     }
 
     void Blink()
     {
         trait.SetActive(true);
-        _blinkTrailDisappearTimestamp = Time.time + trailDuration;
+        _blinkTrailDisappearTimestamp = com.GameTime.time + trailDuration;
 
         timer = 0;
         var pos = GetBlinkTargetPlace();

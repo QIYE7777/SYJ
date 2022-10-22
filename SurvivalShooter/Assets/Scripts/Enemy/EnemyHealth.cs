@@ -36,7 +36,7 @@ public class EnemyHealth : MonoBehaviour
     void Update()
     {
         if (isSinking)
-            transform.Translate(-Vector3.up * sinkSpeed * Time.deltaTime);
+            transform.Translate(-Vector3.up * sinkSpeed * com.GameTime.deltaTime);
     }
 
     public void TakeDamage(int amount)
@@ -107,6 +107,8 @@ public class EnemyHealth : MonoBehaviour
         isSinking = true;
 
         ScoreManager.score += scoreValue;
+        EnemyIdentifier.enemies.Remove(this.id);
+
         StartCoroutine(OnBodyRemoved());
     }
 
@@ -119,6 +121,8 @@ public class EnemyHealth : MonoBehaviour
 
     void CheckLevelEnd()
     {
+        Debug.Log(!CombatManager.instance.HasEnemyLeft(true));
+        Debug.Log(RoomBehaviour.instance.IsSpawnDone());
         if (!CombatManager.instance.HasEnemyLeft(true) && RoomBehaviour.instance.IsSpawnDone())
             RoomBehaviour.instance.LevelEnd();
     }

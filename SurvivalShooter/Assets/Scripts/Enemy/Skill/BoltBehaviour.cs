@@ -33,7 +33,7 @@ public class BoltBehaviour : MonoBehaviour
 
     void Accelerate()
     {
-        _currentSpeed += Time.deltaTime * acc;
+        _currentSpeed += com.GameTime.deltaTime * acc;
         if (_currentSpeed > maxSpeed)
         {
             _currentSpeed = maxSpeed;
@@ -42,7 +42,7 @@ public class BoltBehaviour : MonoBehaviour
 
     void MoveToPlayer()
     {
-        transform.position += _dir * _currentSpeed * Time.deltaTime;
+        transform.position += _dir * _currentSpeed * com.GameTime.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)
