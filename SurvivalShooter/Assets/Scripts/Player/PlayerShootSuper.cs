@@ -53,7 +53,7 @@ public class PlayerShootSuper : PlayerComponent
         var camPos = Camera.main.transform.position;
         var heatWavePos = heatWavePlane.transform.position;
         heatWavePlane.transform.localPosition = Vector3.zero;
-        heatWavePlane.transform.position += (camPos - heatWavePos).normalized * 1f ;
+        heatWavePlane.transform.position += (camPos - heatWavePos).normalized * 1f;
         _distortionMaterial.SetFloat("_BumpAmt", maxDistortion);
         //_distortionMaterial.DOKill();
         _distortionMaterial.DOFloat(minDistortion, "_BumpAmt", 0.45f).SetEase(Ease.OutCubic);
@@ -86,6 +86,9 @@ public class PlayerShootSuper : PlayerComponent
 
         foreach (var e in EnemyIdentifier.enemies)
         {
+            if (e == null)
+                continue;
+
             var dist = (transform.position - e.transform.position).magnitude;
             if (dist < 2.0f)
             {

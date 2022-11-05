@@ -102,7 +102,7 @@ public class PlayerShooting : PlayerComponent
             if (enemyHealth != null)
             {
                 enemyHealth.TakeDamage(damagePerShot);
-                hemophagia.SuckBlood();
+                hemophagia.LifeSteal();
                 var move =  shootHit.collider.GetComponent<EnemyMovement>();
                 move.SlowDown(freeze.slowDown, freeze.duration);
             }

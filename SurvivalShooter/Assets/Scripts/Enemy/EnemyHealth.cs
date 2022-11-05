@@ -124,6 +124,20 @@ public class EnemyHealth : MonoBehaviour
         Debug.Log(!CombatManager.instance.HasEnemyLeft(true));
         Debug.Log(RoomBehaviour.instance.IsSpawnDone());
         if (!CombatManager.instance.HasEnemyLeft(true) && RoomBehaviour.instance.IsSpawnDone())
-            RoomBehaviour.instance.LevelEnd();
+        {
+            if (RoomRewardBehaviour.instance != null && RoomRewardBehaviour.instance.gameObject != null)
+            {
+                Debug.LogWarning("spawn room reward but there is one already!!!");
+                return;
+            }
+
+            var bodyPos = transform.position;
+            bodyPos.y = 0.5f;
+            //var playerPos = PlayerBehaviour.instance.transform.position;
+            //var pos = bodyPos + (playerPos - bodyPos).normalized * 2;
+            var roomReward = Instantiate(CombatManager.instance.roomRewardPrefab, bodyPos, Quaternion.identity, null);
+            var vfx = Instantiate(CombatManager.instance.roomRewardVfx, roomReward.transform.position, Quaternion.identity, null);
+            Destroy(vfx, 5);
+        }
     }
 }

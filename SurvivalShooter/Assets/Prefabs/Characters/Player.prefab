@@ -5444,7 +5444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   host: {fileID: 0}
-  damagePerShot: 1
+  damagePerShot: 20
   timeBetweenBullets: 0.6
   range: 8
   shootableMask: 3
@@ -11158,7 +11158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   host: {fileID: 0}
-  hpMax: 100
+  hpMax: 1000
   currentHealth: 0
   deathClip: {fileID: 8300000, guid: b8d5f3bf249439b4a9051cba9312d806, type: 3}
 --- !u!114 &6219472072618714752
@@ -11247,7 +11247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12b3badd0cacb934da2f692fc9ac9182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healPerShoot: 0
 --- !u!1 &6221277601388354880
 GameObject:
   m_ObjectHideFlags: 0

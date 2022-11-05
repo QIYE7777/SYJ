@@ -150,15 +150,7 @@ public class RoomBehaviour : MonoBehaviour
 
     public bool IsSpawnDone()
     {
-        Debug.Log(this.GetHashCode() + " IsSpawnDone " + _waveIndex + " >= " + SceneSwitcher.instance.roomPrototype.spawnWaves.Count);
+        //Debug.Log(this.GetHashCode() + " IsSpawnDone " + _waveIndex + " >= " + SceneSwitcher.instance.roomPrototype.spawnWaves.Count);
         return _waveIndex >= SceneSwitcher.instance.roomPrototype.spawnWaves.Count;
-    }
-
-    public void LevelEnd()
-    {
-        var exitPos = exit.transform.position;
-        var playerPos = PlayerBehaviour.instance.transform.position;
-        var pos = exitPos + (playerPos - exitPos).normalized * 2;
-        var roomReward = Instantiate(CombatManager.instance.roomRewardPrefab, pos, Quaternion.identity, exit.transform.transform.parent);
     }
 }

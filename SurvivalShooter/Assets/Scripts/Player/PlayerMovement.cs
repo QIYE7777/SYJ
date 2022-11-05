@@ -9,7 +9,7 @@ public class PlayerMovement : PlayerComponent
     public float speed = 6f;
     public float turnSpeed = 20f;
     public Vector3 movement { get; private set; }
-    Animator anim;
+    public Animator anim { get; private set; }
     public CharacterController cc;
     public int floorMask;
     float camRayLength = 100f;

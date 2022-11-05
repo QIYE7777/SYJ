@@ -5,6 +5,12 @@ public class RoomRewardBehaviour : MonoBehaviour
 {
     private GameObject vfx;
     bool _triggered;
+    public static RoomRewardBehaviour instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,15 +20,12 @@ public class RoomRewardBehaviour : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             _triggered = true;
-            vfx = Instantiate(CombatManager.instance.roomRewardVfx, other.transform.position + Vector3.up * 0.5f, Quaternion.identity, other.transform);
             StartCoroutine(ShowRoguelike());
         }
     }
 
     IEnumerator ShowRoguelike()
     {
-        yield return new WaitForSeconds(6.2f);
-        vfx.transform.SetParent(null);
         yield return new WaitForSeconds(0.2f);
         RoguelikeCombat.RoguelikeRewardSystem.instance.StartNewEvent();
     }

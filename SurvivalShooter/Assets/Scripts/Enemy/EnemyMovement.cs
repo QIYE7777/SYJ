@@ -65,8 +65,8 @@ public class EnemyMovement : MonoBehaviour
             nav.enabled = true;
             return;
         }
-
-        cc.SimpleMove(_knockDir * _knockSpeed);
+        if (cc.enabled)
+            cc.SimpleMove(_knockDir * _knockSpeed);
     }
 
     void Walk()

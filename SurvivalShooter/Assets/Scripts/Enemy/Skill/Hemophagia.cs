@@ -1,18 +1,28 @@
 ﻿using UnityEngine;
+using RoguelikeCombat;
 
 public class Hemophagia : MonoBehaviour
 {
     PlayerHealth playerHealth;
-    public int healPerShoot = 0;
 
     private void Awake()
     {
         playerHealth = GetComponent<PlayerHealth>();
     }
 
-    public void SuckBlood()
+    public void LifeSteal()
     {
-        if (healPerShoot>0)
+        int healPerShoot = 0;
+        if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Leech_10))
+        {
+            healPerShoot = 10;
+        }
+        else if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Leech_5))
+        {
+            healPerShoot = 5;
+        }
+
+        if (healPerShoot > 0)
         {
             playerHealth.Heal(healPerShoot);
         }

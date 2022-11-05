@@ -106,6 +106,9 @@ public class PlayerBlink : PlayerComponent
         {
             foreach (var e in EnemyIdentifier.enemies)
             {
+                if (e == null)
+                    continue;
+
                 if (MathGame.NearestDistanceFromLine(blinkRay.origin, targetPlace, e.transform.position) < checkDistanceToPassThoughEnemy)
                 {
                     var eh = e.GetComponent<EnemyHealth>();
