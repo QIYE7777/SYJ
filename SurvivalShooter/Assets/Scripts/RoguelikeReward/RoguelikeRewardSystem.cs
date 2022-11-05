@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using DG.Tweening;
+using System.Collections;
 
 namespace RoguelikeCombat
 {
@@ -9,8 +11,6 @@ namespace RoguelikeCombat
         public RoguelikeRewardConfig config;
 
         public List<RoguelikeUpgradeId> perks;
-
-        StartRoomDoor door;
 
         private void Awake()
         {
@@ -34,13 +34,19 @@ namespace RoguelikeCombat
 
         public void OnEventFinished()
         {
+            StartCoroutine(EventFishCoroutine());
+        }
+
+        IEnumerator EventFishCoroutine()
+        {
             //Debug.Log("TODO door show and take you up");
-            door.transform.DOMoveY(0, 1.2f).SetEase(Ease.InCubic).OnComplete();
+            var door = CombatManager.instance.levelStartDoor.GetComponent<StartRoomDoor>();
+            door.transform.DOMoveY(0, 1.2f).SetEase(Ease.InCubic).OnComplete(
+                () => { });
             yield return new WaitForSeconds(1.0f);
             door.OpenDoor();
             yield return new WaitForSeconds(0.2f);
             door.CloseDoor();
-
 
             com.GameTime.timeScale = 1;
             SceneSwitcher.instance.SwitchToNextRoom();
