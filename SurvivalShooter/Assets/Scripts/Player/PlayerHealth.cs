@@ -26,8 +26,11 @@ public class PlayerHealth : PlayerComponent
 
     public void Start()
     {
-        currentHealth = hpMax;
-        HudBehaviour.instance.SetHpBar(1);
+        currentHealth = hpMax - CombatManager.instance.lostHealth;
+        if (currentHealth <= 0)
+            currentHealth = 1;
+
+        RefreshHpBar();
         preventDeathCount = 1;
     }
 
@@ -90,5 +93,10 @@ public class PlayerHealth : PlayerComponent
     public void RestartLevel()
     {
         SceneSwitcher.instance.RestartCurrentLevel();
+    }
+
+    public void SaveHp()
+    {
+        CombatManager.instance.lostHealth = hpMax - currentHealth;
     }
 }

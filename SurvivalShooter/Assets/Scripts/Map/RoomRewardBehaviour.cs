@@ -29,5 +29,6 @@ public class RoomRewardBehaviour : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         RoguelikeCombat.RoguelikeRewardSystem.instance.StartNewEvent();
+        PlayerBehaviour.instance.health.SaveHp();
     }
 }

@@ -72,22 +72,23 @@ public class PlayerShooting : PlayerComponent
         gunParticles.Stop();
         gunParticles.Play();
 
-        FireShoot(0);
+        FireShoot(1.8f, damagePerShot, 0);
         if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.MultiShoot_add2shoot_30degree))
         {
             //add 2 shoot
-            FireShoot(8);
-            FireShoot(-8);
+            FireShoot(0.5f, Mathf.FloorToInt(damagePerShot * 0.4f), 12);
+            FireShoot(0.5f, Mathf.FloorToInt(damagePerShot * 0.4f), -12);
         }
     }
 
 
-    void FireShoot(float angleOffset = 0)
+    void FireShoot(float widthMultiplier, int damage, float angleOffset = 0)
     {
         var gunLine = Instantiate(gunLinePrefab, gunLinePrefab.transform.parent);
         gunLine.gameObject.SetActive(true);
         gunLine.transform.localPosition = Vector3.zero;
         gunLine.SetPosition(0, Vector3.zero);
+        gunLine.widthMultiplier = widthMultiplier;
         Destroy(gunLine.gameObject, timeBetweenBullets - 0.07f);
 
         Ray shootRay = new Ray();
@@ -114,7 +115,7 @@ public class PlayerShooting : PlayerComponent
             EnemyHealth enemyHealth = shootHit.collider.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
             {
-                enemyHealth.TakeDamage(damagePerShot);
+                enemyHealth.TakeDamage(damage);
                 hemophagia.LifeSteal();
                 if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.SlowDown))
                 {
