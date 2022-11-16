@@ -21,6 +21,7 @@ public class RoomRewardBehaviour : MonoBehaviour
         {
             _triggered = true;
             StartCoroutine(ShowRoguelike());
+            Destroy(gameObject, 0.3f);
         }
     }
 

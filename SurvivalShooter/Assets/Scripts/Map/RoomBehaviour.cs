@@ -8,6 +8,7 @@ public class RoomBehaviour : MonoBehaviour
     public List<SpawnEnemyBehaviour> normalSpawns;
     public List<SpawnEnemyBehaviour> specialSpawns;
     public List<SpawnEnemyBehaviour> verySpecialSpawns;
+    public Transform[] levelEndPosList;
 
     public DoorBehaviour exit;
     public Transform entrance;
@@ -36,6 +37,11 @@ public class RoomBehaviour : MonoBehaviour
         var c1 = entrance.GetComponent<Collider>();
         if (c1 != null)
             c1.enabled = false;
+
+        foreach (var levelEndPos in levelEndPosList)
+        {
+            levelEndPos.gameObject.SetActive(false);
+        }
     }
 
     private void Start()
@@ -93,7 +99,7 @@ public class RoomBehaviour : MonoBehaviour
           () => { Destroy(door.gameObject); });
     }
 
-        private void Update()
+    private void Update()
     {
         if (CombatManager.instance.HasEnemyLeft(true))
             return;//有敌人时，什么都不做
@@ -152,5 +158,25 @@ public class RoomBehaviour : MonoBehaviour
     {
         //Debug.Log(this.GetHashCode() + " IsSpawnDone " + _waveIndex + " >= " + SceneSwitcher.instance.roomPrototype.spawnWaves.Count);
         return _waveIndex >= SceneSwitcher.instance.roomPrototype.spawnWaves.Count;
+    }
+
+    public void SpawnLevelEndReward()
+    {
+        var nearestLevelEndPos = levelEndPosList[0];
+        var playerPos = PlayerBehaviour.instance.transform.position;
+        var maxDistance = float.MaxValue;
+        foreach (var levelEndPos in levelEndPosList)
+        {
+            var dist = (levelEndPos.position - playerPos).magnitude;
+            if (dist< maxDistance)
+            {
+                maxDistance = dist;
+                nearestLevelEndPos = levelEndPos;
+            }
+        }
+
+        var roomReward = Instantiate(CombatManager.instance.roomRewardPrefab, nearestLevelEndPos.position, Quaternion.identity, null);
+        var vfx = Instantiate(CombatManager.instance.roomRewardVfx, roomReward.transform.position, Quaternion.identity, null);
+        Destroy(vfx, 5);
     }
 }

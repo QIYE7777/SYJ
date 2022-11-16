@@ -135,9 +135,7 @@ public class EnemyHealth : MonoBehaviour
             bodyPos.y = 0.5f;
             //var playerPos = PlayerBehaviour.instance.transform.position;
             //var pos = bodyPos + (playerPos - bodyPos).normalized * 2;
-            var roomReward = Instantiate(CombatManager.instance.roomRewardPrefab, bodyPos, Quaternion.identity, null);
-            var vfx = Instantiate(CombatManager.instance.roomRewardVfx, roomReward.transform.position, Quaternion.identity, null);
-            Destroy(vfx, 5);
+            RoomBehaviour.instance.SpawnLevelEndReward();
         }
     }
 }
