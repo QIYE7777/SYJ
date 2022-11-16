@@ -33,7 +33,7 @@ public class PlayerShooting : PlayerComponent
     // Update is called once per frame
     void LateUpdate()
     {
-        if (com.GameTime.timeScale==0)
+        if (com.GameTime.timeScale == 0)
             return;
 
         timer += com.GameTime.deltaTime;
@@ -75,7 +75,7 @@ public class PlayerShooting : PlayerComponent
         gunLine.gameObject.SetActive(true);
         gunLine.transform.localPosition = Vector3.zero;
         gunLine.SetPosition(0, Vector3.zero);
-        Destroy(gunLine.gameObject, timeBetweenBullets-0.07f);
+        Destroy(gunLine.gameObject, timeBetweenBullets - 0.07f);
 
         Ray shootRay = new Ray();
         shootRay.origin = transform.position;
@@ -103,8 +103,11 @@ public class PlayerShooting : PlayerComponent
             {
                 enemyHealth.TakeDamage(damagePerShot);
                 hemophagia.LifeSteal();
-                var move =  shootHit.collider.GetComponent<EnemyMovement>();
-                move.SlowDown(freeze.slowDown, freeze.duration);
+                if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.SlowDown))
+                {
+                    var move = shootHit.collider.GetComponent<EnemyMovement>();
+                    move.SlowDown(freeze.slowDown, freeze.duration);
+                }
             }
 
             gunLine.SetPosition(1, relativeDirection * (shootHit.point - shootRay.origin).magnitude);

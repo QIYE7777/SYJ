@@ -18,6 +18,8 @@ public enum RoguelikeUpgradeId
     None = 0,
     Leech_5 = 1,
     Leech_10 = 2,
-
+  
     MultiShoot_add2shoot_30degree = 3,
+
+    SlowDown = 10,
 }
