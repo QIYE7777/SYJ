@@ -19,7 +19,6 @@ namespace RoguelikeCombat
             perks = new List<RoguelikeUpgradeId>();
         }
 
-
         public void StartNewEvent()
         {
             var data = new RoguelikeRewardEventData();
@@ -69,6 +68,13 @@ namespace RoguelikeCombat
             return res;
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha0))
+            {
+                StartNewEvent();
+            }
+        }
         public void OnEventFinished()
         {
             StartCoroutine(EventFishCoroutine());
