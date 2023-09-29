@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using System.Collections;
+using System.Xml.Linq;
 
 namespace RoguelikeCombat
 {
@@ -18,12 +19,14 @@ namespace RoguelikeCombat
             perks = new List<RoguelikeUpgradeId>();
         }
 
+
         public void StartNewEvent()
         {
             var data = new RoguelikeRewardEventData();
             data.title = "Choose a Upgrade!";
 
-            var availableRewardPool = config.roguelikeRewards;
+            //var availableRewardPool = config.roguelikeRewards;
+            var availableRewardPool = GetRewardPool();
             data.rewards.Add(availableRewardPool[0]);
             data.rewards.Add(availableRewardPool[1]);
             data.rewards.Add(availableRewardPool[2]);
@@ -31,6 +34,39 @@ namespace RoguelikeCombat
             RoguelikeRewardWindowBehaviour.instance.Show();
             com.GameTime.timeScale = 0;
             PlayerBehaviour.instance.move.anim.SetBool("IsWalking", false);
+        }
+
+        public List<RoguelikeRewardPrototype> GetRewardPool()
+        {
+            var total = config.roguelikeRewards;
+            List<RoguelikeRewardPrototype> res = new List<RoguelikeRewardPrototype>();
+            List<RoguelikeRewardPrototype> candidates = new List<RoguelikeRewardPrototype>();
+
+            foreach (var p in total)
+            {
+                //exist
+                if (perks.Contains(p.id))
+                    continue;
+                //dependency not meet
+                if (p.dependency != RoguelikeUpgradeId.None && !perks.Contains(p.dependency))
+                    continue;
+
+                candidates.Add(p);
+            }
+
+            int perksOnce = 3;
+            if (candidates.Count < perksOnce)
+                return null;
+
+
+            for (int i = 0; i < perksOnce; i++)
+            {
+                var index = Random.Range(0, candidates.Count);
+                res.Add(candidates[index]);
+                candidates.RemoveAt(index);
+            }
+
+            return res;
         }
 
         public void OnEventFinished()
@@ -44,7 +80,7 @@ namespace RoguelikeCombat
 
             var player = PlayerBehaviour.instance;
             var playerTrans = player.move.transform;
-        
+
             player.move.disableMove = true;
             player.shooting.enabled = false;
             player.shootSuper.enabled = false;
