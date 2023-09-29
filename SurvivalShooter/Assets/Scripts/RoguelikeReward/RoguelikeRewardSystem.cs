@@ -83,6 +83,7 @@ namespace RoguelikeCombat
         IEnumerator EventFishCoroutine(RoguelikeRewardEventData data)
         {
             com.GameTime.timeScale = 1;
+            
             if (data.nextLevel)
             {
                 var player = PlayerBehaviour.instance;
@@ -132,11 +133,23 @@ namespace RoguelikeCombat
         public void AddPerk(RoguelikeUpgradeId id)
         {
             perks.Add(id);
+            RewardSlots.instance.Add(GetPrototype(id));
         }
 
         public bool HasPerk(RoguelikeUpgradeId id)
         {
             return perks.IndexOf(id) >= 0;
+        }
+
+        public RoguelikeRewardPrototype GetPrototype(RoguelikeUpgradeId id)
+        {
+            foreach(var p in config.roguelikeRewards)
+            {
+                if (p.id == id)
+                    return p;
+            }
+
+            return null;
         }
     }
 }

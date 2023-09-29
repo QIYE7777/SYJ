@@ -74,14 +74,15 @@ public class EnemyMovement : MonoBehaviour
         if (com.GameTime.timeScale == 0)
         {
             nav.enabled = false;
-        }else if (!nav.enabled)
+        }
+        else if (!nav.enabled)
         {
             nav.enabled = true;
         }
 
         var player = PlayerBehaviour.instance;
         var playerHealth = player.health;
-        if (id.health.hp > 0 && playerHealth.currentHealth > 0)
+        if (nav.enabled && id.health.hp > 0 && playerHealth.currentHealth > 0)
             nav.SetDestination(player.transform.position);
         else
             nav.enabled = false;
