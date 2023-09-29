@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerShooting : PlayerComponent
 {
     public int damagePerShot = 20;
-    public float timeBetweenBullets = 0.15f;
+    public float timeBetweenBullets = 0.05f;
     public float range = 100f;
 
     public Hemophagia hemophagia { get; private set; }

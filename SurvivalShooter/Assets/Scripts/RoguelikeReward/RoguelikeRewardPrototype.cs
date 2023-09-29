@@ -24,5 +24,27 @@ public enum RoguelikeUpgradeId
   
     MultiShoot_add2shoot_30degree = 3,
 
+
     SlowDown = 10,
+
+    Blink = 20,
+    Blink_damage_1 = 21,
+    Blink_damage_2 = 22,
+
+    Bullet_5 =30,
+    Bullet_10 = 31,
+    Bullet_00 = 32,
+
+    ShockWave = 40,
+
+
+    HpMax_1 = 50,
+    HpMax_2 = 51,   
+    HpMax_3 = 52,
+    HpMax_4 = 53,
+
+    Damage_1 = 60,
+    Damage_2 = 61,
+    Damage_3 = 62,
+
 }
