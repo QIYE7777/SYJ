@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efabded47d843d649be61a92b0aa204d, type: 3}
-  m_Name: multiShoot3
+  m_Name: Damage_2
   m_EditorClassIdentifier: 
-  id: 3
-  title: multiShoot3
-  desc: Three bullets fired at the same time
-  sp: {fileID: 21300000, guid: 2c53cd7f8350200429fca5a73756141f, type: 3}
+  id: 61
+  title: Damage_2
+  desc: 'salk1111
+
+    2222'
+  sp: {fileID: 21300000, guid: 76a4673097f9f96479fd5dcd25b8c7b6, type: 3}
