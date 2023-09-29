@@ -117,11 +117,17 @@ namespace RoguelikeCombat
                 player.move.simulateMoveForward = false;
                 player.move.cc.enabled = false;
                 doorBehaviour.CloseDoor();
+                
                 yield return new WaitForSeconds(0.8f);
                 CameraFollow.instance.SyncPos(player.transform.position);
                 CameraFollow.instance.enabled = false;
                 door.transform.DOMoveY(9, 1.2f).SetEase(Ease.InCubic);
+
+                yield return new WaitForSeconds(0.3f);
+                player.transform.GetChild(0).gameObject.SetActive(false);
+
                 yield return new WaitForSeconds(1.3f);
+                
                 SceneSwitcher.instance.SwitchToNextRoom();
             }
             else

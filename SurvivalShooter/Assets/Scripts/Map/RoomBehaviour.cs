@@ -80,6 +80,7 @@ public class RoomBehaviour : MonoBehaviour
         var player = PlayerBehaviour.instance;
         yield return new WaitForSeconds(1.3f);
         door.OpenDoor();
+        player.transform.GetChild(0).gameObject.SetActive(true);
         yield return new WaitForSeconds(0.2f);
         player.move.cc.enabled = true;
         player.move.simulateMoveForward = true;

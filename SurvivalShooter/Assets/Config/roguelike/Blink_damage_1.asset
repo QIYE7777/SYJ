@@ -14,8 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 21
   title: Blink Damage
-  desc: 'salk1111
-
-    2222'
+  desc: Your blink also can damage all enemies in the path
   sp: {fileID: 21300000, guid: 1ca4e45b7c320e849b06be9d53e1fa24, type: 3}
   dependency: 20
