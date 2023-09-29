@@ -10,6 +10,9 @@ public class RoguelikeRewardPrototype : ScriptableObject
     [Multiline]
     public string desc;
     public Sprite sp;
+
+    public RoguelikeUpgradeId dependency;
+
 }
 
 //枚举类型
