@@ -37,6 +37,9 @@ public class EnemyAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (com.GameTime.timeScale == 0)
+            return;
+
         timer += com.GameTime.deltaTime;
 
         if (timer >= timeBetweenAttacks && playerInRange && id.health.hp > 0)
@@ -53,7 +56,6 @@ public class EnemyAttack : MonoBehaviour
 
     void Attack()
     {
-
         timer = 0f;
         _canValidateAttack = true;
         Invoke("OnAttacked", attackPrepareTime);

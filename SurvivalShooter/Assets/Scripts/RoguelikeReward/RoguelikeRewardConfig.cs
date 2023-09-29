@@ -16,5 +16,6 @@ namespace RoguelikeCombat
     {
         public List<RoguelikeRewardPrototype> rewards = new List<RoguelikeRewardPrototype>();
         public string title;
+        public bool nextLevel;
     }
 }
