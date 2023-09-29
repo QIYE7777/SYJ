@@ -13,11 +13,7 @@ MonoBehaviour:
   m_Name: leech10
   m_EditorClassIdentifier: 
   id: 2
-  title: leech10
-  desc: 'salkdhjasljdalskdjasdasdasdasdas
-
-    asdsadad
-
-    asdasdasdasdas'
+  title: Leech+
+  desc: Your hits can heal your Hp for 10
   sp: {fileID: 21300000, guid: db78a52947c5f1741bbb5ae8e8cedc71, type: 3}
   dependency: 1

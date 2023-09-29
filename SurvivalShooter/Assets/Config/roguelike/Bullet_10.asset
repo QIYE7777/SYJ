@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Bullet_10
   m_EditorClassIdentifier: 
   id: 31
-  title: Bullet_10
-  desc: 'salk1111
-
-    2222'
+  title: More Magazine ++
+  desc: You can shoot 10 times in a row
   sp: {fileID: 21300000, guid: 76a4673097f9f96479fd5dcd25b8c7b6, type: 3}
   dependency: 30
