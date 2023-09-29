@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Bullet_Infinite
   m_EditorClassIdentifier: 
   id: 32
-  title: ' Infinite Magazine!!'
-  desc: 'You don''t need to change the ammunition
+  title: Bullet_Infinite
+  desc: 'salk1111
 
-    anymore !'
-  sp: {fileID: 21300000, guid: 76a4673097f9f96479fd5dcd25b8c7b6, type: 3}
+    2222'
+  sp: {fileID: 21300000, guid: 1ca4e45b7c320e849b06be9d53e1fa24, type: 3}
   dependency: 31

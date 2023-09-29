@@ -72,6 +72,8 @@ public class PlayerMovement : PlayerComponent
 
     void Move(float h, float v)
     {
+        if (com.GameTime.timeScale == 0)
+            return;
         movement = new Vector3(h, 0f, v);
         //movement = movement.normalized * speed * Time.deltaTime;
         var realSpeed = speed;

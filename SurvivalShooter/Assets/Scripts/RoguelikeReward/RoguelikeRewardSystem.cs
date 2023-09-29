@@ -19,11 +19,11 @@ namespace RoguelikeCombat
             perks = new List<RoguelikeUpgradeId>();
         }
 
-        public void StartNewEvent()
+        public void StartNewEvent(bool nextLevel=true)
         {
             var data = new RoguelikeRewardEventData();
             data.title = "Choose a Upgrade!";
-
+            data.nextLevel = nextLevel;
             //var availableRewardPool = config.roguelikeRewards;
             var availableRewardPool = GetRewardPool();
             data.rewards.Add(availableRewardPool[0]);
@@ -72,65 +72,84 @@ namespace RoguelikeCombat
         {
             if (Input.GetKeyDown(KeyCode.Alpha0))
             {
-                StartNewEvent();
+                StartNewEvent(false);
             }
         }
-        public void OnEventFinished()
+        public void OnEventFinished(RoguelikeRewardEventData data)
         {
-            StartCoroutine(EventFishCoroutine());
+            StartCoroutine(EventFishCoroutine(data));
         }
 
-        IEnumerator EventFishCoroutine()
+        IEnumerator EventFishCoroutine(RoguelikeRewardEventData data)
         {
             com.GameTime.timeScale = 1;
+            
+            if (data.nextLevel)
+            {
+                var player = PlayerBehaviour.instance;
+                var playerTrans = player.move.transform;
 
-            var player = PlayerBehaviour.instance;
-            var playerTrans = player.move.transform;
+                player.move.disableMove = true;
+                player.shooting.enabled = false;
+                player.shootSuper.enabled = false;
+                yield return new WaitForSeconds(0.1f);
+                //Debug.Log("TODO door show and take you up");
+                var door = Instantiate(CombatManager.instance.levelStartDoor);
+                var spawnPosition = playerTrans.position;
+                spawnPosition.y = 8;
+                spawnPosition.z += 2f;
+                door.transform.position = spawnPosition;
+                door.transform.DOMoveY(0, 1.0f).SetEase(Ease.InCubic);
 
-            player.move.disableMove = true;
-            player.shooting.enabled = false;
-            player.shootSuper.enabled = false;
-            yield return new WaitForSeconds(0.1f);
-            //Debug.Log("TODO door show and take you up");
-            var door = Instantiate(CombatManager.instance.levelStartDoor);
-            var spawnPosition = playerTrans.position;
-            spawnPosition.y = 8;
-            spawnPosition.z += 2f;
-            door.transform.position = spawnPosition;
-            door.transform.DOMoveY(0, 1.0f).SetEase(Ease.InCubic);
-
-            yield return new WaitForSeconds(1.0f);
-            var doorBehaviour = door.GetComponent<StartRoomDoor>();
+                yield return new WaitForSeconds(1.0f);
+                var doorBehaviour = door.GetComponent<StartRoomDoor>();
 
 
-            yield return new WaitForSeconds(0.4f);
-            doorBehaviour.OpenDoor();
-            player.move.cc.enabled = true;
-            player.move.simulateMoveForward = true;
+                yield return new WaitForSeconds(0.4f);
+                doorBehaviour.OpenDoor();
+                player.move.cc.enabled = true;
+                player.move.simulateMoveForward = true;
 
-            yield return new WaitForSeconds(0.8f);
+                yield return new WaitForSeconds(0.8f);
 
-            player.transform.SetParent(doorBehaviour.transform);
-            player.move.disableMove = false;
-            player.move.simulateMoveForward = false;
-            player.move.cc.enabled = false;
-            doorBehaviour.CloseDoor();
-            yield return new WaitForSeconds(0.8f);
-            CameraFollow.instance.SyncPos(player.transform.position);
-            CameraFollow.instance.enabled = false;
-            door.transform.DOMoveY(9, 1.2f).SetEase(Ease.InCubic);
-            yield return new WaitForSeconds(1.3f);
-            SceneSwitcher.instance.SwitchToNextRoom();
+                player.transform.SetParent(doorBehaviour.transform);
+                player.move.disableMove = false;
+                player.move.simulateMoveForward = false;
+                player.move.cc.enabled = false;
+                doorBehaviour.CloseDoor();
+                yield return new WaitForSeconds(0.8f);
+                CameraFollow.instance.SyncPos(player.transform.position);
+                CameraFollow.instance.enabled = false;
+                door.transform.DOMoveY(9, 1.2f).SetEase(Ease.InCubic);
+                yield return new WaitForSeconds(1.3f);
+                SceneSwitcher.instance.SwitchToNextRoom();
+            }
+            else
+            {
+
+            }
         }
 
         public void AddPerk(RoguelikeUpgradeId id)
         {
             perks.Add(id);
+            RewardSlots.instance.Add(GetPrototype(id));
         }
 
         public bool HasPerk(RoguelikeUpgradeId id)
         {
             return perks.IndexOf(id) >= 0;
+        }
+
+        public RoguelikeRewardPrototype GetPrototype(RoguelikeUpgradeId id)
+        {
+            foreach(var p in config.roguelikeRewards)
+            {
+                if (p.id == id)
+                    return p;
+            }
+
+            return null;
         }
     }
 }
