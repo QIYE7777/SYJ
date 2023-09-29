@@ -14,8 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 20
   title: Blink
-  desc: 'salk1111
-
-    2222'
-  sp: {fileID: 21300000, guid: 1ca4e45b7c320e849b06be9d53e1fa24, type: 3}
+  desc: sdasdas
+  sp: {fileID: 21300000, guid: c7e52748e054ae841a6d4981b7b613f1, type: 3}
   dependency: 0

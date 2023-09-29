@@ -19,6 +19,7 @@ namespace RoguelikeCombat
             proto = r;
             icon.sprite = r.sp;
             gameObject.SetActive(true);
+            ToggleChecker(false);
         }
 
         public void ToggleChecker(bool b)

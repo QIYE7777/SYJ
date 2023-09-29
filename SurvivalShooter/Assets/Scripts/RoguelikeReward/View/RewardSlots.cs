@@ -15,6 +15,7 @@ public class RewardSlots : MonoBehaviour
     public void Add(RoguelikeRewardPrototype proto)
     {
         var slot = Instantiate(prefab, slotParent);
+        slot.gameObject.SetActive(true);
         slot.Init(proto);
     }
 }

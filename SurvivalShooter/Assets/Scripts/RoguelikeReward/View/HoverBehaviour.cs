@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 namespace com
 {
-    public class HoverBehaviour : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
+    public class HoverBehaviour : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler, IPointerEnterHandler
     {
         public string title;
 
@@ -14,7 +14,7 @@ namespace com
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            hoverPanel.Show(title, description);
+            //hoverPanel.Show(title, description);
         }
 
         public void OnPointerUp(PointerEventData eventData)
@@ -25,6 +25,11 @@ namespace com
         public void OnPointerExit(PointerEventData eventData)
         {
             hoverPanel.Hide();
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            hoverPanel.Show(title, description);
         }
     }
 }
