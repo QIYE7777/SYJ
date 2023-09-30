@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using RoguelikeCombat;
+using UnityEngine;
 
 public class PlayerBlink : PlayerComponent
 {
@@ -15,7 +16,7 @@ public class PlayerBlink : PlayerComponent
     PlayerMovement _movement;
 
     public bool passThoughEnemies;
-    public int damageToPassThoughEnemy = 500;
+    public int damageToPassThoughEnemy = 0;
     public float checkDistanceToPassThoughEnemy = 1f;
 
     public GameObject trait;
@@ -33,7 +34,9 @@ public class PlayerBlink : PlayerComponent
         timer += com.GameTime.deltaTime;
         if (Input.GetButton("Jump") && timer >= timeBetweenBlinks && com.GameTime.timeScale != 0)
         {
-            Blink();
+            
+             Blink();
+            
         }
 
 
@@ -43,17 +46,29 @@ public class PlayerBlink : PlayerComponent
 
     void Blink()
     {
-        trait.SetActive(true);
-        _blinkTrailDisappearTimestamp = com.GameTime.time + trailDuration;
+        if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Blink))
+        {
+            trait.SetActive(true);
+            _blinkTrailDisappearTimestamp = com.GameTime.time + trailDuration;
 
-        timer = 0;
-        var pos = GetBlinkTargetPlace();
-        pos.y = 0;
-        //Debug.Log(transform.position);
-        //Debug.Log(pos);
-        host.move.cc.enabled = false;
-        transform.position = pos;
-        host.move.cc.enabled = true;
+            timer = 0;
+            var pos = GetBlinkTargetPlace();
+            pos.y = 0;
+            //Debug.Log(transform.position);
+            //Debug.Log(pos);
+            host.move.cc.enabled = false;
+            transform.position = pos;
+            host.move.cc.enabled = true;
+            if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Blink_damage_1))
+            {
+                damageToPassThoughEnemy = 30;
+            }
+
+            if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Blink_damage_2))
+            {
+                damageToPassThoughEnemy = 110;
+            }
+        }
     }
 
     Vector3 GetBlinkDirection()

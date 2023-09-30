@@ -9889,6 +9889,7 @@ GameObject:
   - component: {fileID: -4420887136459156363}
   - component: {fileID: 7293103169327218178}
   - component: {fileID: -6072713320060848573}
+  - component: {fileID: 1977606502832016220}
   m_Layer: 3
   m_Name: ThornyEye
   m_TagString: Untagged
@@ -10049,6 +10050,9 @@ MonoBehaviour:
     duration: 0
   timeBetweenAttacks: 1
   attackDamage: 30
+  attackPrepareTime: 0.25
+  attackPosFrontDistance: 0.6
+  attackRange: 0.9
   slowspeed: {fileID: 0}
   canPlayAttackAnim: 1
 --- !u!114 &114877193769470842
@@ -10086,6 +10090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dec: 600
+  _knockSpeed: 0
 --- !u!135 &135409158097274046
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10094,7 +10099,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944203798625708}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1
@@ -10115,6 +10120,7 @@ MonoBehaviour:
   health: {fileID: 0}
   attack: {fileID: 0}
   move: {fileID: 0}
+  proto: {fileID: 0}
 --- !u!114 &7293103169327218178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10146,6 +10152,19 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1977606502832016220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944203798625708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 214cc5128bce2dc41aad03a0376c5931, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10000
 --- !u!1001 &1217342422863892687
 PrefabInstance:
   m_ObjectHideFlags: 0

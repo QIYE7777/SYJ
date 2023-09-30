@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ToxicBat
   m_EditorClassIdentifier: 
   prefab: {fileID: -2752941489969639991, guid: 71f520803acb34e4999cd2f590f07ee6, type: 3}
-  hp: 1
+  hp: 20
   attack: 10
   speed: 5

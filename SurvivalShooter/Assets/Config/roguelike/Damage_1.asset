@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Damage_1
   m_EditorClassIdentifier: 
   id: 60
-  title: Damage_1
-  desc: 'salk1111
-
-    2222'
-  sp: {fileID: 21300000, guid: 1ca4e45b7c320e849b06be9d53e1fa24, type: 3}
+  title: More Damage
+  desc: Your damage per bullet increases
+  sp: {fileID: 21300000, guid: 395a1aeb9c92fc94e899db5d5b1f347d, type: 3}
   dependency: 0

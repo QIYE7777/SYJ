@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Hp Max_2
   m_EditorClassIdentifier: 
   id: 51
-  title: Hp Max_2
-  desc: 'salk1111
-
-    2222'
-  sp: {fileID: 21300000, guid: 1ca4e45b7c320e849b06be9d53e1fa24, type: 3}
+  title: More MaxHp+
+  desc: Your maximum health limit has been increased
+  sp: {fileID: 21300000, guid: 143898409a0c7c844b542f76a2ff05eb, type: 3}
   dependency: 50

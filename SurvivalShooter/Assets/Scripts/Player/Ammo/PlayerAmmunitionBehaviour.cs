@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using RoguelikeCombat;
 
 public class PlayerAmmunitionBehaviour : MonoBehaviour
 {
@@ -24,8 +25,14 @@ public class PlayerAmmunitionBehaviour : MonoBehaviour
         _reloadDoneTimestamp = 0;
         currentAmmoCount = maxAmmo;
     }
-
+    
     private void Start()
+    {
+        BuildAmmoUi();
+
+    }
+
+    void BuildAmmoUi()
     {
         ammos = new List<AmmoUiBehaviour>();
         for (var i = 0; i < maxAmmo; i++)
@@ -37,7 +44,31 @@ public class PlayerAmmunitionBehaviour : MonoBehaviour
         }
     }
 
-    public bool IsReloading()
+    void ClearAmmoUi()
+    {
+
+    }
+
+
+    /*
+    private void Update()
+    {
+        if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Bullet_5))
+        {
+            maxAmmo = 5;
+        }
+        if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Bullet_10))
+        {
+            maxAmmo = 10;
+        }
+        if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Bullet_00))
+        {
+            maxAmmo = 1;
+            reloadTime = 0;
+        }
+    }*/
+
+        public bool IsReloading()
     {
         if (_reloadDoneTimestamp <= 0)
         {
@@ -54,6 +85,7 @@ public class PlayerAmmunitionBehaviour : MonoBehaviour
 
     public void OnFired()
     {
+
         currentAmmoCount -= 1;
         for (var i = 0; i < maxAmmo; i++)
         {

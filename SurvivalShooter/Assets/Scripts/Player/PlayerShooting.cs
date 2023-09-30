@@ -22,6 +22,8 @@ public class PlayerShooting : PlayerComponent
 
     float effectsDisplayTime = 0.2f;
 
+    public AudioSource cannotShoot;
+
     private void Start()
     {
         gunParticles = GetComponent<ParticleSystem>();
@@ -47,6 +49,7 @@ public class PlayerShooting : PlayerComponent
             }
             else
             {
+                cannotShoot.Play();
                 //点击射击但是正在换弹夹，什么都不做
                 //播放一个不能设计的音效
             }
@@ -64,6 +67,21 @@ public class PlayerShooting : PlayerComponent
 
     void Shoot()
     {
+        if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Damage_1))
+        {
+            damagePerShot = 45;
+        }
+
+        if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Damage_2))
+        {
+            damagePerShot = 60;
+        }
+
+        if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Damage_3))
+        {
+            damagePerShot = 100;
+        }
+
         timer = 0f;
         gunAudio.Play();
         gunLight.enabled = true;
@@ -84,6 +102,7 @@ public class PlayerShooting : PlayerComponent
 
     void FireShoot(float widthMultiplier, int damage, float angleOffset = 0)
     {
+        damage = damagePerShot;
         var gunLine = Instantiate(gunLinePrefab, gunLinePrefab.transform.parent);
         gunLine.gameObject.SetActive(true);
         gunLine.transform.localPosition = Vector3.zero;

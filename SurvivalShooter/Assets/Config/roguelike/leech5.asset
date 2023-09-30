@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: leech5
   m_EditorClassIdentifier: 
   id: 1
-  title: leech5
-  desc: 'salkdh
-
-    asdasdasdasdas'
-  sp: {fileID: 21300000, guid: 1ca4e45b7c320e849b06be9d53e1fa24, type: 3}
+  title: Leech
+  desc: Your hits can heal you for 5
+  sp: {fileID: 21300000, guid: 9c6c689c3c80b6745bbe4ba47bba261d, type: 3}
   dependency: 0

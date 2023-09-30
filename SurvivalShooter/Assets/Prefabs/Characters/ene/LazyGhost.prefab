@@ -9860,6 +9860,7 @@ GameObject:
   - component: {fileID: -2752941489969639991}
   - component: {fileID: 8805687853255280163}
   - component: {fileID: -7423764650468131547}
+  - component: {fileID: 2846930976884320250}
   m_Layer: 3
   m_Name: LazyGhost
   m_TagString: Untagged
@@ -9902,6 +9903,9 @@ MonoBehaviour:
     duration: 0
   timeBetweenAttacks: 1
   attackDamage: 15
+  attackPrepareTime: 0.25
+  attackPosFrontDistance: 0.6
+  attackRange: 0.9
   slowspeed: {fileID: 8805687853255280163}
   canPlayAttackAnim: 1
 --- !u!114 &114202093503272786
@@ -9939,6 +9943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dec: 600
+  _knockSpeed: 0
 --- !u!114 &114195364865018464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10098,6 +10103,7 @@ MonoBehaviour:
   health: {fileID: 0}
   attack: {fileID: 0}
   move: {fileID: 0}
+  proto: {fileID: 0}
 --- !u!114 &8805687853255280163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10110,7 +10116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5f681f26569bd42bd6f7b20bd46786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowDown: 5.5
+  slowDown: 4
   duration: 3
 --- !u!143 &-7423764650468131547
 CharacterController:
@@ -10130,6 +10136,20 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &2846930976884320250
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499081237720858}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.91, z: 0}
 --- !u!1001 &3466252775161193873
 PrefabInstance:
   m_ObjectHideFlags: 0
