@@ -97,6 +97,7 @@ namespace RoguelikeCombat
                 player.move.disableMove = true;
                 player.shooting.enabled = false;
                 player.shootSuper.enabled = false;
+                player.blink.enabled = false;
                 yield return new WaitForSeconds(0.1f);
                 //Debug.Log("TODO door show and take you up");
                 var door = Instantiate(CombatManager.instance.levelStartDoor);

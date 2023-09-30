@@ -32,13 +32,8 @@ public class PlayerBlink : PlayerComponent
     void Update()
     {
         timer += com.GameTime.deltaTime;
-        if (Input.GetButton("Jump") && timer >= timeBetweenBlinks && com.GameTime.timeScale != 0)
-        {
-            
-             Blink();
-            
-        }
-
+        if (Input.GetButtonDown("Jump") && timer >= timeBetweenBlinks && com.GameTime.timeScale != 0)
+            Blink();
 
         if (trait.activeSelf && com.GameTime.time > _blinkTrailDisappearTimestamp)
             trait.SetActive(false);

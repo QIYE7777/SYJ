@@ -43,7 +43,7 @@ namespace RoguelikeCombat
             int lenReward = data.rewards.Count;
             for (int i = 0; i < lenSlot; i++)
             {
-                Debug.Log(i);
+                //Debug.Log(i);
                 var slot = slots[i];
                 if (i >= lenReward)
                 {
@@ -52,7 +52,7 @@ namespace RoguelikeCombat
                 }
 
                 var reward = data.rewards[i];
-                Debug.Log(reward.id);
+                //Debug.Log(reward.id);
                 if (reward == null)
                 {
                     slot.Hide();
