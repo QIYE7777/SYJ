@@ -40,14 +40,19 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
+        if (com.GameTime.timeScale == 0)
+        {
+            nav.enabled = false;
+            return;
+        }
+
+        if (!nav.enabled)
+            nav.enabled = true;
+
         if (_knockSpeed > 0)
-        {
             CheckKnockback();
-        }
         else
-        {
             Walk();
-        }
 
         if (_isSlowed && com.GameTime.time > _resumeSlowDownTimestamp)
         {
@@ -71,15 +76,6 @@ public class EnemyMovement : MonoBehaviour
 
     void Walk()
     {
-        if (com.GameTime.timeScale == 0)
-        {
-            nav.enabled = false;
-        }
-        else if (!nav.enabled)
-        {
-            nav.enabled = true;
-        }
-
         var player = PlayerBehaviour.instance;
         var playerHealth = player.health;
         if (nav.enabled && id.health.hp > 0 && playerHealth.currentHealth > 0)

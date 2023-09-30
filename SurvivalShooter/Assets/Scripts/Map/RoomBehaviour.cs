@@ -69,7 +69,7 @@ public class RoomBehaviour : MonoBehaviour
         player.move.disableMove = true;
         player.shooting.enabled = false;
         player.shootSuper.enabled = false;
-
+        player.blink.enabled = false;
         _hasWaveToSpawn = false;
         _waveIndex = 0;
         _nextWaveWaitTime = 0;
@@ -90,7 +90,7 @@ public class RoomBehaviour : MonoBehaviour
         player.move.simulateMoveForward = false;
         player.shooting.enabled = true;
         player.shootSuper.enabled = true;
-
+        player.blink.enabled = true;
         yield return new WaitForSeconds(0.2f);
         //close door
         door.CloseDoor();
@@ -117,17 +117,17 @@ public class RoomBehaviour : MonoBehaviour
 
     void PrepareWave()
     {
-        Debug.Log("PrepareWave");
+        //Debug.Log("PrepareWave");
         if (IsSpawnDone())
             return;
-        Debug.Log("准备生成第" + (_waveIndex + 1) + "波");
+        //Debug.Log("准备生成第" + (_waveIndex + 1) + "波");
         _nextWaveWaitTime = SceneSwitcher.instance.roomPrototype.spawnWaves[_waveIndex];
         _hasWaveToSpawn = true;
     }
 
     void TrySpawn()
     {
-        Debug.Log("生成第" + (_waveIndex + 1) + "波");
+        //Debug.Log("生成第" + (_waveIndex + 1) + "波");
         List<EnemyPrototype> normalEnemies = SceneSwitcher.instance.roomPrototype.normalEnemies;
         List<EnemyPrototype> specialEnemies = SceneSwitcher.instance.roomPrototype.specialEnemies;
         List<EnemyPrototype> verySpecialEnemies = SceneSwitcher.instance.roomPrototype.verySpecialEnemies;

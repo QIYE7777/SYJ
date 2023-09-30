@@ -121,8 +121,8 @@ public class EnemyHealth : MonoBehaviour
 
     void CheckLevelEnd()
     {
-        Debug.Log(!CombatManager.instance.HasEnemyLeft(true));
-        Debug.Log(RoomBehaviour.instance.IsSpawnDone());
+        //Debug.Log(!CombatManager.instance.HasEnemyLeft(true));
+        // Debug.Log(RoomBehaviour.instance.IsSpawnDone());
         if (!CombatManager.instance.HasEnemyLeft(true) && RoomBehaviour.instance.IsSpawnDone())
         {
             if (RoomRewardBehaviour.instance != null && RoomRewardBehaviour.instance.gameObject != null)

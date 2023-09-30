@@ -78,10 +78,10 @@ public class PlayerMovement : PlayerComponent
         //movement = movement.normalized * speed * Time.deltaTime;
         var realSpeed = speed;
         if (_isSlowed)
-        {
             realSpeed -= _slowValue;
-        }
-        cc.SimpleMove(movement.normalized * realSpeed);
+
+        if (cc.enabled)
+            cc.SimpleMove(movement.normalized * realSpeed);
     }
 
     void TurningKeyboard()

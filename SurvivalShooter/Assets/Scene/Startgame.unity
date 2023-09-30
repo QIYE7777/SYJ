@@ -1820,7 +1820,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1966726157}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.AudioListener, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 0
@@ -5775,9 +5775,9 @@ GameObject:
   - component: {fileID: 1966726160}
   - component: {fileID: 1966726159}
   - component: {fileID: 1966726158}
-  - component: {fileID: 1966726157}
   - component: {fileID: 1966726162}
   - component: {fileID: 1966726161}
+  - component: {fileID: 1966726157}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
