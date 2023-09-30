@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ThornyEye
   m_EditorClassIdentifier: 
   prefab: {fileID: -4420887136459156363, guid: b76d093404f894f4e9d970829baea2ad, type: 3}
-  hp: 900
+  hp: 300
   attack: 111
   speed: 3.5

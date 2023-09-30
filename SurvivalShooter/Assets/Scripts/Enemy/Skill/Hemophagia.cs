@@ -13,7 +13,13 @@ public class Hemophagia : MonoBehaviour
     public void LifeSteal()
     {
         int healPerShoot = 0;
-        if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Leech_10))
+
+        if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Leech_80))
+        {
+            healPerShoot = 35;
+        }
+
+        else if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Leech_10))
         {
             healPerShoot = 10;
         }
@@ -22,9 +28,11 @@ public class Hemophagia : MonoBehaviour
             healPerShoot = 5;
         }
 
+
         if (healPerShoot > 0)
         {
             playerHealth.Heal(healPerShoot);
+            Debug.Log(healPerShoot);
         }
     }
 }

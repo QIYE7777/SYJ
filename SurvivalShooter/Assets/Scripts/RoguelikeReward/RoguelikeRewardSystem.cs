@@ -15,6 +15,8 @@ namespace RoguelikeCombat
 
         public PlayerAmmunitionBehaviour PAB;
 
+        public AudioSource pong;
+
         private void Awake()
         {
             instance = this;
@@ -80,7 +82,7 @@ namespace RoguelikeCombat
         public void OnEventFinished(RoguelikeRewardEventData data)
         {
             StartCoroutine(EventFishCoroutine(data));
-            
+            PAB.CheckAmmunitionState();
         }
 
         IEnumerator EventFishCoroutine(RoguelikeRewardEventData data)
@@ -92,7 +94,6 @@ namespace RoguelikeCombat
                 var player = PlayerBehaviour.instance;
                 var playerTrans = player.move.transform;
 
-                //PAB.MoreBullet();
 
                 player.move.disableMove = true;
                 player.shooting.enabled = false;
@@ -106,6 +107,8 @@ namespace RoguelikeCombat
                 spawnPosition.z += 2f;
                 door.transform.position = spawnPosition;
                 door.transform.DOMoveY(0, 1.0f).SetEase(Ease.InCubic);
+
+                pong.Play();
 
                 yield return new WaitForSeconds(1.0f);
                 var doorBehaviour = door.GetComponent<StartRoomDoor>();
@@ -123,11 +126,13 @@ namespace RoguelikeCombat
                 player.move.simulateMoveForward = false;
                 player.move.cc.enabled = false;
                 doorBehaviour.CloseDoor();
-                
+
+
                 yield return new WaitForSeconds(0.8f);
                 CameraFollow.instance.SyncPos(player.transform.position);
                 CameraFollow.instance.enabled = false;
                 door.transform.DOMoveY(9, 1.2f).SetEase(Ease.InCubic);
+
 
                 yield return new WaitForSeconds(0.3f);
                 player.transform.GetChild(0).gameObject.SetActive(false);

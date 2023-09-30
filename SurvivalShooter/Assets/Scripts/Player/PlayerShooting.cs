@@ -40,7 +40,14 @@ public class PlayerShooting : PlayerComponent
 
         timer += com.GameTime.deltaTime;
         var ammunitionBehaviour = PlayerAmmunitionBehaviour.instance;
-        if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && com.GameTime.timeScale != 0)
+
+        /*if (Input.GetButton("R") && timer >= timeBetweenBullets && com.GameTime.timeScale != 0)
+        {
+            ammunitionBehaviour.Reload();
+        }
+        */
+
+            if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && com.GameTime.timeScale != 0)
         {
             if (!ammunitionBehaviour.IsReloading())
             {
@@ -49,7 +56,7 @@ public class PlayerShooting : PlayerComponent
             }
             else
             {
-                cannotShoot.Play();
+                //cannotShoot.Play();
                 //点击射击但是正在换弹夹，什么都不做
                 //播放一个不能设计的音效
             }

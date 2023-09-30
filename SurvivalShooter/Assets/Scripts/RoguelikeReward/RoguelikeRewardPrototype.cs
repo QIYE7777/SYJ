@@ -24,6 +24,7 @@ public enum RoguelikeUpgradeId
   
     MultiShoot_add2shoot_30degree = 3,
 
+    Leech_80 = 4,
 
     SlowDown = 10,
 

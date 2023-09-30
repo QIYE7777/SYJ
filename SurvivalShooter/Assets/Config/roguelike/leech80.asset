@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2aedcf22316bec4ea8239ba3c4c3f73, type: 3}
-  m_Name: RichElephant
+  m_Script: {fileID: 11500000, guid: efabded47d843d649be61a92b0aa204d, type: 3}
+  m_Name: leech80
   m_EditorClassIdentifier: 
-  prefab: {fileID: -4420887136459156363, guid: 9db4bf84e77589844900f07ef5ea32b3, type: 3}
-  hp: 210
-  attack: 40
-  speed: 2.5
+  id: 4
+  title: Leech++
+  desc: Your hits can heal you for 30
+  sp: {fileID: 21300000, guid: 9c6c689c3c80b6745bbe4ba47bba261d, type: 3}
+  dependency: 2

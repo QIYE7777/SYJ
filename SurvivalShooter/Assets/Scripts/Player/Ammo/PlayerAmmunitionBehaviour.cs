@@ -19,6 +19,8 @@ public class PlayerAmmunitionBehaviour : MonoBehaviour
     [HideInInspector]
     public List<AmmoUiBehaviour> ammos;
 
+    public AudioSource reload;
+
     private void Awake()
     {
         instance = this;
@@ -29,7 +31,6 @@ public class PlayerAmmunitionBehaviour : MonoBehaviour
     private void Start()
     {
         BuildAmmoUi();
-
     }
 
     void BuildAmmoUi()
@@ -46,32 +47,34 @@ public class PlayerAmmunitionBehaviour : MonoBehaviour
 
     void ClearAmmoUi()
     {
-        Destroy(ammoPrefab);
+        foreach (Object i in ammos)
+        {
+            DestroyImmediate(i, true);
+        }
     }
 
 
 
-    public void MoreBullet()
+    public void CheckAmmunitionState()
     {
+        ClearAmmoUi();
         if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Bullet_5))
         {
             maxAmmo = 5;
-            ClearAmmoUi();
-            BuildAmmoUi();
+            return;
         }
         if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Bullet_10))
         {
             maxAmmo = 10;
-            ClearAmmoUi();
-            BuildAmmoUi();
+            return;
         }
         if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Bullet_00))
         {
             maxAmmo = 1;
             reloadTime = 0;
-            ClearAmmoUi();
-            BuildAmmoUi();
+            return;
         }
+        BuildAmmoUi();
     }
 
     public bool IsReloading()
@@ -107,13 +110,20 @@ public class PlayerAmmunitionBehaviour : MonoBehaviour
 
         if (currentAmmoCount <= 0)
         {
-            _reloadDoneTimestamp = Time.time + reloadTime;
-            currentAmmoCount = maxAmmo;
+            Reload();
+        }
+    }
 
-            for (var i = 0; i < maxAmmo; i++)
-            {
-                ammos[i].ReloadAnim();
-            }
+    public void Reload()
+    {
+        _reloadDoneTimestamp = Time.time + reloadTime;
+        currentAmmoCount = maxAmmo;
+
+        reload.Play();
+
+        for (var i = 0; i < maxAmmo; i++)
+        {
+            ammos[i].ReloadAnim();
         }
     }
 }

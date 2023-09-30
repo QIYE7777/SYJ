@@ -39,10 +39,14 @@ public class PlayerShootSuper : PlayerComponent
             return;
 
         timer += com.GameTime.deltaTime;
-        if (Input.GetButton("Fire2") && timer >= timeBetweenBullets && Time.timeScale != 0)
+
+        if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.ShockWave ))
+            { 
+            if (Input.GetButton("Fire2") && timer >= timeBetweenBullets && Time.timeScale != 0)
             Shoot();
-        if (timer >= timeBetweenBullets * effectsDisplayTime)
+            if (timer >= timeBetweenBullets * effectsDisplayTime)
             DisableEffects();
+            }
     }
 
     public void DisableEffects()
