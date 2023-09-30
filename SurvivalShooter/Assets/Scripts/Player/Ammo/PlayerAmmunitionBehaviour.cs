@@ -46,29 +46,35 @@ public class PlayerAmmunitionBehaviour : MonoBehaviour
 
     void ClearAmmoUi()
     {
-
+        Destroy(ammoPrefab);
     }
 
 
-    /*
-    private void Update()
+
+    public void MoreBullet()
     {
         if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Bullet_5))
         {
             maxAmmo = 5;
+            ClearAmmoUi();
+            BuildAmmoUi();
         }
         if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Bullet_10))
         {
             maxAmmo = 10;
+            ClearAmmoUi();
+            BuildAmmoUi();
         }
         if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Bullet_00))
         {
             maxAmmo = 1;
             reloadTime = 0;
+            ClearAmmoUi();
+            BuildAmmoUi();
         }
-    }*/
+    }
 
-        public bool IsReloading()
+    public bool IsReloading()
     {
         if (_reloadDoneTimestamp <= 0)
         {

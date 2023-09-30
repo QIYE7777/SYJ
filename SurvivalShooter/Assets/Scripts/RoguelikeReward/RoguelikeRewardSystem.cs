@@ -13,6 +13,8 @@ namespace RoguelikeCombat
 
         public List<RoguelikeUpgradeId> perks;
 
+        public PlayerAmmunitionBehaviour PAB;
+
         private void Awake()
         {
             instance = this;
@@ -78,6 +80,7 @@ namespace RoguelikeCombat
         public void OnEventFinished(RoguelikeRewardEventData data)
         {
             StartCoroutine(EventFishCoroutine(data));
+            
         }
 
         IEnumerator EventFishCoroutine(RoguelikeRewardEventData data)
@@ -88,6 +91,8 @@ namespace RoguelikeCombat
             {
                 var player = PlayerBehaviour.instance;
                 var playerTrans = player.move.transform;
+
+                //PAB.MoreBullet();
 
                 player.move.disableMove = true;
                 player.shooting.enabled = false;
