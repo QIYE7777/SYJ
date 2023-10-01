@@ -16,6 +16,9 @@ MonoBehaviour:
   title: Blink
   desc: '[use Space Key]
 
-    You can quickly move forward some distance'
+    You can quickly move forward some distance
+
+    CD:3
+    seconds '
   sp: {fileID: 21300000, guid: b27ba9e148c18784b8e5bfa6e1d4e407, type: 3}
   dependency: 0

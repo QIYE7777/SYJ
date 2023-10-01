@@ -17,12 +17,19 @@ namespace RoguelikeCombat
 
         public AudioSource pong;
 
+        PlayerHealth playerHealth;
+
         Coroutine crtCoroutine;
         private void Awake()
         {
             instance = this;
             perks = new List<RoguelikeUpgradeId>();
         }
+
+        /*void Start()
+        {
+            
+        }*/
 
         public void StartNewEvent(bool nextLevel = true)
         {
@@ -85,6 +92,14 @@ namespace RoguelikeCombat
             if (crtCoroutine == null)
                 crtCoroutine = StartCoroutine(EventFishCoroutine(data));
             PAB.CheckAmmunitionState();
+
+            var player = PlayerBehaviour.instance;
+            playerHealth = player.GetComponent<PlayerHealth>();
+            if (playerHealth.hpMaxOver == false)
+            {
+                playerHealth.MaxHealthUp();
+            }
+
         }
 
         IEnumerator EventFishCoroutine(RoguelikeRewardEventData data)

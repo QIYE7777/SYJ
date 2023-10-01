@@ -14,20 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: 1.2small
   normalEnemies:
-  - {fileID: 11400000, guid: 96aa7ca9314ca974c818d7b2b30da78a, type: 2}
-  - {fileID: 11400000, guid: 96aa7ca9314ca974c818d7b2b30da78a, type: 2}
-  - {fileID: 11400000, guid: 96aa7ca9314ca974c818d7b2b30da78a, type: 2}
-  - {fileID: 11400000, guid: 96aa7ca9314ca974c818d7b2b30da78a, type: 2}
-  - {fileID: 11400000, guid: 96aa7ca9314ca974c818d7b2b30da78a, type: 2}
-  - {fileID: 11400000, guid: 96aa7ca9314ca974c818d7b2b30da78a, type: 2}
-  - {fileID: 11400000, guid: 96aa7ca9314ca974c818d7b2b30da78a, type: 2}
+  - {fileID: 11400000, guid: e73f273c6ce7bc84db2d801874d6dda5, type: 2}
+  - {fileID: 11400000, guid: e73f273c6ce7bc84db2d801874d6dda5, type: 2}
+  - {fileID: 11400000, guid: e73f273c6ce7bc84db2d801874d6dda5, type: 2}
+  - {fileID: 11400000, guid: e73f273c6ce7bc84db2d801874d6dda5, type: 2}
+  - {fileID: 11400000, guid: e73f273c6ce7bc84db2d801874d6dda5, type: 2}
+  - {fileID: 11400000, guid: e73f273c6ce7bc84db2d801874d6dda5, type: 2}
+  - {fileID: 11400000, guid: e73f273c6ce7bc84db2d801874d6dda5, type: 2}
+  - {fileID: 11400000, guid: e73f273c6ce7bc84db2d801874d6dda5, type: 2}
+  - {fileID: 11400000, guid: e73f273c6ce7bc84db2d801874d6dda5, type: 2}
+  - {fileID: 11400000, guid: e73f273c6ce7bc84db2d801874d6dda5, type: 2}
+  - {fileID: 11400000, guid: e73f273c6ce7bc84db2d801874d6dda5, type: 2}
+  - {fileID: 11400000, guid: e73f273c6ce7bc84db2d801874d6dda5, type: 2}
+  - {fileID: 11400000, guid: e73f273c6ce7bc84db2d801874d6dda5, type: 2}
+  - {fileID: 11400000, guid: e73f273c6ce7bc84db2d801874d6dda5, type: 2}
+  - {fileID: 11400000, guid: e73f273c6ce7bc84db2d801874d6dda5, type: 2}
+  - {fileID: 11400000, guid: e73f273c6ce7bc84db2d801874d6dda5, type: 2}
   specialEnemies:
-  - {fileID: 11400000, guid: 61e12746ac57b0f4c8c08102dba34320, type: 2}
-  - {fileID: 11400000, guid: 61e12746ac57b0f4c8c08102dba34320, type: 2}
+  - {fileID: 11400000, guid: ac97310c5a382fc41885f8c14c0fad8e, type: 2}
+  - {fileID: 11400000, guid: ac97310c5a382fc41885f8c14c0fad8e, type: 2}
   verySpecialEnemies:
-  - {fileID: 11400000, guid: 15fae53451e46744ca98903bf0be480d, type: 2}
-  - {fileID: 11400000, guid: 15fae53451e46744ca98903bf0be480d, type: 2}
+  - {fileID: 11400000, guid: ac97310c5a382fc41885f8c14c0fad8e, type: 2}
+  - {fileID: 11400000, guid: ac97310c5a382fc41885f8c14c0fad8e, type: 2}
   spawnWaves:
-  - 2
   - 1
-  - 1
+  - 0
+  - 0

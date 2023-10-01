@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 51
   title: More MaxHp+
-  desc: Your maximum health limit has been increased
+  desc: 'Your maximum health limit will be increased.
+
+    By the way, you will be
+    healed completely!
+
+'
   sp: {fileID: 21300000, guid: 143898409a0c7c844b542f76a2ff05eb, type: 3}
   dependency: 50

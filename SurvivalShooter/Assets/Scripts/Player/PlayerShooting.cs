@@ -41,11 +41,11 @@ public class PlayerShooting : PlayerComponent
         timer += com.GameTime.deltaTime;
         var ammunitionBehaviour = PlayerAmmunitionBehaviour.instance;
 
-        /*if (Input.GetButton("R") && timer >= timeBetweenBullets && com.GameTime.timeScale != 0)
+        if (Input.GetButton("R") && timer >= timeBetweenBullets && com.GameTime.timeScale != 0)
         {
             ammunitionBehaviour.Reload();
         }
-        */
+        
 
             if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && com.GameTime.timeScale != 0)
         {

@@ -5445,7 +5445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   host: {fileID: 0}
   damagePerShot: 10
-  timeBetweenBullets: 0.6
+  timeBetweenBullets: 3
   range: 8
   shootableMask: 3
   faceLight: {fileID: 1313939715332721048}
@@ -11109,7 +11109,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6270326285223416022
 Animator:
-  serializedVersion: 3
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -11122,10 +11122,12 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 0
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!82 &6302290614964583180
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11235,7 +11237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   host: {fileID: 0}
-  speed: 6
+  speed: 5
   turnSpeed: 20
   cc: {fileID: -5473554322171537783}
   floorMask: 8
@@ -11256,9 +11258,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   host: {fileID: 0}
-  hpMax: 1000
-  currentHealth: 0
+  hpMax: 100
+  currentHealth: 1100
   deathClip: {fileID: 8300000, guid: b8d5f3bf249439b4a9051cba9312d806, type: 3}
+  hpMaxOver: 0
 --- !u!114 &6219472072618714752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11272,7 +11275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   host: {fileID: 0}
-  timeBetweenBlinks: 0.5
+  timeBetweenBlinks: 3
   blinkDistance: 5
   gunPos: {fileID: 6219472071997793784}
   blinkableMask: 3

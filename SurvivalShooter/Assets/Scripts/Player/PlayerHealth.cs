@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using RoguelikeCombat;
 using UnityEngine;
 
 public class PlayerHealth : PlayerComponent
 {
-    public int hpMax = 100;
+    public int hpMax = 600;
     public int currentHealth;
 
     public AudioClip deathClip;
@@ -14,6 +15,12 @@ public class PlayerHealth : PlayerComponent
     PlayerShooting playerShooting;
     bool isDead;
     int preventDeathCount = 1;
+
+    bool hpMax_4 = false;
+    bool hpMax_3 = false;
+    bool hpMax_2 = false;
+    bool hpMax_1 = false;
+    public bool hpMaxOver = false;
 
     private void Awake()
     {
@@ -32,6 +39,59 @@ public class PlayerHealth : PlayerComponent
 
         RefreshHpBar();
         preventDeathCount = 1;
+    }
+
+    void SetHpMax()
+    {
+        if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.HpMax_4) )
+        {
+            if (hpMax_4 == false)
+            {
+                hpMax = 210;
+                hpMax_4 = true;
+                currentHealth = hpMax;
+                hpMaxOver = true;
+            }
+        }
+
+        else if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.HpMax_3))
+        {
+            if (hpMax_3 == false)
+            {
+                hpMax = 170;
+                hpMax_3 = true;
+                currentHealth = hpMax;
+            }
+        }
+
+        else if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.HpMax_2))
+        {
+            if (hpMax_2 == false)
+            {
+                hpMax = 150;
+                hpMax_2 = true;
+                currentHealth = hpMax;
+            }
+        }
+
+        else if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.HpMax_1))
+        {
+            if (hpMax_1 == false)
+            {
+                hpMax = 120;
+                hpMax_1 = true;
+                currentHealth = hpMax;
+            }
+        }
+
+        Debug.Log(hpMax);
+    }
+
+    public void MaxHealthUp()
+    {
+        SetHpMax();
+
+        RefreshHpBar();
     }
 
     public void Heal(int amount)

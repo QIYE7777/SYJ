@@ -16,6 +16,9 @@ MonoBehaviour:
   title: ShockWave
   desc: '[use Right Mouse Button]
 
-    You can bounce off enemies and deal damage'
+    You can bounce off enemies and deal damage
+
+    CD:3
+    seconds '
   sp: {fileID: 21300000, guid: c7e52748e054ae841a6d4981b7b613f1, type: 3}
   dependency: 0
