@@ -140,7 +140,7 @@ namespace RoguelikeCombat
                 player.transform.GetChild(0).gameObject.SetActive(false);
 
                 yield return new WaitForSeconds(1.3f);
-
+                crtCoroutine = null;
                 SceneSwitcher.instance.SwitchToNextRoom();
             }
             else
