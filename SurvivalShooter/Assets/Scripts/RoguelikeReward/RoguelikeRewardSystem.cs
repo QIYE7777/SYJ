@@ -17,13 +17,14 @@ namespace RoguelikeCombat
 
         public AudioSource pong;
 
+        Coroutine crtCoroutine;
         private void Awake()
         {
             instance = this;
             perks = new List<RoguelikeUpgradeId>();
         }
 
-        public void StartNewEvent(bool nextLevel=true)
+        public void StartNewEvent(bool nextLevel = true)
         {
             var data = new RoguelikeRewardEventData();
             data.title = "Choose a Upgrade!";
@@ -81,14 +82,15 @@ namespace RoguelikeCombat
         }
         public void OnEventFinished(RoguelikeRewardEventData data)
         {
-            StartCoroutine(EventFishCoroutine(data));
+            if (crtCoroutine == null)
+                crtCoroutine = StartCoroutine(EventFishCoroutine(data));
             PAB.CheckAmmunitionState();
         }
 
         IEnumerator EventFishCoroutine(RoguelikeRewardEventData data)
         {
             com.GameTime.timeScale = 1;
-            
+
             if (data.nextLevel)
             {
                 var player = PlayerBehaviour.instance;
@@ -138,7 +140,7 @@ namespace RoguelikeCombat
                 player.transform.GetChild(0).gameObject.SetActive(false);
 
                 yield return new WaitForSeconds(1.3f);
-                
+
                 SceneSwitcher.instance.SwitchToNextRoom();
             }
             else
@@ -160,7 +162,7 @@ namespace RoguelikeCombat
 
         public RoguelikeRewardPrototype GetPrototype(RoguelikeUpgradeId id)
         {
-            foreach(var p in config.roguelikeRewards)
+            foreach (var p in config.roguelikeRewards)
             {
                 if (p.id == id)
                     return p;

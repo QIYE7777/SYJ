@@ -5,8 +5,11 @@ using RoguelikeCombat;
 public class PlayerAmmunitionBehaviour : MonoBehaviour
 {
     public static PlayerAmmunitionBehaviour instance;
+    public int defaultMaxAmmo = 3;
 
-    public int maxAmmo = 6;
+    [HideInInspector]
+    public int maxAmmo;
+
     public AmmoUiBehaviour ammoPrefab;
     public RectTransform ammoParent;
 
@@ -17,7 +20,7 @@ public class PlayerAmmunitionBehaviour : MonoBehaviour
     [HideInInspector]
     public int currentAmmoCount;
     [HideInInspector]
-    public List<AmmoUiBehaviour> ammos;
+    public List<AmmoUiBehaviour> ammos = new List<AmmoUiBehaviour>();
 
     public AudioSource reload;
 
@@ -27,10 +30,10 @@ public class PlayerAmmunitionBehaviour : MonoBehaviour
         _reloadDoneTimestamp = 0;
         currentAmmoCount = maxAmmo;
     }
-    
+
     private void Start()
     {
-        BuildAmmoUi();
+        CheckAmmunitionState();
     }
 
     void BuildAmmoUi()
@@ -47,34 +50,30 @@ public class PlayerAmmunitionBehaviour : MonoBehaviour
 
     void ClearAmmoUi()
     {
-        foreach (Object i in ammos)
+        foreach (var i in ammos)
         {
-            DestroyImmediate(i, true);
+            Destroy(i.gameObject);
         }
+        ammos = new List<AmmoUiBehaviour>();
     }
 
-
+    void SetMaxAmmo()
+    {
+        maxAmmo = defaultMaxAmmo;
+        if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Bullet_00))
+            maxAmmo = 1;
+        else if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Bullet_10))
+            maxAmmo = 10;
+        else if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Bullet_5))
+            maxAmmo = 5;
+    }
 
     public void CheckAmmunitionState()
     {
+        SetMaxAmmo();
         ClearAmmoUi();
-        if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Bullet_5))
-        {
-            maxAmmo = 5;
-            return;
-        }
-        if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Bullet_10))
-        {
-            maxAmmo = 10;
-            return;
-        }
-        if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Bullet_00))
-        {
-            maxAmmo = 1;
-            reloadTime = 0;
-            return;
-        }
         BuildAmmoUi();
+        currentAmmoCount = maxAmmo;
     }
 
     public bool IsReloading()
@@ -116,14 +115,15 @@ public class PlayerAmmunitionBehaviour : MonoBehaviour
 
     public void Reload()
     {
+        var t = reloadTime;
+        if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Bullet_00))
+            t = 0;
+
         _reloadDoneTimestamp = Time.time + reloadTime;
         currentAmmoCount = maxAmmo;
-
         reload.Play();
 
         for (var i = 0; i < maxAmmo; i++)
-        {
             ammos[i].ReloadAnim();
-        }
     }
 }
