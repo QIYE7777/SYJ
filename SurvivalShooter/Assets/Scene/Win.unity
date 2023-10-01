@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000038, guid: c53eb3e05d210bd4bbb8f8572eeaf8d5, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 5a97f9e86783f2c4aa9801bbe8c342c2, type: 2}
   m_LightingSettings: {fileID: 1944943803}
 --- !u!196 &4
 NavMeshSettings:
@@ -1703,6 +1703,7 @@ MonoBehaviour:
   normalSpawns: []
   specialSpawns: []
   verySpecialSpawns: []
+  levelEndPosList: []
   exit: {fileID: 0}
   entrance: {fileID: 1098008834}
 --- !u!4 &1761012063
