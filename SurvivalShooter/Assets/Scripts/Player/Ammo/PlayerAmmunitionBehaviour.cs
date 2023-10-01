@@ -63,7 +63,7 @@ public class PlayerAmmunitionBehaviour : MonoBehaviour
         if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Bullet_00))
             maxAmmo = 1;
         else if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Bullet_10))
-            maxAmmo = 10;
+            maxAmmo = 7;
         else if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Bullet_5))
             maxAmmo = 5;
     }
@@ -119,9 +119,11 @@ public class PlayerAmmunitionBehaviour : MonoBehaviour
         if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Bullet_00))
             t = 0;
 
-        _reloadDoneTimestamp = Time.time + reloadTime;
+
+        _reloadDoneTimestamp = Time.time + t;
         currentAmmoCount = maxAmmo;
-        reload.Play();
+        if (!RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Bullet_00))
+            reload.Play();
 
         for (var i = 0; i < maxAmmo; i++)
             ammos[i].ReloadAnim();
