@@ -46,6 +46,7 @@ public class SceneSwitcher : MonoBehaviour
 
     public void RestartCurrentLevel()
     {
+        //SceneManager.LoadScene(1);
         SwitchToRoomOfLevel();
     }
 }

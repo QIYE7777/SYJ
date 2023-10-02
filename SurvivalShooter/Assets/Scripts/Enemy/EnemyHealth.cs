@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    int _hpMax;
-    public int hp;
+    float _hpMax;
+    public float hp;
     public float sinkSpeed = 2.5f;
     public int scoreValue = 10;
     public AudioClip deathClip;
@@ -27,7 +27,7 @@ public class EnemyHealth : MonoBehaviour
         enemyAudio = GetComponent<AudioSource>();
     }
 
-    public void ResetHp(int hp)
+    public void ResetHp(float hp)
     {
         _hpMax = hp;
         this.hp = _hpMax;
@@ -39,7 +39,7 @@ public class EnemyHealth : MonoBehaviour
             transform.Translate(-Vector3.up * sinkSpeed * com.GameTime.deltaTime);
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         if (isDead) return;
         hitParticles.Play();

@@ -19925,9 +19925,6 @@ MonoBehaviour:
   - {fileID: 1434296434}
   - {fileID: 910256359}
   - {fileID: 166243042}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   specialSpawns:
   - {fileID: 1135865495}
   - {fileID: 1080048327}

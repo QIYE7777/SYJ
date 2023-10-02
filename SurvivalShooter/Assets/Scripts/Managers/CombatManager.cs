@@ -9,7 +9,8 @@ public class CombatManager : MonoBehaviour
     public GameObject levelStartDoor;
     public RoomRewardBehaviour roomRewardPrefab;
     public GameObject roomRewardVfx;
-    public int lostHealth;
+    public float lostHealth;
+    public float hpMaxInGame = 100;
 
     private void Awake()
     {

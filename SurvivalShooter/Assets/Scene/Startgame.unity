@@ -2212,6 +2212,7 @@ MonoBehaviour:
   roomRewardPrefab: {fileID: 7693232940770193843, guid: ac9cb8e7215592040b2134af060121fa, type: 3}
   roomRewardVfx: {fileID: 7372935620508939842, guid: cce82d990dc4404428181ad22b7c20c3, type: 3}
   lostHealth: 0
+  hpMaxInGame: 100
 --- !u!114 &677338127
 MonoBehaviour:
   m_ObjectHideFlags: 0

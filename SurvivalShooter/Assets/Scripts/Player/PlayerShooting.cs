@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerShooting : PlayerComponent
 {
-    public int damagePerShot = 20;
+    public float damagePerShot = 20;
     public float timeBetweenBullets = 0.05f;
     public float range = 100f;
 
@@ -107,7 +107,7 @@ public class PlayerShooting : PlayerComponent
     }
 
 
-    void FireShoot(float widthMultiplier, int damage, float angleOffset = 0)
+    void FireShoot(float widthMultiplier, float damage, float angleOffset = 0)
     {
         damage = damagePerShot;
         var gunLine = Instantiate(gunLinePrefab, gunLinePrefab.transform.parent);

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerHealth : PlayerComponent
 {
-    public int hpMax = 600;
-    public int currentHealth;
+    public float hpMax = 600;
+    public float currentHealth;
 
     public AudioClip deathClip;
 
@@ -33,6 +33,8 @@ public class PlayerHealth : PlayerComponent
 
     public void Start()
     {
+        hpMax = CombatManager.instance.hpMaxInGame;
+
         currentHealth = hpMax - CombatManager.instance.lostHealth;
         if (currentHealth <= 0)
             currentHealth = 1;
@@ -51,6 +53,7 @@ public class PlayerHealth : PlayerComponent
                 hpMax_4 = true;
                 currentHealth = hpMax;
                 hpMaxOver = true;
+                CombatManager.instance.hpMaxInGame = hpMax;
             }
         }
 
@@ -61,6 +64,7 @@ public class PlayerHealth : PlayerComponent
                 hpMax = 170;
                 hpMax_3 = true;
                 currentHealth = hpMax;
+                CombatManager.instance.hpMaxInGame = hpMax;
             }
         }
 
@@ -71,6 +75,7 @@ public class PlayerHealth : PlayerComponent
                 hpMax = 150;
                 hpMax_2 = true;
                 currentHealth = hpMax;
+                CombatManager.instance.hpMaxInGame = hpMax;
             }
         }
 
@@ -81,6 +86,7 @@ public class PlayerHealth : PlayerComponent
                 hpMax = 120;
                 hpMax_1 = true;
                 currentHealth = hpMax;
+                CombatManager.instance.hpMaxInGame = hpMax;
             }
         }
 
@@ -91,10 +97,11 @@ public class PlayerHealth : PlayerComponent
     {
         SetHpMax();
 
+        SaveHp();
         RefreshHpBar();
     }
 
-    public void Heal(int amount)
+    public void Heal(float amount)
     {
         if (isDead)
             return;
