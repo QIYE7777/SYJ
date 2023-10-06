@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a098159352ed7044a6e0bfd926325c9, type: 3}
   m_Name: winRoom
   m_EditorClassIdentifier: 
-  sceneName: Win
+  sceneName: win 1
   normalEnemies: []
   specialEnemies: []
   verySpecialEnemies: []

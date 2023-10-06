@@ -19,7 +19,7 @@ public class Hemophagia : MonoBehaviour
 
         if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Leech_80))
         {
-            healPerShoot =  playerShooting.damagePerShot/10 ;//10%
+            healPerShoot =  playerShooting.damagePerShot/10 ;//aww10%
         }
 
         else if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Leech_10))

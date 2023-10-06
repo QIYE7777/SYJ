@@ -8,9 +8,13 @@ public class SceneSwitcher : MonoBehaviour
     public LevelPrototype currentLevel;
     public RoomPrototype roomPrototype;
 
+    public RoomBehaviour roomBehavior;
+
     int currentIndex;
 
     public PlayerBehaviour playerPrefab;
+
+    public bool hasDead = false;
 
     private void Awake()
     {
@@ -33,6 +37,8 @@ public class SceneSwitcher : MonoBehaviour
         }
 
         var room = currentLevel.rooms[currentIndex];
+        //var room = currentLevel.rooms[0];
+
         roomPrototype = room;
         SceneManager.LoadScene(room.sceneName, LoadSceneMode.Single);
         Debug.Log("SwitchToRoomOfLevel" + room);
@@ -47,6 +53,8 @@ public class SceneSwitcher : MonoBehaviour
     public void RestartCurrentLevel()
     {
         //SceneManager.LoadScene(1);
+        currentIndex = 0;
         SwitchToRoomOfLevel();
+        hasDead = true;
     }
 }

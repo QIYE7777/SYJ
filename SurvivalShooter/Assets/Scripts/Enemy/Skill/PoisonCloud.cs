@@ -7,6 +7,8 @@ public class PoisonCloud : MonoBehaviour
     public int damage;
     private float poisonAttackTimestamp;
 
+    public PlayerBlink playerBlink;
+
     private void Awake()
     {
         isPlayerInRange = false;
@@ -27,8 +29,34 @@ public class PoisonCloud : MonoBehaviour
         }
     }
 
+    Collider player;
+
+    public void CheckIsPlayerInRange()
+    {
+
+    }
+
+    /*private void OnCollisionStay(Collision  collision)
+    {
+        if (collision.transform.GetComponent<BoltBehaviour>())
+            return;
+        if (collision.transform.GetComponent<EnemyMovement>())
+            return;
+
+        if (collision.transform == PlayerMovement.instance.transform)
+        {
+            isPlayerInRange = true;
+        }
+        else
+        {
+            isPlayerInRange = false;
+        }
+    }*/
+
+
     private void OnTriggerEnter(Collider other)
     {
+        
         if (other.transform.GetComponent<BoltBehaviour>())
             return;
         if (other.transform.GetComponent<EnemyMovement>())
@@ -36,6 +64,7 @@ public class PoisonCloud : MonoBehaviour
 
         if (other.transform == PlayerMovement.instance.transform)
         {
+            player = other;
             isPlayerInRange = true;
         }
     }

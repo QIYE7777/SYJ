@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerBlink : PlayerComponent
 {
-    public float timeBetweenBlinks = 1.2f;
+    public float timeBetweenBlinks = 3f;
     float timer;
 
     public float blinkDistance = 3f;
@@ -35,7 +35,7 @@ public class PlayerBlink : PlayerComponent
         if (Input.GetButtonDown("Jump") && timer >= timeBetweenBlinks && com.GameTime.timeScale != 0)
             Blink();
 
-        if (trait.activeSelf && com.GameTime.time > _blinkTrailDisappearTimestamp)
+        if (trait.activeSelf && com.GameTime.time > _blinkTrailDisappearTimestamp + 0.05)
             trait.SetActive(false);
     }
 
@@ -54,6 +54,9 @@ public class PlayerBlink : PlayerComponent
             host.move.cc.enabled = false;
             transform.position = pos;
             host.move.cc.enabled = true;
+
+            SetCD();
+
             if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Blink_damage_1))
             {
                 damageToPassThoughEnemy = 30;
@@ -63,6 +66,19 @@ public class PlayerBlink : PlayerComponent
             {
                 damageToPassThoughEnemy = 110;
             }
+        }
+    }
+
+    void SetCD()
+    {
+        if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Blink_CD_2))
+        {
+            timeBetweenBlinks = 1f;
+        }
+
+        else if (RoguelikeRewardSystem.instance.HasPerk(RoguelikeUpgradeId.Blink_CD_1))
+        {
+            timeBetweenBlinks = 2f;
         }
     }
 
@@ -77,6 +93,8 @@ public class PlayerBlink : PlayerComponent
         return rotateDir.normalized;
     }
 
+    public Vector3 targetpoint;
+
     Vector3 GetBlinkTargetPlace()
     {
         blinkRay.origin = gunPos.position;
@@ -88,6 +106,8 @@ public class PlayerBlink : PlayerComponent
         bool isRayBlockedByObstacle = false;
 
         var targetPlace = blinkRay.origin + blinkRay.direction * blinkDistance;
+
+        targetpoint = targetPlace;
 
         foreach (var blinkHit in blinkHits)
         {

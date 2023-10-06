@@ -31,6 +31,8 @@ public enum RoguelikeUpgradeId
     Blink = 20,
     Blink_damage_1 = 21,
     Blink_damage_2 = 22,
+    Blink_CD_1 = 23,
+    Blink_CD_2 = 24,
 
     Bullet_5 =30,
     Bullet_10 = 31,

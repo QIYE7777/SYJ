@@ -18,6 +18,7 @@ public class RoomBehaviour : MonoBehaviour
     public static RoomBehaviour instance;
     bool _hasWaveToSpawn;
 
+
     private void Awake()
     {
         instance = this;
@@ -109,13 +110,14 @@ public class RoomBehaviour : MonoBehaviour
         if (_nextWaveWaitTime < 0)
         {
             if (_hasWaveToSpawn)
+
                 TrySpawn();
             else
                 PrepareWave();
         }
     }
 
-    void PrepareWave()
+    public void PrepareWave()
     {
         //Debug.Log("PrepareWave");
         if (IsSpawnDone())
